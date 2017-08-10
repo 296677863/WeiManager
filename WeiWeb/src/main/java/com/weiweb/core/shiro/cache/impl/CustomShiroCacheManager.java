@@ -1,3 +1,4 @@
+package com.weiweb.core.shiro.cache.impl;
 
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheException;

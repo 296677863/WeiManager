@@ -3,7 +3,8 @@ package com.weiweb.core.config;
 import java.io.IOException;
 import java.util.Properties;
 
-import com.sojson.common.utils.LoggerUtils;
+import com.weiweb.common.utils.LoggerUtils;
+
 
 public class IConfig {
 
