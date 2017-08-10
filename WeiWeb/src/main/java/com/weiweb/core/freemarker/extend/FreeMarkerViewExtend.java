@@ -7,10 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.servlet.view.freemarker.FreeMarkerView;
 
-import com.sojson.common.model.UUser;
-import com.sojson.common.utils.LoggerUtils;
-import com.sojson.core.shiro.token.manager.TokenManager;
-import com.sojson.core.statics.Constant;
+import com.weiweb.common.model.UUser;
+import com.weiweb.common.utils.LoggerUtils;
+import com.weiweb.core.shiro.token.manager.TokenManager;
+import com.weiweb.core.statics.Constant;
+
+
 public class FreeMarkerViewExtend extends FreeMarkerView {
 	
 	protected void exposeHelpers(Map<String, Object> model, HttpServletRequest request){

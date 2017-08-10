@@ -11,17 +11,18 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
-import net.sf.json.JSONObject;
-
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.AccessControlFilter;
 import org.apache.shiro.web.util.WebUtils;
 
-import com.sojson.common.utils.LoggerUtils;
-import com.sojson.core.shiro.cache.VCache;
-import com.sojson.core.shiro.session.ShiroSessionRepository;
-import com.sojson.core.shiro.token.manager.TokenManager;
+import com.weiweb.common.utils.LoggerUtils;
+import com.weiweb.core.shiro.cache.VCache;
+import com.weiweb.core.shiro.session.ShiroSessionRepository;
+import com.weiweb.core.shiro.token.manager.TokenManager;
+
+import net.sf.json.JSONObject;
+
 
 @SuppressWarnings({"unchecked","static-access"})
 public class KickoutSessionFilter extends AccessControlFilter {

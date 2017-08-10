@@ -2,7 +2,8 @@ package com.weiweb.core.tags;
 
 import java.util.Map;
 
-import com.sojson.common.utils.StringUtils;
+import com.weiweb.common.utils.StringUtils;
+
 
 @SuppressWarnings("unchecked")
 public abstract class SuperCustomTag {

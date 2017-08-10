@@ -6,11 +6,13 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 
-import com.sojson.common.model.UUser;
-import com.sojson.common.utils.SpringContextUtil;
-import com.sojson.core.shiro.session.CustomSessionManager;
-import com.sojson.core.shiro.token.SampleRealm;
-import com.sojson.core.shiro.token.ShiroToken;
+import com.weiweb.common.model.UUser;
+import com.weiweb.common.utils.SpringContextUtil;
+import com.weiweb.core.shiro.session.CustomSessionManager;
+import com.weiweb.core.shiro.token.SampleRealm;
+import com.weiweb.core.shiro.token.ShiroToken;
+
+
 
 
 

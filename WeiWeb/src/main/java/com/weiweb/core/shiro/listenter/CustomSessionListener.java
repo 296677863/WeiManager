@@ -4,7 +4,8 @@ package com.weiweb.core.shiro.listenter;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.SessionListener;
 
-import com.sojson.core.shiro.session.ShiroSessionRepository;
+import com.weiweb.core.shiro.session.ShiroSessionRepository;
+
 
 public class CustomSessionListener implements SessionListener {
 

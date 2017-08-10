@@ -1,11 +1,11 @@
-package com.weiweb.core.shiro.cache.impl;
 
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheException;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.util.Destroyable;
 
-import com.sojson.core.shiro.cache.ShiroCacheManager;
+import com.weiweb.core.shiro.cache.ShiroCacheManager;
+
 
 
 public class CustomShiroCacheManager implements CacheManager, Destroyable {

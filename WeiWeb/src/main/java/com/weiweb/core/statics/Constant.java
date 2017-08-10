@@ -2,7 +2,8 @@ package com.weiweb.core.statics;
 
 import java.util.Calendar;
 
-import com.sojson.core.config.IConfig;
+import com.weiweb.core.config.IConfig;
+
 
 
 public interface Constant {

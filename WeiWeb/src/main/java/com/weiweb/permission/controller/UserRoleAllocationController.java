@@ -11,12 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sojson.common.controller.BaseController;
-import com.sojson.core.mybatis.page.Pagination;
-import com.sojson.permission.bo.URoleBo;
-import com.sojson.permission.bo.UserRoleAllocationBo;
-import com.sojson.permission.service.PermissionService;
-import com.sojson.user.service.UUserService;
+import com.weiweb.common.controller.BaseController;
+import com.weiweb.core.mybatis.page.Pagination;
+import com.weiweb.permission.bo.URoleBo;
+import com.weiweb.permission.bo.UserRoleAllocationBo;
+import com.weiweb.permission.service.PermissionService;
+import com.weiweb.user.service.UUserService;
+
 
 @Controller
 @Scope(value="prototype")

@@ -9,18 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 
-import com.sojson.common.dao.UUserMapper;
-import com.sojson.common.dao.UUserRoleMapper;
-import com.sojson.common.model.UUser;
-import com.sojson.common.model.UUserRole;
-import com.sojson.common.utils.LoggerUtils;
-import com.sojson.core.mybatis.BaseMybatisDao;
-import com.sojson.core.mybatis.page.Pagination;
-import com.sojson.core.shiro.session.CustomSessionManager;
-import com.sojson.core.shiro.token.manager.TokenManager;
-import com.sojson.permission.bo.URoleBo;
-import com.sojson.permission.bo.UserRoleAllocationBo;
-import com.sojson.user.service.UUserService;
+import com.weiweb.common.dao.UUserMapper;
+import com.weiweb.common.dao.UUserRoleMapper;
+import com.weiweb.common.model.UUser;
+import com.weiweb.common.model.UUserRole;
+import com.weiweb.common.utils.LoggerUtils;
+import com.weiweb.core.mybatis.BaseMybatisDao;
+import com.weiweb.core.mybatis.page.Pagination;
+import com.weiweb.core.shiro.session.CustomSessionManager;
+import com.weiweb.core.shiro.token.manager.TokenManager;
+import com.weiweb.permission.bo.URoleBo;
+import com.weiweb.permission.bo.UserRoleAllocationBo;
+import com.weiweb.user.service.UUserService;
 
 @Service
 public class UUserServiceImpl extends BaseMybatisDao<UUserMapper> implements UUserService {

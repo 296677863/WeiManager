@@ -6,8 +6,9 @@ import java.util.Set;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheException;
 
-import com.sojson.common.utils.LoggerUtils;
-import com.sojson.common.utils.SerializeUtil;
+import com.weiweb.common.utils.LoggerUtils;
+import com.weiweb.common.utils.SerializeUtil;
+
 
 
 @SuppressWarnings("unchecked")

@@ -8,19 +8,20 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sojson.common.dao.UPermissionMapper;
-import com.sojson.common.dao.URolePermissionMapper;
-import com.sojson.common.dao.UUserMapper;
-import com.sojson.common.dao.UUserRoleMapper;
-import com.sojson.common.model.UPermission;
-import com.sojson.common.model.URolePermission;
-import com.sojson.common.utils.LoggerUtils;
-import com.sojson.common.utils.StringUtils;
-import com.sojson.core.mybatis.BaseMybatisDao;
-import com.sojson.core.mybatis.page.Pagination;
-import com.sojson.core.shiro.token.manager.TokenManager;
-import com.sojson.permission.bo.UPermissionBo;
-import com.sojson.permission.service.PermissionService;
+import com.weiweb.common.dao.UPermissionMapper;
+import com.weiweb.common.dao.URolePermissionMapper;
+import com.weiweb.common.dao.UUserMapper;
+import com.weiweb.common.dao.UUserRoleMapper;
+import com.weiweb.common.model.UPermission;
+import com.weiweb.common.model.URolePermission;
+import com.weiweb.common.utils.LoggerUtils;
+import com.weiweb.common.utils.StringUtils;
+import com.weiweb.core.mybatis.BaseMybatisDao;
+import com.weiweb.core.mybatis.page.Pagination;
+import com.weiweb.core.shiro.token.manager.TokenManager;
+import com.weiweb.permission.bo.UPermissionBo;
+import com.weiweb.permission.service.PermissionService;
+
 @Service
 public class PermissionServiceImpl extends BaseMybatisDao<UPermissionMapper> implements PermissionService {
 

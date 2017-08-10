@@ -7,8 +7,9 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.session.UnknownSessionException;
 import org.apache.shiro.session.mgt.eis.AbstractSessionDAO;
 
-import com.sojson.common.utils.LoggerUtils;
-import com.sojson.core.shiro.session.ShiroSessionRepository;
+import com.weiweb.common.utils.LoggerUtils;
+import com.weiweb.core.shiro.session.ShiroSessionRepository;
+
 
 public class CustomShiroSessionDAO extends AbstractSessionDAO{ 
 	

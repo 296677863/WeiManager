@@ -3,7 +3,8 @@ package com.weiweb.common.dao;
 import java.util.List;
 import java.util.Map;
 
-import com.sojson.common.model.URolePermission;
+import com.weiweb.common.model.URolePermission;
+
 
 public interface URolePermissionMapper {
     int insert(URolePermission record);

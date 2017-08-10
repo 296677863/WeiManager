@@ -4,9 +4,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.sojson.common.model.UPermission;
-import com.sojson.core.mybatis.page.Pagination;
-import com.sojson.permission.bo.UPermissionBo;
+import com.weiweb.common.model.UPermission;
+import com.weiweb.core.mybatis.page.Pagination;
+import com.weiweb.permission.bo.UPermissionBo;
+
 
 public interface PermissionService {
 

@@ -16,10 +16,10 @@ import java.util.Set;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.sojson.common.utils.SpringContextUtil;
-import com.sojson.common.utils.StringUtils;
-import com.sojson.common.utils.UtilPath;
-import com.sojson.core.tags.APITemplateModel;
+import com.weiweb.common.utils.SpringContextUtil;
+import com.weiweb.common.utils.StringUtils;
+import com.weiweb.common.utils.UtilPath;
+import com.weiweb.core.tags.APITemplateModel;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;

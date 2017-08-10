@@ -9,16 +9,17 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sojson.common.dao.URoleMapper;
-import com.sojson.common.dao.URolePermissionMapper;
-import com.sojson.common.dao.UUserMapper;
-import com.sojson.common.model.URole;
-import com.sojson.common.utils.LoggerUtils;
-import com.sojson.core.mybatis.BaseMybatisDao;
-import com.sojson.core.mybatis.page.Pagination;
-import com.sojson.core.shiro.token.manager.TokenManager;
-import com.sojson.permission.bo.RolePermissionAllocationBo;
-import com.sojson.permission.service.RoleService;
+import com.weiweb.common.dao.URoleMapper;
+import com.weiweb.common.dao.URolePermissionMapper;
+import com.weiweb.common.dao.UUserMapper;
+import com.weiweb.common.model.URole;
+import com.weiweb.common.utils.LoggerUtils;
+import com.weiweb.core.mybatis.BaseMybatisDao;
+import com.weiweb.core.mybatis.page.Pagination;
+import com.weiweb.core.shiro.token.manager.TokenManager;
+import com.weiweb.permission.bo.RolePermissionAllocationBo;
+import com.weiweb.permission.service.RoleService;
+
 
 @Service
 @SuppressWarnings("unchecked")

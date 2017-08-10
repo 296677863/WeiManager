@@ -4,7 +4,7 @@ package com.weiweb.core.tags;
 import java.io.IOException;
 import java.util.Map;
 
-import com.sojson.core.freemarker.utils.FreemarkerTagUtil;
+import com.weiweb.core.freemarker.utils.FreemarkerTagUtil;
 
 import freemarker.core.Environment;
 import freemarker.template.TemplateDirectiveBody;

@@ -16,10 +16,11 @@ import org.apache.ibatis.mapping.ParameterMapping;
 import org.apache.ibatis.session.Configuration;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
-import com.sojson.common.utils.LoggerUtils;
-import com.sojson.common.utils.StringUtils;
-import com.sojson.core.mybatis.page.MysqlDialect;
-import com.sojson.core.mybatis.page.Pagination;
+import com.weiweb.common.utils.LoggerUtils;
+import com.weiweb.common.utils.StringUtils;
+import com.weiweb.core.mybatis.page.MysqlDialect;
+import com.weiweb.core.mybatis.page.Pagination;
+
 
 @SuppressWarnings( { "unchecked" })
 public class BaseMybatisDao<T> extends SqlSessionDaoSupport {

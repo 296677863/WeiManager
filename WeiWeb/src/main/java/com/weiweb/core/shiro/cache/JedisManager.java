@@ -6,13 +6,14 @@ import java.util.Set;
 
 import org.apache.shiro.session.Session;
 
+import com.weiweb.common.utils.LoggerUtils;
+import com.weiweb.common.utils.SerializeUtil;
+import com.weiweb.common.utils.StringUtils;
+
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.exceptions.JedisConnectionException;
 
-import com.sojson.common.utils.LoggerUtils;
-import com.sojson.common.utils.SerializeUtil;
-import com.sojson.common.utils.StringUtils;
 
 
 public class JedisManager {

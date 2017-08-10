@@ -3,12 +3,9 @@ package com.weiweb.user.bo;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.sojson.common.model.UUser;
-/**
- * Session  + User Bo
- * @author sojson.com
- *
- */
+import com.weiweb.common.model.UUser;
+
+
 public class UserOnlineBo extends UUser implements Serializable {
 
 	private static final long serialVersionUID = 1L;

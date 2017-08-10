@@ -2,7 +2,8 @@ package com.weiweb.permission.bo;
 
 import java.io.Serializable;
 
-import com.sojson.common.model.UUser;
+import com.weiweb.common.model.UUser;
+
 /**
  * 用户角色分配 查询列表BO
  * @author zhou-baicheng

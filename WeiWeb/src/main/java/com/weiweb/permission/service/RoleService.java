@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.sojson.common.model.URole;
-import com.sojson.core.mybatis.page.Pagination;
-import com.sojson.permission.bo.RolePermissionAllocationBo;
-
+import com.weiweb.common.model.URole;
+import com.weiweb.core.mybatis.page.Pagination;
+import com.weiweb.permission.bo.RolePermissionAllocationBo;
+   
 public interface RoleService {
 
 	int deleteByPrimaryKey(Long id);

@@ -8,10 +8,11 @@ import javax.servlet.ServletResponse;
 
 import org.apache.shiro.web.filter.AccessControlFilter;
 
-import com.sojson.common.model.UUser;
-import com.sojson.common.utils.LoggerUtils;
-import com.sojson.core.shiro.token.manager.TokenManager;
+import com.weiweb.common.model.UUser;
+import com.weiweb.common.utils.LoggerUtils;
+import com.weiweb.core.shiro.token.manager.TokenManager;
 
+	
 public class LoginFilter  extends AccessControlFilter {
 	final static Class<LoginFilter> CLASS = LoginFilter.class;
 	@Override

@@ -9,16 +9,17 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
-import net.sf.json.JSONObject;
-
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.AccessControlFilter;
 import org.apache.shiro.web.util.WebUtils;
 
-import com.sojson.common.utils.LoggerUtils;
-import com.sojson.core.shiro.session.CustomSessionManager;
-import com.sojson.core.shiro.session.SessionStatus;
+import com.weiweb.common.utils.LoggerUtils;
+import com.weiweb.core.shiro.session.CustomSessionManager;
+import com.weiweb.core.shiro.session.SessionStatus;
+
+import net.sf.json.JSONObject;
+
 
 
 public class SimpleAuthFilter extends AccessControlFilter {

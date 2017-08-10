@@ -13,9 +13,10 @@ import org.apache.shiro.web.servlet.AbstractShiroFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 
-import com.sojson.common.utils.LoggerUtils;
-import com.sojson.core.config.INI4j;
-import com.sojson.core.shiro.service.ShiroManager;
+import com.weiweb.common.utils.LoggerUtils;
+import com.weiweb.core.config.INI4j;
+import com.weiweb.core.shiro.service.ShiroManager;
+
 
 public class ShiroManagerImpl implements ShiroManager {
 	

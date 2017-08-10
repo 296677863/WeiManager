@@ -7,7 +7,8 @@ import javax.annotation.Resource;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.sojson.permission.service.RoleService;
+import com.weiweb.permission.service.RoleService;
+
 
 
 /**

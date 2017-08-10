@@ -16,6 +16,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UrlPathHelper;
 
+import com.weiweb.common.utils.LoggerUtils;
+import com.weiweb.common.utils.StringUtils;
+import com.weiweb.common.utils.VerifyCodeUtils;
+import com.weiweb.common.utils.vcode.Captcha;
+import com.weiweb.common.utils.vcode.GifCaptcha;
+import com.weiweb.common.utils.vcode.SpecCaptcha;
+import com.weiweb.core.shiro.token.manager.TokenManager;
+import com.weiweb.permission.service.RoleService;
+
 
 @Controller
 @Scope(value="prototype")

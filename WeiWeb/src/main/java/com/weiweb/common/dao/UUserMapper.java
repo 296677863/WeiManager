@@ -3,8 +3,9 @@ package com.weiweb.common.dao;
 import java.util.List;
 import java.util.Map;
 
-import com.sojson.common.model.UUser;
-import com.sojson.permission.bo.URoleBo;
+import com.weiweb.common.model.UUser;
+import com.weiweb.permission.bo.URoleBo;
+
 
 public interface UUserMapper {
     int deleteByPrimaryKey(Long id);

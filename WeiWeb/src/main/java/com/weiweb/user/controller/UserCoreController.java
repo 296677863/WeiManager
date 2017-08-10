@@ -4,8 +4,6 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import net.sf.json.JSONObject;
-
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,12 +12,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sojson.common.controller.BaseController;
-import com.sojson.common.model.UUser;
-import com.sojson.common.utils.LoggerUtils;
-import com.sojson.core.shiro.token.manager.TokenManager;
-import com.sojson.user.manager.UserManager;
-import com.sojson.user.service.UUserService;
+import com.weiweb.common.controller.BaseController;
+import com.weiweb.common.model.UUser;
+import com.weiweb.common.utils.LoggerUtils;
+import com.weiweb.core.shiro.token.manager.TokenManager;
+import com.weiweb.user.manager.UserManager;
+import com.weiweb.user.service.UUserService;
+
+import net.sf.json.JSONObject;
+
 
 
 @Controller

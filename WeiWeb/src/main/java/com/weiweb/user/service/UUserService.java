@@ -5,10 +5,11 @@ import java.util.Map;
 
 import org.springframework.ui.ModelMap;
 
-import com.sojson.common.model.UUser;
-import com.sojson.core.mybatis.page.Pagination;
-import com.sojson.permission.bo.URoleBo;
-import com.sojson.permission.bo.UserRoleAllocationBo;
+import com.weiweb.common.model.UUser;
+import com.weiweb.core.mybatis.page.Pagination;
+import com.weiweb.permission.bo.URoleBo;
+import com.weiweb.permission.bo.UserRoleAllocationBo;
+
 
 public interface UUserService {
 

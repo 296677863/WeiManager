@@ -5,9 +5,9 @@ import static freemarker.template.ObjectWrapper.DEFAULT_WRAPPER;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.sojson.common.utils.LoggerUtils;
-import com.sojson.common.utils.SpringContextUtil;
-import com.sojson.core.statics.Constant;
+import com.weiweb.common.utils.LoggerUtils;
+import com.weiweb.common.utils.SpringContextUtil;
+import com.weiweb.core.statics.Constant;
 
 import freemarker.template.TemplateModel;
 import freemarker.template.TemplateModelException;

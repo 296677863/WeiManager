@@ -5,10 +5,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import com.sojson.common.model.UPermission;
-import com.sojson.common.model.URole;
-import com.sojson.common.model.UUser;
-import com.sojson.common.utils.MathUtil;
+import com.weiweb.common.model.UPermission;
+import com.weiweb.common.model.URole;
+import com.weiweb.common.model.UUser;
+import com.weiweb.common.utils.MathUtil;
+
+
 
 public class UserManager {
 	

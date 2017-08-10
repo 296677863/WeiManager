@@ -13,7 +13,8 @@ import org.apache.shiro.util.StringUtils;
 import org.apache.shiro.web.filter.AccessControlFilter;
 import org.apache.shiro.web.util.WebUtils;
 
-import com.sojson.common.utils.LoggerUtils;
+import com.weiweb.common.utils.LoggerUtils;
+
 
 public class PermissionFilter extends AccessControlFilter {
 	@Override

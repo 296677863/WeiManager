@@ -5,11 +5,12 @@ import java.util.Collection;
 
 import org.apache.shiro.session.Session;
 
-import com.sojson.common.utils.LoggerUtils;
-import com.sojson.common.utils.SerializeUtil;
-import com.sojson.core.shiro.session.CustomSessionManager;
-import com.sojson.core.shiro.session.SessionStatus;
-import com.sojson.core.shiro.session.ShiroSessionRepository;
+import com.weiweb.common.utils.LoggerUtils;
+import com.weiweb.common.utils.SerializeUtil;
+import com.weiweb.core.shiro.session.CustomSessionManager;
+import com.weiweb.core.shiro.session.SessionStatus;
+import com.weiweb.core.shiro.session.ShiroSessionRepository;
+
 
 @SuppressWarnings("unchecked")
 public class JedisShiroSessionRepository implements ShiroSessionRepository {

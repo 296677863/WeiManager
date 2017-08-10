@@ -2,8 +2,9 @@ package com.weiweb.permission.bo;
 
 import java.io.Serializable;
 
-import com.sojson.common.model.UPermission;
-import com.sojson.common.utils.StringUtils;
+import com.weiweb.common.model.UPermission;
+import com.weiweb.common.utils.StringUtils;
+
 
 
 public class UPermissionBo extends UPermission implements Serializable {
