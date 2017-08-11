@@ -7,18 +7,24 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.log4j.Logger;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.weiweb.common.utils.StringUtils;
 
 
-public class BaseController {
+
+public class BaseController implements ServletContextAware{
 
 	
 	protected int pageNo =1;
@@ -76,6 +82,17 @@ public class BaseController {
 	public ModelAndView redirect404(){
 		return new ModelAndView(new RedirectView(URL404));
 	}
+	@ModelAttribute  
+    public void initPath(HttpServletRequest request,HttpServletResponse response,ModelMap model){  
+        String base = request.getContextPath();    
+          
+        String fullPath = request.getScheme()+"://"+request.getServerName()+base;   
+        model.addAttribute("base", base);  
+        model.addAttribute("fullPath", fullPath); 
+        model.addAttribute("skin",request.getSession().getAttribute("skin"));
+       
+    }
+	
 	
 	@SuppressWarnings("unchecked")
 	protected Map<String, Object> prepareParams(Object obj, HttpServletRequest request) throws Exception {
@@ -110,6 +127,14 @@ public class BaseController {
 			}
 		}
 		return result;
+	}
+
+	private ServletContext servletContext; 
+	
+	@Override
+	public void setServletContext(ServletContext servletContext) {
+		this.servletContext=servletContext;
+		
 	}
 	
 }
