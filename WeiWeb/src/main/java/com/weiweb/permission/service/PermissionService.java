@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.weiweb.common.model.UPermission;
+import com.weiweb.common.model.URole;
 import com.weiweb.core.mybatis.page.Pagination;
 import com.weiweb.permission.bo.UPermissionBo;
 
@@ -34,4 +35,6 @@ public interface PermissionService {
 	Map<String, Object> deleteByRids(String roleIds);
 	//根据用户ID查询权限（permission），放入到Authorization里。
 	Set<String> findPermissionByUserId(Long userId);
+
+	List<UPermission> findUserMenus(List<URole> roles);
 }

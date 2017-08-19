@@ -13,6 +13,7 @@ import com.weiweb.common.dao.URolePermissionMapper;
 import com.weiweb.common.dao.UUserMapper;
 import com.weiweb.common.dao.UUserRoleMapper;
 import com.weiweb.common.model.UPermission;
+import com.weiweb.common.model.URole;
 import com.weiweb.common.model.URolePermission;
 import com.weiweb.common.utils.LoggerUtils;
 import com.weiweb.common.utils.StringUtils;
@@ -188,6 +189,11 @@ public class PermissionServiceImpl extends BaseMybatisDao<UPermissionMapper> imp
 	@Override
 	public Set<String> findPermissionByUserId(Long userId) {
 		return permissionMapper.findPermissionByUserId(userId);
+	}
+
+	@Override
+	public List<UPermission> findUserMenus(List<URole> roles) {
+		return null;
 	}
 
 	

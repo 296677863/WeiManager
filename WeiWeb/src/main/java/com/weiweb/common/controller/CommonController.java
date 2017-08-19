@@ -10,18 +10,21 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UrlPathHelper;
 
+import com.weiweb.common.model.UUser;
 import com.weiweb.common.utils.LoggerUtils;
 import com.weiweb.common.utils.StringUtils;
 import com.weiweb.common.utils.VerifyCodeUtils;
 import com.weiweb.common.utils.vcode.Captcha;
 import com.weiweb.common.utils.vcode.GifCaptcha;
 import com.weiweb.common.utils.vcode.SpecCaptcha;
+import com.weiweb.core.shiro.po.Message;
 import com.weiweb.core.shiro.token.manager.TokenManager;
 import com.weiweb.permission.service.RoleService;
 
@@ -195,5 +198,30 @@ public class CommonController extends BaseController {
 	@RequestMapping(value="shiro",method=RequestMethod.GET)
 	public ModelAndView shiro(){
 		return new ModelAndView("shiro");
+	}
+	
+	/**
+	 * 换肤
+	 */
+	@RequestMapping("skin")
+	@ResponseBody
+	public Message skin(String skin ,HttpServletRequest request,ModelMap model) {
+		if(StringUtils.isNotBlank(skin)){
+			
+			request.getSession().setAttribute("skin", skin);
+		}else{
+			return ERROR_MESSAGE;
+		}
+		
+		return SUCCESS_MESSAGE;
+	}
+	
+	
+	/**
+	 * 首页
+	 */
+	@RequestMapping("/homepage")
+	public String homepage(HttpServletRequest request,ModelMap model) {
+		return "/user/homepage";
 	}
 }

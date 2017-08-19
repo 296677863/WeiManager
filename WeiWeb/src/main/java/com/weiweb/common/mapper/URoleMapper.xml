@@ -97,13 +97,24 @@
   <resultMap id="findNowAllPermission_resultMap" extends="BaseResultMap" type="com.weiweb.common.model.URole" >
   	<collection property="permissions" javaType="com.weiweb.common.model.UPermission">
   	 	<id column="pid" property="id" jdbcType="BIGINT" />
+  	 	<result column="create_date" property="create_date" jdbcType="DATE"/>
+  	 	<result column="modify_date" property="modify_date" jdbcType="DATE"/>
+  	 	<result column="code" property="code" jdbcType="VARCHAR"/>
+  	 	<result column="data_level" property="data_level" jdbcType="BIT"/>
+  	 	<result column="icon_id" property="icon_id" jdbcType="VARCHAR"/>
+  	 	<result column="level" property="level" jdbcType="INTEGER"/>
     	<result column="pname" property="name" jdbcType="VARCHAR" />
-    	<result column="url" property="url" jdbcType="VARCHAR" />
+    	<result column="sort" property="sort" jdbcType="INTEGER"/>
+    	<result column="status" property="status" jdbcType="BIT"/>
+    	<result column="target" property="target" jdbcType="VARCHAR"/>
+    	<result column="purl" property="url" jdbcType="VARCHAR" />
+    	<result column="parent" property="parent" jdbcType="BIGINT"/>
   	</collection>
   </resultMap>
   <!-- 根据用户ID，查询所有权限 -->
   <select id="findNowAllPermission" resultMap="findNowAllPermission_resultMap">
-	select ur.id,ur.name,ur.type ,up.id pid,up.url,up.name pname 
+	select ur.id,ur.name,ur.type , 
+		up.id pid,up.create_date,up.modify_date,up.code,up.data_level,up.icon_id,up.level,up.name pname,up.sort,up.status,up.target,up.url purl,up.parent
 		from (select rid from u_user_role where uid = #{userId,jdbcType=BIGINT}) uur 
 		left join u_role ur on uur.rid = ur.id
 		left join u_role_permission urp on urp.rid = ur.id

@@ -1,0 +1,217 @@
+
+.all-menu{
+	width: 130px;
+    line-height: 50px;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    color: #fff;
+    position: absolute;
+    top: 0px;
+    right: 70px;
+}
+.all-dropdown{
+	    border: medium none;
+    display: none;
+    float: left;
+    font-size: 14px;
+    left: 0;
+  	min-width: 246px;
+  	background-color: #0FAAE3;
+  	color: #fff;
+}
+
+.all-dropdown:hover{
+	background-color: #0FAAE3;
+}
+.all-dropdown>ul{
+	float: left;
+}
+.all-dropdown>ul>li{
+	font-size: 14px;
+	padding: 5px 13px;
+	cursor: pointer;
+}
+.theme{
+	position: absolute;
+    right: -2px;
+    width: 70px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+}
+.them-div{
+	display: none;
+}
+.headerleft{
+	height: 50px;
+	float: left;
+	width: 100%;
+	font-size: 16px;
+	line-height: 50px;
+	color: #fff;
+	
+}
+
+.headerleft>span{
+	float: left;
+	display: block;
+	margin-left: 8px;
+	font-size: 18px;
+}
+.navbar-headerleft{
+	height: 32px;
+	line-height: 32px;
+	text-align: center;
+}
+.navbar-headerleft .iconfont{
+	font-size: 20px;
+	cursor: pointer;
+	
+}
+.roll-right.btn-group1{
+	right: 1px;
+	width: 82px;
+	padding: 0;
+}
+.btn-group1>.dropdown{
+	width: 80px;
+}
+/*.index-help{
+	float: left;
+    width: 80px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
+    text-align: center;
+    margin-right: 35px;
+}*/
+.index-help{
+    width: 80px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
+    text-align: center;
+    position: absolute;
+    right: 195px;
+}
+/*.index-help>a{
+	color: #fff!important;
+}*/
+.index-help>a>.iconfont{
+	font-size: 14px;
+	margin-right: 5px;
+}
+
+.user-dropdown{
+    min-width: 130px!important;
+}
+.user-dropdown>li>a{
+	color: #fff!important;
+}
+/* .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover{
+	background-color:transparent!important;
+} */
+.btn-group-vertical{
+	    position: absolute;
+}
+.all-menu-div>.dropdown-menu{
+	position: relative;
+	padding: 8px 10px;
+}
+
+.index-logo{
+	width: 38px;
+	margin-top:5px;
+	margin-left: 10px;
+	float: left;
+	margin-right: 5px;
+}
+/*.navbar-right{
+	width: 15%;
+}*/
+/* .all-menu .J_tabClose{
+	margin-right: -13px;
+} */
+.row{
+	padding: 0px;
+	margin: 0px;
+}
+.navbar-top-links{
+	position: absolute;
+    right: 2px;
+}
+
+.nav>li>a>img{
+	width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 5px;
+}
+
+.page-tabs a, .page-tabs a i, .nav>li>a{
+	height: 45px;
+}
+/* .nav .nav>li>a:hover{
+	background-color: transparent;
+} */
+.index-message{
+	width: 80px;
+	height: 50px;
+	line-height: 50px;
+	font-size: 14px;
+	text-align: center;
+	position: absolute;
+	right: 270px;
+}
+.index-message div{
+	position: relative;
+}
+.index-message .fa-bell{
+	font-size: 16px;
+	color: #999;
+}
+.index-message .fa-comment{
+	position: absolute;
+	font-size: 26px;
+	color: #E70012;
+	top:0;
+
+}
+.index-message .message-num{
+	font-size: 12px;
+	position: absolute;
+	top: -15px;
+	text-align: center;
+	width: 27px;
+	height: 40px;
+	line-height: 54px;
+	color: #fff;
+	cursor: pointer;
+}
+.dropdown-message{
+	top: 0px;
+	left: -115px;
+	width: 370px!important;
+	padding: 10px 16px;
+}
+.tips-title{
+	height: 20px;
+	line-height: 20px;
+	font-size: 16px;
+	color: #4288BC;
+}
+.dropdown-message li {
+	height: 45px;
+	line-height: 45px;
+}
+.navbar-top-links .dropdown-menu li a{
+	padding: 0px 0px;
+}
+.dropdown-message li a{
+	color: #ccc;
+	text-decoration: underline;
+}
+.dropdown-message li a i,.dropdown-message li a span{
+	color: #4288BC;
+}

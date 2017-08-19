@@ -1,0 +1,138 @@
+.login-record{
+	height: 35px;
+	line-height: 35px;
+}
+.login-address{
+	margin-left: 10px;
+}
+.col-sm-4, .col-sm-8, .col-sm-12{
+	padding-right: 0px; 
+    padding-left: 0px; 
+}
+.user-right{
+	position: absolute;
+	right: 0px;
+	top:0px;
+}
+.user-right>.iconfont{
+	float: left;
+	margin-top: 1px;
+	margin-right: 5px;
+}
+.title-left{
+	float: left;
+}
+.title-right{
+	float: right;
+	cursor: pointer;
+}
+.title-right .fa{
+	margin-right: 5px;
+}
+
+.number-one{
+	    padding-top: 15px;
+    min-height: 185px;
+    overflow: auto;
+   /*  background-color: #232323; */
+    margin-top: 15px;
+	
+}
+.shortcut-div{
+	height: 30px;
+    padding-bottom: 35px;
+    padding-left: 20px;
+     border-bottom: 1px solid #E6EFF8; 
+}
+.number-one .title-left{
+	font-size: 16px;
+}
+.number-one .title-right{
+	margin-right: 20px;
+}
+
+.shortcut{
+	width: 100%;
+	
+}
+.shortcut li{
+	float: left;
+    width: 20%;
+    height: 130px;
+    margin-top: 15px;
+	cursor: pointer;
+}
+.shortcut-icon{
+	width: 63%;
+	height: 90px;
+	border:1px solid #eee;
+	 line-height: 90px;
+    text-align: center;
+        margin: 0 auto;
+        position: relative;
+}
+.shortcut-icon .iconfont{
+	    font-size: 30px;
+}
+.shortcut-icon .close-icon{
+	font-size: 16px;
+    position: absolute;
+    top: -31px;
+    right: 5px;
+    color: #468AC7;
+    z-index:99;
+	cursor: pointer;
+}
+.shortcut-title{
+	/* width: 63%; */
+	text-align: center;
+	    padding-top: 5px;
+}
+.system-left{
+	    float: left;
+    margin-bottom: 25px;
+    padding-left: 20px;
+    margin-top: 20px;
+	
+}
+.system-left li{
+	line-height: 30px;
+}
+.system-right{
+	float: right;
+	margin-right: 20px;
+}
+.qr-code{
+	    width: 110px;
+    height: 110px;
+    border: 1px solid #ccc;
+    margin-top: 35px;
+}
+.system-right p{
+	text-align: center;
+	padding-top: 5px;
+}
+.log-content{
+	margin-left: 15px;
+	padding-left: 15px;
+}
+.user-log{
+	width: 100%;
+    font-size: 16px;
+    font-weight: bolder;
+    margin-top: 15px;
+    padding: 14px 20px;
+    border-bottom: 1px solid #E6EFF8;
+}
+.log-time{
+    font-size: 14px;
+    font-style: italic;
+    padding-top: 10px;
+}
+.font-color-three>li{
+	line-height: 30px;
+}
+.log-list{
+	    margin-bottom: 15px;
+    line-height: 22px;
+}

@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>IconFont</title>
+    <link rel="stylesheet" href="demo.css">
+    <link rel="stylesheet" href="iconfont.css">
+</head>
+<body>
+    <div class="main">
+        <h1>IconFont 图标</h1>
+        <ul class="icon_lists clear">
+
+
+            <li>
+                <i class="icon iconfont">&#xe900;</i>
+                <div class="name">角色管理</div>
+                <div class="code">&amp;#xe900;</div>
+            </li>
+
+            <li>
+                <i class="icon iconfont">&#xe901;</i>
+                <div class="name">系统设置</div>
+                <div class="code">&amp;#xe901;</div>
+            </li>
+
+            <li>
+                <i class="icon iconfont">&#xe902;</i>
+                <div class="name">新闻</div>
+                <div class="code">&amp;#xe902;</div>
+            </li>
+
+            <li>
+                <i class="icon iconfont">&#xe903;</i>
+                <div class="name">骚扰拦截</div>
+                <div class="code">&amp;#xe903;</div>
+            </li>
+
+            <li>
+                <i class="icon iconfont">&#xe904;</i>
+                <div class="name">网点信息</div>
+                <div class="code">&amp;#xe904;</div>
+            </li>
+
+            <li>
+                <i class="icon iconfont">&#xe905;</i>
+                <div class="name">群发消息</div>
+                <div class="code">&amp;#xe905;</div>
+            </li>
+
+            <li>
+                <i class="icon iconfont">&#xe906;</i>
+                <div class="name">菜单</div>
+                <div class="code">&amp;#xe906;</div>
+            </li>
+
+            <li>
+                <i class="icon iconfont">&#xe907;</i>
+                <div class="name">微信</div>
+                <div class="code">&amp;#xe907;</div>
+            </li>
+
+            <li>
+                <i class="icon iconfont">&#xe6b5;</i>
+                <div class="name">road</div>
+                <div class="code">&amp;#xe6b5;</div>
+            </li>
+
+            <li>
+                <i class="icon iconfont">&#xe911;</i>
+                <div class="name">图片图标</div>
+                <div class="code">&amp;#xe911;</div>
+            </li>
+
+            <li>
+                <i class="icon iconfont">&#xe908;</i>
+                <div class="name">词典</div>
+                <div class="code">&amp;#xe908;</div>
+            </li>
+
+            <li>
+                <i class="icon iconfont">&#xe909;</i>
+                <div class="name">日志管理</div>
+                <div class="code">&amp;#xe909;</div>
+            </li>
+
+            <li>
+                <i class="icon iconfont">&#xe90a;</i>
+                <div class="name">角色管理</div>
+                <div class="code">&amp;#xe90a;</div>
+            </li>
+
+            <li>
+                <i class="icon iconfont">&#xe90b;</i>
+                <div class="name">统计</div>
+                <div class="code">&amp;#xe90b;</div>
+            </li>
+
+            <li>
+                <i class="icon iconfont">&#xe90c;</i>
+                <div class="name">微信</div>
+                <div class="code">&amp;#xe90c;</div>
+            </li>
+
+            <li>
+                <i class="icon iconfont">&#xe90d;</i>
+                <div class="name">模板管理</div>
+                <div class="code">&amp;#xe90d;</div>
+            </li>
+
+            <li>
+                <i class="icon iconfont">&#xe90f;</i>
+                <div class="name">新闻</div>
+                <div class="code">&amp;#xe90f;</div>
+            </li>
+
+            <li>
+                <i class="icon iconfont">&#xe910;</i>
+                <div class="name">日志</div>
+                <div class="code">&amp;#xe910;</div>
+            </li>
+
+            <li>
+                <i class="icon iconfont">&#xe912;</i>
+                <div class="name">统计</div>
+                <div class="code">&amp;#xe912;</div>
+            </li>
+
+            <li>
+                <i class="icon iconfont">&#xe90e;</i>
+                <div class="name">系统</div>
+                <div class="code">&amp;#xe90e;</div>
+            </li>
+
+            <li>
+                <i class="icon iconfont">&#xe913;</i>
+                <div class="name">营业网点</div>
+                <div class="code">&amp;#xe913;</div>
+            </li>
+
+            <li>
+                <i class="icon iconfont">&#xe914;</i>
+                <div class="name">版本更新</div>
+                <div class="code">&amp;#xe914;</div>
+            </li>
+
+            <li>
+                <i class="icon iconfont">&#xe915;</i>
+                <div class="name">统计</div>
+                <div class="code">&amp;#xe915;</div>
+            </li>
+            
+        </ul>
+
+
+        <div class="helps">
+            第一步：使用font-face声明字体
+            <pre>
+@font-face {font-family: 'iconfont';
+    src: url('iconfont.eot'); /* IE9*/
+    src: url('iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('iconfont.woff') format('woff'), /* chrome、firefox */
+    url('iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+</pre>
+第二步：定义使用iconfont的样式
+            <pre>
+.iconfont{
+    font-family:"iconfont" !important;
+    font-size:16px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;}
+</pre>
+第三步：挑选相应图标并获取字体编码，应用于页面
+<pre>
+&lt;i class="iconfont"&gt;&amp;#x33;&lt;/i&gt;
+</pre>
+        </div>
+
+    </div>
+</body>
+</html>

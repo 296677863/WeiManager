@@ -1,9 +1,12 @@
 package com.weiweb.user.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,9 +16,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.weiweb.common.controller.BaseController;
+import com.weiweb.common.model.UPermission;
+import com.weiweb.common.model.URole;
 import com.weiweb.common.model.UUser;
 import com.weiweb.common.utils.LoggerUtils;
+import com.weiweb.common.utils.StringUtils;
+import com.weiweb.core.shiro.po.Message;
 import com.weiweb.core.shiro.token.manager.TokenManager;
+import com.weiweb.permission.service.PermissionService;
+import com.weiweb.permission.service.RoleService;
 import com.weiweb.user.manager.UserManager;
 import com.weiweb.user.service.UUserService;
 
@@ -30,14 +39,34 @@ public class UserCoreController extends BaseController {
 
 	@Resource
 	UUserService userService;
+	@Resource
+	RoleService roleService;
+	@Resource
+	PermissionService permissionService;
 	/**
 	 * 个人资料
 	 * @return
 	 */
 	@RequestMapping(value="index",method=RequestMethod.GET)
-	public ModelAndView userIndex(){
-		
-		return new ModelAndView("user/index");
+	public ModelAndView userIndex(ModelAndView view,HttpServletRequest request){
+		String skin=(String) request.getSession().getAttribute("skin");
+		if(StringUtils.isNotBlank(skin)){
+
+			request.getSession().setAttribute("skin",skin);
+		}else{
+
+			request.getSession().setAttribute("skin","default");
+		}
+
+		List<URole> roles=roleService.findNowAllPermission();
+		if(roles!=null&&roles.size()!=0){
+			List<UPermission> UPermissions=roles.get(0).getPermissions();
+			view.addObject("menus", UPermissions);
+		}
+		view.addObject("flag", "true");
+		view.addObject("main_top_name", "微管理");
+		view.setViewName("/user/index");
+		return view;
 	}
 	
 	
@@ -50,40 +79,54 @@ public class UserCoreController extends BaseController {
 	public ModelAndView toPage(@PathVariable("page")String page){
 		return new ModelAndView(String.format("user/%s", page));
 	}
+	
+	@RequestMapping("/editpwd")
+	public String editpwd(){
+		return "/user/editpwd";
+	}
+	
 	/**
-	 * 密码修改
+	 * 检查旧密码
+	 */
+	@RequestMapping(value = "/checkPwd")
+	public @ResponseBody
+	boolean checkPwd(String pwd) {
+		String email = TokenManager.getToken().getEmail();
+		pwd = UserManager.md5Pswd(email, pwd);
+		UUser user = userService.login(email, pwd);
+		if (StringUtils.isEmpty(pwd)) {
+			return false;
+		}
+		boolean result = true;
+		if(!(pwd).equals(user.getPswd())){
+			result = false;
+		}
+		return result;
+	}
+	
+	
+	/**
+	 * 修改密码
+	 * @param admin
 	 * @return
 	 */
-	@RequestMapping(value="updatePswd",method=RequestMethod.POST)
+	@RequestMapping("/updatePwd")
 	@ResponseBody
-	public Map<String,Object> updatePswd(String pswd,String newPswd){
-		//根据当前登录的用户帐号 + 老密码，查询。
-		String email = TokenManager.getToken().getEmail();
-				pswd = UserManager.md5Pswd(email, pswd);
-		UUser	user = userService.login(email, pswd);
-		
-		if("admin".equals(email)){
-			resultMap.put("status", 300);
-			resultMap.put("message", "管理员不准修改密码。");
-			return resultMap;
-		}
-		
-		if(null == user){
-			resultMap.put("status", 300);
-			resultMap.put("message", "密码不正确！");
-		}else{
-			user.setPswd(newPswd);
-			//加工密码
+	public Message updatePwd(String pwd,String newPwd){
+		try {
+			String email = TokenManager.getToken().getEmail();
+			pwd = UserManager.md5Pswd(email, pwd);
+			UUser user = userService.login(email, pwd);
+			user.setPswd(newPwd);
 			user = UserManager.md5Pswd(user);
-			//修改密码
 			userService.updateByPrimaryKeySelective(user);
-			resultMap.put("status", 200);
-			resultMap.put("message", "修改成功!");
-			//重新登录一次
-			TokenManager.login(user, Boolean.TRUE);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Message.error("fail");
 		}
-		return resultMap;
+		return Message.success("success");
 	}
+	
 	/**
 	 * 个人资料修改
 	 * @return

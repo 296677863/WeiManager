@@ -124,5 +124,6 @@ public class RoleServiceImpl extends BaseMybatisDao<URoleMapper> implements Role
 	public void initData() {
 		roleMapper.initData();
 	}
+
 	
 }

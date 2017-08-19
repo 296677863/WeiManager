@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -16,6 +17,7 @@ import org.apache.ibatis.mapping.ParameterMapping;
 import org.apache.ibatis.session.Configuration;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
+import com.weiweb.common.model.URole;
 import com.weiweb.common.utils.LoggerUtils;
 import com.weiweb.common.utils.StringUtils;
 import com.weiweb.core.mybatis.page.MysqlDialect;

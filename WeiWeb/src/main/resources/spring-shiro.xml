@@ -154,7 +154,7 @@
 		<property name="securityManager" ref="securityManager" />
 		<property name="loginUrl" value="/u/login.shtml" />
 		<!--	TODO 待提取	-->
-		<property name="successUrl" value="/" />
+		<property name="successUrl" value="/user/index.shtml" />
 		<property name="unauthorizedUrl" value="/?login" />
 		
 <!--	初始配置，现采用自定义	-->

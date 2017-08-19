@@ -20,7 +20,10 @@ import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.weiweb.common.model.UUser;
 import com.weiweb.common.utils.StringUtils;
+import com.weiweb.core.shiro.po.Message;
+import com.weiweb.core.shiro.token.manager.TokenManager;
 
 
 
@@ -32,6 +35,12 @@ public class BaseController implements ServletContextAware{
 	protected final static Logger logger = Logger.getLogger(BaseController.class);
 	protected Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
 	public static String URL404 =  "/404.html";
+
+	/** 错误消息 */
+	protected static final Message ERROR_MESSAGE = Message.error("admin.message.error");
+
+	/** 成功消息 */
+	protected static final Message SUCCESS_MESSAGE = Message.successi18n("admin.message.success");
 	
 	private final static String PARAM_PAGE_NO = "pageNo";
 	
@@ -85,7 +94,11 @@ public class BaseController implements ServletContextAware{
 	@ModelAttribute  
     public void initPath(HttpServletRequest request,HttpServletResponse response,ModelMap model){  
         String base = request.getContextPath();    
-          
+    	UUser token = TokenManager.getToken();
+		//String ip = IPUtils.getIP(request);
+		if(TokenManager.isLogin()){
+			model.put("user", token);//登录的token
+		}
         String fullPath = request.getScheme()+"://"+request.getServerName()+base;   
         model.addAttribute("base", base);  
         model.addAttribute("fullPath", fullPath); 

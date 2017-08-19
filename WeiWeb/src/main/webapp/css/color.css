@@ -1,0 +1,80 @@
+
+body{
+    color: #4a4a4a;
+}
+
+.disable-color{
+    color: #cccccc;    
+}
+
+
+.notes{
+    color: #999999;
+}
+
+.subcolor-one{
+	background-color:#fbb040;
+}
+.subcolor-two{
+	background-color:#43555f;
+}
+.subcolor-three{
+	background-color:#76cf57;
+}
+
+/*.sub-color-five{
+    background-color: #f2d549;
+}*/
+
+
+.error-mes{
+     border: 1px solid #ff5500;
+     -moz-box-shadow:0px 0px 2px #ff5500;
+     -webkit-box-shadow:0px 0px 2px #ff5500;
+     box-shadow:0px 0px 2px #ff5500;
+}
+.input-error{
+	border:1px solid #ff5500;
+	 -moz-box-shadow:0px 0px 2px #ff5500;
+     -webkit-box-shadow:0px 0px 2px #ff5500;
+     box-shadow:0px 0px 2px #ff5500;
+}
+.input-warning{
+	border:1px solid #ffaa00;
+	 -moz-box-shadow:0px 0px 2px #ffaa00;
+     -webkit-box-shadow:0px 0px 2px #ffaa00;
+     box-shadow:0px 0px 2px #ffaa00;
+}
+.icon-success{
+	color: #87D068;
+}
+.icon-warning{
+	color: #ffaa00;
+}
+.icon-error{
+	color: #FF5500;
+}
+.message-div{
+    color: #ff5500;
+}
+.select-icon{
+    color: #999999;
+}
+#divselect ul{
+     border: 1px solid #e5e5e5;
+      a{
+    color: #999999!important;
+    }
+}
+
+#divselect ul li a:hover{background-color:#EAF8FE;
+}
+
+.form-load-icon{
+    border: 2px solid #E5E5E5;
+    border-left-color: #fff;
+    border-right-color: #fff;
+    border-bottom-color: #fff
+}
+
+

@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
@@ -199,6 +201,8 @@ public class UUserServiceImpl extends BaseMybatisDao<UUserMapper> implements UUs
 		return resultMap;
 	
 	}
+
+
 	
 	
 	

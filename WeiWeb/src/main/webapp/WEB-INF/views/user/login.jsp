@@ -1,5 +1,6 @@
 <%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+<%@ taglib uri="/WEB-INF/tld/wei.tld" prefix="wei" %>
 <%
     String base = request.getContextPath();
     String basePath = request.getScheme() + "://"
@@ -13,8 +14,8 @@
 	<meta charset="UTF-8">
 	<title>微管理</title>
 	<shiro:authenticated><%response.sendRedirect("index.shtml");%></shiro:authenticated>
-	<link rel="stylesheet" href="js/common/layer/skin/layer.css?v=<citms:version/>" />
-	<link rel="stylesheet" href="css/login/login.css?v=<citms:version/>" />
+	<link rel="stylesheet" href="js/common/layer/skin/layer.css?v=<wei:version/>" />
+	<link rel="stylesheet" href="css/login/login.css?v=<wei:version/>" />
 </head>
 <body>
 <div class="index-postion">
@@ -72,8 +73,8 @@
 <script type="text/javascript" >
 	var baseRoot = "${base}"
 </script>
-<script type="text/javascript" src="js/common/jquery/jquery1.8.3.min.js?v=<citms:version/>"></script>
-<script type="text/javascript" src="js/common/layer/layer.js?v=<citms:version/>"></script>
-<script type="text/javascript" src="js/common/MD5.js?v=<citms:version/>"></script>
-<script type="text/javascript" src="js/login/login.js?v=<citms:version/>"></script>
+<script type="text/javascript" src="js/common/jquery/jquery1.8.3.min.js?v=<wei:version/>"></script>
+<script type="text/javascript" src="js/common/layer/layer.js?v=<wei:version/>"></script>
+<script type="text/javascript" src="js/common/MD5.js?v=<wei:version/>"></script>
+<script type="text/javascript" src="js/login/login.js?v=<wei:version/>"></script>
 </body>

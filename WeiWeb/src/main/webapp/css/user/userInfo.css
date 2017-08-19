@@ -1,0 +1,14 @@
+.group-div{
+	    margin-bottom: 15px;
+}
+.role-purview li{
+	     min-height: 36px;
+    border-bottom: 1px dashed #515151;
+    margin-top: 8px;
+    overflow: auto;
+}
+
+.form-group{
+	margin-bottom:0px!important;
+	
+}

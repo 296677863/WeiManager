@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.weiweb.common.controller.BaseController;
 import com.weiweb.common.model.UUser;
 import com.weiweb.core.mybatis.page.Pagination;
@@ -37,12 +36,21 @@ public class MemberController extends BaseController {
 	 */
 	@RequestMapping(value="list")
 	public ModelAndView list(ModelMap map,Integer pageNo,String findContent){
-		
-		map.put("findContent", findContent);
-		Pagination<UUser> page = userService.findByPage(map,pageNo,pageSize);
-		map.put("page", page);
 		return new ModelAndView("member/list");
 	}
+	
+	@RequestMapping("/listData")
+	@ResponseBody
+	public Pagination<UUser> listData(UUser user,Integer pageNo, ModelMap map){
+		map.put("nickname", user.getNickname());
+		map.put("email", user.getEmail());
+		Pagination<UUser> page = userService.findByPage(map,pageNo,pageSize);
+		return page;
+		
+
+	}
+	
+	
 	/**
 	 * 在线用户管理
 	 * @return
