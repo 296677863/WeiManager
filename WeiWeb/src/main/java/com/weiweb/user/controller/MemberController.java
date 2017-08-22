@@ -123,6 +123,8 @@ public class MemberController extends BaseController {
 	
 	@RequestMapping("/edit/{id}")
 	public String edit( @PathVariable("id")String id,ModelMap model){
+		if(!StringUtils.isEmpty(id))
+			model.addAttribute("bean",userService.selectByPrimaryKey(Long.parseLong(id)));
 		return "/member/edit";
 	}
 	@RequestMapping("/save")
