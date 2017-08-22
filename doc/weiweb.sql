@@ -46,7 +46,7 @@ CREATE TABLE `sys_dict_detail` (
   `detail_content` varchar(256) DEFAULT NULL COMMENT '内容',
   `detail_remark` varchar(256) DEFAULT NULL COMMENT '备注',
   `create_time` varchar(64) DEFAULT NULL COMMENT '创建时间',
-  `create_id` int(11) DEFAULT '0' COMMENT '创建者',
+  `create_id` bigint(20) DEFAULT '0' COMMENT '创建者',
   PRIMARY KEY (`detail_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='数据字典';
 
