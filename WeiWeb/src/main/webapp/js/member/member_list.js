@@ -52,7 +52,7 @@ $(function () {
                 fixed: true,
                 formatter: function (cellvalue, options, rowObject) {
                     var result = "<a href=\"javascript:void(0)\" onclick=\"wei.dialog.openIrame('用户编辑','{0}')\">[编辑]</a>"
-                        .format(window.baseRoot + '/base/admin/input/'
+                        .format(window.baseRoot + '/member/edit.shtml'
                             + rowObject.id);
                     if (rowObject.status) {
                         result = result
@@ -63,8 +63,8 @@ $(function () {
                             + '<a href="javascript:updateStatus(\'{0}\',true)">[启用]</a>'
                                 .format(rowObject.id);
                     }
-                    result = result + "<a href=\"javascript:void(0)\" onclick=\"wei.dialog.openIrame('用户编辑','{0}')\">[详情]</a>"
-                            .format(window.baseRoot + '/base/admin/info/'
+                    result = result + "<a href=\"javascript:void(0)\" onclick=\"wei.dialog.openIrame('用户详情','{0}')\">[详情]</a>"
+                            .format(window.baseRoot + '/member/info.shtml'
                                 + rowObject.id);
                     return result;
                 }

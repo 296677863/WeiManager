@@ -22,8 +22,10 @@ public interface UUserMapper {
 
 	UUser login(Map<String, Object> map);
 
-	UUser findUserByEmail(String email);
+	List<UUser> findUserByEmail(String email);
 
 	List<URoleBo> selectRoleByUserId(Long id);
+
+	List<UUser> findUserByNickname(String nickname);
 
 }

@@ -27,12 +27,12 @@ public interface UUserService {
     
     UUser login(String email ,String pswd);
 
-	UUser findUserByEmail(String email);
+	List<UUser> findUserByEmail(String email);
 
 	Pagination<UUser> findByPage(Map<String, Object> resultMap, Integer pageNo,
 			Integer pageSize);
 
-	Map<String, Object> deleteUserById(String ids);
+	boolean deleteUserById(String ids);
 
 	Map<String, Object> updateForbidUserById(Long id, Long status);
 
@@ -44,5 +44,7 @@ public interface UUserService {
 	Map<String, Object> addRole2User(Long userId, String ids);
 
 	Map<String, Object> deleteRoleByUserIds(String userIds);
+
+	List<UUser> getUserByNickname(String nickname);
 
 }

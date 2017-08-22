@@ -78,7 +78,7 @@ public class UUserServiceImpl extends BaseMybatisDao<UUserMapper> implements UUs
 	}
 
 	@Override
-	public UUser findUserByEmail(String email) {
+	public List<UUser> findUserByEmail(String email) {
 		return userMapper.findUserByEmail(email);
 	}
 
@@ -90,28 +90,26 @@ public class UUserServiceImpl extends BaseMybatisDao<UUserMapper> implements UUs
 	}
 
 	@Override
-	public Map<String, Object> deleteUserById(String ids) {
-		Map<String,Object> resultMap = new HashMap<String,Object>();
-		try {
-			int count=0;
-			String[] idArray = new String[]{};
-			if(StringUtils.contains(ids, ",")){
-				idArray = ids.split(",");
+	public boolean deleteUserById(String ids) {
+		String currentId=TokenManager.getUserId().toString();
+		boolean isHasCurrent = false;
+		int count=0;
+		String[] idArray = new String[]{};
+		if(StringUtils.contains(ids, ",")){
+			idArray = ids.split(",");
+		}else{
+			idArray = new String[]{ids};
+		}
+		
+		for (String id : idArray) {
+			if(id.equals(currentId)){
+				isHasCurrent = true;
 			}else{
-				idArray = new String[]{ids};
-			}
-			
-			for (String id : idArray) {
 				count+=this.deleteByPrimaryKey(new Long(id));
 			}
-			resultMap.put("status", 200);
-			resultMap.put("count", count);
-		} catch (Exception e) {
-			LoggerUtils.fmtError(getClass(), e, "根据IDS删除用户出现错误，ids[%s]", ids);
-			resultMap.put("status", 500);
-			resultMap.put("message", "删除出现错误，请刷新后再试！");
+			
 		}
-		return resultMap;
+		return isHasCurrent;
 	}
 
 	@Override
@@ -200,6 +198,11 @@ public class UUserServiceImpl extends BaseMybatisDao<UUserMapper> implements UUs
 		}
 		return resultMap;
 	
+	}
+
+	@Override
+	public List<UUser> getUserByNickname(String nickname) {
+		return userMapper.findUserByNickname(nickname);
 	}
 
 

@@ -1,6 +1,7 @@
 package com.weiweb.user.controller;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -70,8 +71,8 @@ public class UserLoginController extends BaseController {
 		}
 		String email =  entity.getEmail();
 		
-		UUser user = userService.findUserByEmail(email);
-		if(null != user){
+		List<UUser> user = userService.findUserByEmail(email);
+		if(null != user&&user.size()!=0){
 			resultMap.put("message", "帐号|Email已经存在！");
 			return resultMap;
 		}

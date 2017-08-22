@@ -90,6 +90,14 @@
     where email = #{email,jdbcType=VARCHAR} 
   </select>
   
+    <select id="findUserByNickname" resultMap="BaseResultMap" >
+  	 select 
+    <include refid="Base_Column_List" />
+    from u_user
+    where nickname = #{nickname,jdbcType=VARCHAR} 
+  </select>
+  
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />

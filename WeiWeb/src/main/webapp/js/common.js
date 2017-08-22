@@ -882,7 +882,7 @@ $(function(){
             },
             btn2:function(index, layero){
                 layer.close(index);
-                wei.ajax.ajaxTagSu("delete",{'ids':selectIds.join(",")},function (message) {
+                wei.ajax.ajaxTagSu("deleteUserById.shtml",{'ids':selectIds.join(",")},function (message) {
 
 
                     if (message.type == "success") {
