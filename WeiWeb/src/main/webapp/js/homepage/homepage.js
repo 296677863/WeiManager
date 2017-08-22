@@ -85,12 +85,12 @@ $(function(){
 		var $this = $(this);
 		var v_quickMenuId = $this.parent().data("id");
 		console.log(v_quickMenuId);
-		citms.ajax.ajaxTagSu(baseRoot+"/base/menu/deleteMenuQuick",{menuQucikId:v_quickMenuId},function (message) {
+		wei.ajax.ajaxTagSu(baseRoot+"/base/menu/deleteMenuQuick",{menuQucikId:v_quickMenuId},function (message) {
             if (message.type == "success") {
                 $this.closest("li").remove();
-                citms.dialog.layerMsg("删除成功！");
+                wei.dialog.layerMsg("删除成功！");
             }else{
-                citms.dialog.errorlayerMsg(message.content);
+                wei.dialog.errorlayerMsg(message.content);
             }
         });
 		evnet.preventDefault();

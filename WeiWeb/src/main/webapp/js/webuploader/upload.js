@@ -41,16 +41,16 @@
 		v_webUploader.on("error",function(errName,fileSize,object ){
 			switch(errName){
 				case"Q_EXCEED_NUM_LIMIT":
-                    citms.dialog.layerMsg("最多只能上传{0}个文件".format(fileSize),2);
+                    wei.dialog.layerMsg("最多只能上传{0}个文件".format(fileSize),2);
 					break;
 				case"F_EXCEED_SIZE":
-                    citms.dialog.layerMsg("文件大小不能超过{0}".format(formatSize(fileSize,"0")),2);
+                    wei.dialog.layerMsg("文件大小不能超过{0}".format(formatSize(fileSize,"0")),2);
 					break;
 				case"F_EXCEED_COMPRESS_SIZE":
-                    citms.dialog.layerMsg("图片尺寸太大，压缩后不能超过{0}，请缩小图片尺寸再试".format(v_webUploader.compress.afterCompressSizeLimit?v_webUploader.compress.afterCompressSizeLimit/1048576+"M":"2M"),2);
+                    wei.dialog.layerMsg("图片尺寸太大，压缩后不能超过{0}，请缩小图片尺寸再试".format(v_webUploader.compress.afterCompressSizeLimit?v_webUploader.compress.afterCompressSizeLimit/1048576+"M":"2M"),2);
 					break;
 				case"Q_TYPE_DENIED":
-                    citms.dialog.layerMsg("文件必须为以下格式：{0}".format(v_webUploader.options.accept[0].extensions).replace(/,/g,", "),2);
+                    wei.dialog.layerMsg("文件必须为以下格式：{0}".format(v_webUploader.options.accept[0].extensions).replace(/,/g,", "),2);
 					break;
 				}
 		});
@@ -63,7 +63,7 @@
 		});
 
 		v_webUploader.on("uploadError",function(file){
-            citms.dialog.layerMsg("上传文件出错!",2);
+            wei.dialog.layerMsg("上传文件出错!",2);
 		});
 		
 		return v_webUploader;
