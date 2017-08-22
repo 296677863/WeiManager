@@ -90,35 +90,7 @@ $(function () {
             $resePwdBtn.removeClass("maincolor main-btn");
         }
     });
-    $resePwdBtn
-        .click(function () {
-            var $this = $(this);
-            if ($this.hasClass("disable-btn")) {
-                return false;
-            }
-            $.ajax({
-                url: window.baseRoot
-                + "/base/admin/restPwd",
-                type: "POST",
-                data: {
-                    "ids": selectIds.join(",")
-                },
-                dataType: "json",
-                cache: false,
-                success: function (message) {
-                    if (message.type == "success") {
-                        wei.jqrefush();
-                        $deleteButton.addClass("disable-btn");
-                        $deleteButton.removeClass("maincolor main-btn");
-
-                        $resePwdBtn.addClass("disable-btn");
-                        $resePwdBtn.removeClass("maincolor main-btn");
-                        layer.tips(message.content, $resePwdBtn);
-                    }
-                }
-            });
-
-        });
+   
 });
 
 /**
@@ -127,11 +99,15 @@ $(function () {
  */
 function updateStatus(id, isEnable) {
     var msg = "";
+    var status="0";
     if (isEnable) {
         msg = "是否确定启用？";
+        status="1";
     } else {
         msg = "是否确定停用，停用后该账号将不能正常使用？";
+        status="0";
     }
+    var data={id:id,status:status};
     layer
         .open({
             type: 1,
@@ -151,13 +127,13 @@ function updateStatus(id, isEnable) {
 
                 var $checkedIds = $("#listTable input[name='ids']:enabled:checked");
                 $.ajax({
-                    url: window.baseRoot + "/base/admin/updateStatus/"
-                    + id + "/" + isEnable,
+                    url: window.baseRoot + "/member/forbidUserById.sthml",
+                    data:data,
                     type: "POST",
                     dataType: "json",
                     cache: false,
                     success: function (message) {
-                        if (message.type == "success") {
+                        if (message.status == "200") {
                             wei.jqrefush();
                             $deleteButton.addClass("disable-btn");
                             $deleteButton.removeClass("maincolor main-btn");

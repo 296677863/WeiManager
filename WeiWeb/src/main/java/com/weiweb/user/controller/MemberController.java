@@ -111,8 +111,9 @@ public class MemberController extends BaseController {
 	 */
 	@RequestMapping(value="forbidUserById",method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> forbidUserById(Long id,Long status){
-		return userService.updateForbidUserById(id,status);
+	public Map<String, Object> forbidUserById(String id,String status){
+		Map<String,Object> map=userService.updateForbidUserById(Long.valueOf(id),Long.valueOf(status));
+		return  map;
 	}
 	
 
