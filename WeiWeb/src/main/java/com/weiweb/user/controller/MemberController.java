@@ -121,6 +121,10 @@ public class MemberController extends BaseController {
 		return "/member/add";
 	}
 	
+	@RequestMapping("/edit/{id}")
+	public String edit( @PathVariable("id")String id,ModelMap model){
+		return "/member/edit";
+	}
 	@RequestMapping("/save")
 	@ResponseBody
 	public Message save(UUser user,RedirectAttributes redirectAttributes){
