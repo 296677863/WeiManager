@@ -36,8 +36,8 @@ CREATE TABLE `sys_dict` (
 DROP TABLE IF EXISTS `sys_dict_detail`;
 
 CREATE TABLE `sys_dict_detail` (
-  `detail_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `dict_type` varchar(64) NOT NULL COMMENT '数据字典类型',
+  `detail_id` varchar(32) NOT NULL COMMENT '主键',
+  `dict_type` varchar(64) DEFAULT NULL COMMENT '数据字典类型',
   `detail_name` varchar(256) DEFAULT NULL COMMENT '名称',
   `detail_code` varchar(32) DEFAULT NULL COMMENT '代码',
   `detail_sort` varchar(32) DEFAULT NULL COMMENT '排序号',
@@ -48,7 +48,7 @@ CREATE TABLE `sys_dict_detail` (
   `create_time` varchar(64) DEFAULT NULL COMMENT '创建时间',
   `create_id` int(11) DEFAULT '0' COMMENT '创建者',
   PRIMARY KEY (`detail_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8 COMMENT='数据字典';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='数据字典';
 
 /*Data for the table `sys_dict_detail` */
 
