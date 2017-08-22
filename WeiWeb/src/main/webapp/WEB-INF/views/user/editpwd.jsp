@@ -56,6 +56,6 @@
 
 <%@ include file="/common/footer.jsp" %>
 <script type="text/javascript"
-        src="${base }/js/user/editpwd.js?v=<citms:version/>"></script>
+        src="${base }/js/user/editpwd.js?v=<wei:version/>"></script>
 </body>
 </html>
