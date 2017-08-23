@@ -1,5 +1,7 @@
 package com.weiweb.system.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 
@@ -20,6 +22,11 @@ public class SysDictServiceImpl extends BaseMybatisDao<SysDictMapper>  implement
 	@Override
 	public Pagination<SysDict> findByPage(ModelMap map, Integer pageNo, int pageSize) {
 		return super.findPage(map, pageNo, pageSize);
+	}
+
+	@Override
+	public List<SysDict> findSysDictByType(String dictType) {
+		return sysDictMapper.findSysDictByType(dictType);
 	}
 
 }
