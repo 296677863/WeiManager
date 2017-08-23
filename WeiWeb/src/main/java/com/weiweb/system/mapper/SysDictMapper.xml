@@ -60,4 +60,60 @@
   	select * from sys_dict sd
 		left join(select * from sys_dict_detail where dict_type=#{dictType,jdbcType=VARCHAR}) sdd on sdd.dict_type = sd.dict_type
   </select>
+  
+   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sys_dict
+    where dict_id = #{dictId,jdbcType=VARCHAR}
+  </delete>
+  
+  
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.weiweb.system.model.SysDict" >
+    insert into sys_dict (dict_id, dict_name, dict_type
+      )
+    values (#{dictId,jdbcType=VARCHAR}, #{dictName,jdbcType=VARCHAR}, #{dictType,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.weiweb.system.model.SysDict" >
+    insert into sys_dict
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dictId != null" >
+        dict_id,
+      </if>
+      <if test="dictName != null" >
+        dict_name,
+      </if>
+      <if test="dictType != null" >
+        dict_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dictId != null" >
+        #{dictId,jdbcType=BIGINT},
+      </if>
+      <if test="dictName != null" >
+        #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="dictType != null" >
+        #{dictType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.weiweb.system.model.SysDict" >
+    update sys_dict
+    <set >
+      <if test="dictName != null" >
+        dict_name = #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="dictType != null" >
+        dict_type = #{dictType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dict_id = #{dictId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.weiweb.system.model.SysDict" >
+    update sys_dict
+    set dict_name = #{dictName,jdbcType=VARCHAR},
+       dict_type = #{dictType,jdbcType=VARCHAR}
+    where dict_id = #{dictId,jdbcType=BIGINT}
+  </update>
 </mapper>

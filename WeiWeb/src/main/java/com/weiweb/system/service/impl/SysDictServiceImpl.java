@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 
-import com.weiweb.common.dao.UUserMapper;
 import com.weiweb.core.mybatis.BaseMybatisDao;
 import com.weiweb.core.mybatis.page.Pagination;
 import com.weiweb.system.dao.SysDictDetailMapper;
@@ -28,5 +27,28 @@ public class SysDictServiceImpl extends BaseMybatisDao<SysDictMapper>  implement
 	public List<SysDict> findSysDictByType(String dictType) {
 		return sysDictMapper.findSysDictByType(dictType);
 	}
+
+	@Override
+	public void deleteUserById(String[] ids) {
+		for (String id : ids) {
+			this.deleteByPrimaryKey(id);
+		}
+	}
+	
+	@Override
+	public int deleteByPrimaryKey(String id) {
+		return sysDictMapper.deleteByPrimaryKey(id);
+	}
+
+	@Override
+	public void updateDict(SysDict sysDict) {
+		
+	}
+
+	@Override
+	public void saveDict(SysDict sysDict) {
+		
+	}
+
 
 }
