@@ -3,6 +3,7 @@ package com.weiweb.system.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 
 import com.weiweb.core.mybatis.BaseMybatisDao;
@@ -12,6 +13,7 @@ import com.weiweb.system.dao.SysDictMapper;
 import com.weiweb.system.model.SysDict;
 import com.weiweb.system.service.SysDictService;
 
+@Service
 public class SysDictServiceImpl extends BaseMybatisDao<SysDictMapper>  implements SysDictService{
 	@Autowired
 	SysDictMapper sysDictMapper;
