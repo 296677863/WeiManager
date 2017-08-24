@@ -32,6 +32,11 @@ public class PermissionController extends BaseController {
 	 * @param modelMap		参数回显
 	 * @return
 	 */
+	@RequestMapping(value="list")
+	public String list(){
+		return "permission/list";
+	}
+	
 	@RequestMapping(value="index")
 	public ModelAndView index(String findContent,ModelMap modelMap,Integer pageNo){
 		modelMap.put("findContent", findContent);
