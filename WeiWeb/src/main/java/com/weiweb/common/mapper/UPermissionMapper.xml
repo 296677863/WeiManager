@@ -2,9 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.weiweb.common.dao.UPermissionMapper" >
   <resultMap id="BaseResultMap" type="com.weiweb.common.model.UPermission" >
-    <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="url" property="url" jdbcType="VARCHAR" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
+     <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="create_date" jdbcType="DATE" property="createDate" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="modify_date" jdbcType="DATE" property="modifyDate" />
+    <result column="data_level" jdbcType="BIT" property="dataLevel" />
+    <result column="icon_id" jdbcType="VARCHAR" property="iconId" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="target" jdbcType="VARCHAR" property="target" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="parent" jdbcType="VARCHAR" property="parent" />
+    
   </resultMap>
   <sql id="Base_Column_List" >
    	id,create_date,modify_date,code,data_level,icon_id,level,name,sort,status,target,url,parent
@@ -36,6 +47,13 @@
   <select id="findCount" resultMap="BaseResultMap" >
  	 select count(id) from  u_permission
   	<include refid="where_all" />
+  </select>
+  
+  <select id="findLevelMenu" resultMap="BaseResultMap">
+  	 select 
+  	 <include refid="Base_Column_List" />
+  	 from u_permission where level= #{level,jdbcType=BIGINT}
+  	 
   </select>
   <!-- 根据角色获取权限，marker:0,没有权限，marker：非0(和up.id)一致表示有权限。 
   	com.weiweb.permission.bo.UPermissionBo中的这个方法是校验权限

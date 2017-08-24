@@ -1,0 +1,47 @@
+
+.menu-table{
+	margin-top: 20px;
+}
+.menu-table td{
+	border:0px;
+}
+.menu-table table{
+	width:100%;
+	font-size: 14px;
+	
+}
+.menu-table table tr:first-child{
+	height: 33px;
+	line-height: 33px;
+}
+.menu-table table td{
+	min-height: 35px;
+	line-height: 35px;
+	font-size: 14px;
+}
+.menu-table table td:first-child{
+	width: 10%;
+	padding-left: 5px;
+}
+.menu-table table td:nth-child(2){
+	width: 30%;
+	position: relative;
+}
+.menu-table table td:nth-child(3){
+	width: 40%;
+}
+
+
+.menu-table table td:nth-child(4){
+	width: 20%;
+	text-align: center;
+}
+.operation a{
+	margin-right: 3px;
+}
+.operation{
+	    width: 180px;
+    margin: 0 auto;
+    text-align: right;
+}
+
