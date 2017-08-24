@@ -30,11 +30,16 @@ public class RoleController extends BaseController {
 	 * 角色列表
 	 * @return
 	 */
-	@RequestMapping(value="index")
+	
+	@RequestMapping(value="list")
+	public String list(){
+		return "role/list";
+	}
+	@RequestMapping(value="listData")
 	public ModelAndView index(String findContent,ModelMap modelMap){
 		modelMap.put("findContent", findContent);
 		Pagination<URole> role = roleService.findPage(modelMap,pageNo,pageSize);
-		return new ModelAndView("role/index","page",role);
+		return new ModelAndView("role/list","page",role);
 	}
 	/**
 	 * 角色添加
