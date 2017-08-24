@@ -9,9 +9,9 @@
     <javaModelGenerator targetPackage="com.weiweb.system.model" targetProject="WeiWeb/src/main/java" />
     <sqlMapGenerator targetPackage="com.weiweb.system.mapper" targetProject="WeiWeb/src/main/java" />
     <javaClientGenerator targetPackage="com.weiweb.system.dao" targetProject="WeiWeb/src/main/java" type="XMLMAPPER" />
-    <table schema="" tableName="sys_dict_detail" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+    <table schema="" tableName="u_permission" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
   enableSelectByExample="false" selectByExampleQueryId="false">
-    	<generatedKey column="detail_id" sqlStatement="Mysql" identity="true"/>
+    	<generatedKey column="id" sqlStatement="Mysql" identity="true"/>
     </table>
   </context>
 </generatorConfiguration>
