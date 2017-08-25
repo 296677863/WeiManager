@@ -46,7 +46,7 @@ CREATE TABLE `sys_dict_detail` (
   `detail_content` varchar(256) DEFAULT NULL COMMENT '内容',
   `detail_remark` varchar(256) DEFAULT NULL COMMENT '备注',
   `create_time` varchar(64) DEFAULT NULL COMMENT '创建时间',
-  `create_id` bigint(20) DEFAULT '0' COMMENT '创建者',
+  `create_id` int(11) DEFAULT '0' COMMENT '创建者',
   PRIMARY KEY (`detail_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='数据字典';
 
@@ -80,18 +80,20 @@ insert  into `u_permission`(`id`,`create_date`,`code`,`modify_date`,`data_level`
 ('10',NULL,NULL,NULL,NULL,NULL,NULL,'用户Session踢出',NULL,NULL,NULL,'/member/changeSessionStatus.shtml',NULL),
 ('11',NULL,NULL,NULL,NULL,NULL,NULL,'用户激活&禁止',NULL,NULL,NULL,'/member/forbidUserById.shtml',NULL),
 ('12',NULL,NULL,NULL,NULL,NULL,NULL,'用户删除',NULL,NULL,NULL,'/member/deleteUserById.shtml',NULL),
-('13',NULL,NULL,NULL,NULL,NULL,2,'权限分配',NULL,NULL,NULL,'/permission/addPermission2Role.shtml','22'),
+('13',NULL,NULL,NULL,NULL,NULL,NULL,'权限分配',NULL,NULL,NULL,'/permission/addPermission2Role.shtml',NULL),
 ('14',NULL,NULL,NULL,NULL,NULL,2,'用户角色分配清空',3,NULL,NULL,'/role/clearRoleByUserIds.shtml',NULL),
 ('15',NULL,NULL,NULL,NULL,NULL,2,'角色分配保存',NULL,NULL,NULL,'/role/addRole2User.shtml',NULL),
 ('16',NULL,NULL,NULL,NULL,NULL,2,'角色列表删除',NULL,NULL,NULL,'/role/deleteRoleById.shtml',NULL),
 ('17',NULL,NULL,NULL,NULL,NULL,2,'角色列表添加',NULL,NULL,NULL,'/role/addRole.shtml',NULL),
-('18',NULL,NULL,NULL,NULL,NULL,2,'角色列表',1,NULL,NULL,'/role/index.shtml','22'),
+('18',NULL,NULL,NULL,NULL,NULL,2,'角色列表',1,NULL,NULL,'/role/list.shtml','22'),
 ('19',NULL,NULL,NULL,NULL,NULL,2,'权限分配',2,NULL,NULL,'/permission/allocation.shtml','22'),
 ('20',NULL,NULL,NULL,NULL,NULL,2,'角色分配',3,NULL,NULL,'/role/allocation.shtml','22'),
 ('21',NULL,NULL,NULL,NULL,NULL,1,'用户管理',1,NULL,NULL,'/member',NULL),
-('22',NULL,NULL,NULL,NULL,NULL,1,'权限管理',2,NULL,NULL,'/permission',NULL),
-('23',NULL,NULL,NULL,NULL,NULL,1,'个人中心',1,NULL,NULL,'/user',NULL),
-('4',NULL,NULL,NULL,NULL,NULL,2,'权限列表',4,NULL,NULL,'/permission/index.shtml','22'),
+('22',NULL,NULL,NULL,NULL,NULL,1,'系统管理',2,NULL,NULL,'/permission',NULL),
+('23',NULL,NULL,NULL,NULL,NULL,NULL,'个人中心',1,NULL,NULL,'/user',NULL),
+('24',NULL,NULL,NULL,NULL,NULL,2,'字典列表',4,NULL,NULL,'/sysdict/list.shtml','22'),
+('25',NULL,NULL,NULL,NULL,NULL,2,'菜单管理',6,NULL,NULL,'/menu/list.shtml','22'),
+('4',NULL,NULL,NULL,NULL,NULL,2,'权限列表',4,NULL,NULL,'/permission/list.shtml','22'),
 ('6',NULL,NULL,NULL,NULL,NULL,2,'权限添加',NULL,NULL,NULL,'/permission/addPermission.shtml',NULL),
 ('7',NULL,NULL,NULL,NULL,NULL,2,'权限删除',NULL,NULL,NULL,'/permission/deletePermissionById.shtml',NULL),
 ('8',NULL,NULL,NULL,NULL,NULL,2,'用户列表',1,NULL,NULL,'/member/list.shtml','21'),
@@ -160,7 +162,9 @@ insert  into `u_role_permission`(`rid`,`pid`) values
 (1,19),
 (1,20),
 (1,21),
-(1,22);
+(1,22),
+(1,25),
+(1,24);
 
 /*Table structure for table `u_user` */
 
@@ -180,7 +184,7 @@ CREATE TABLE `u_user` (
 /*Data for the table `u_user` */
 
 insert  into `u_user`(`id`,`nickname`,`email`,`pswd`,`create_time`,`last_login_time`,`status`) values 
-(1,'管理员','admin','57dd03ed397eabaeaa395eb740b770fd','2016-06-16 11:15:33','2017-08-20 11:53:28',1),
+(1,'管理员','admin','57dd03ed397eabaeaa395eb740b770fd','2016-06-16 11:15:33','2017-08-25 09:54:09',1),
 (11,'soso','8446666@qq.com','d57ffbe486910dd5b26d0167d034f9ad','2016-05-26 20:50:54','2016-06-16 11:24:35',1),
 (12,'8446666','8446666','4afdc875a67a55528c224ce088be2ab8','2016-05-27 22:34:19','2016-06-15 17:03:16',0),
 (15,'test','test@123.com','5ebe20cf5fc1da2a3785607ec3002fcf','2017-08-20 11:52:38','2017-08-20 11:53:00',1);
