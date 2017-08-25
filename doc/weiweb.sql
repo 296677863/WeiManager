@@ -184,7 +184,7 @@ CREATE TABLE `u_user` (
 /*Data for the table `u_user` */
 
 insert  into `u_user`(`id`,`nickname`,`email`,`pswd`,`create_time`,`last_login_time`,`status`) values 
-(1,'管理员','admin','57dd03ed397eabaeaa395eb740b770fd','2016-06-16 11:15:33','2017-08-25 09:54:09',1),
+(1,'管理员','admin','57dd03ed397eabaeaa395eb740b770fd','2016-06-16 11:15:33','2017-08-25 10:43:11',1),
 (11,'soso','8446666@qq.com','d57ffbe486910dd5b26d0167d034f9ad','2016-05-26 20:50:54','2016-06-16 11:24:35',1),
 (12,'8446666','8446666','4afdc875a67a55528c224ce088be2ab8','2016-05-27 22:34:19','2016-06-15 17:03:16',0),
 (15,'test','test@123.com','5ebe20cf5fc1da2a3785607ec3002fcf','2017-08-20 11:52:38','2017-08-20 11:53:00',1);
