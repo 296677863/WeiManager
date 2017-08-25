@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<title>编辑详情</title>
+	<title>查看详情</title>
 	<%@ include file="/common/head.jsp"%>
 	<link href="${base}/css/bootstrap-switch.css" rel="stylesheet?v=<wei:version/>" />
 	<link href="${base}/css/user/userInfo.css?v=<wei:version/>" rel="stylesheet" />

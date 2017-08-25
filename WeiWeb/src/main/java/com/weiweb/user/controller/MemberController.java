@@ -69,6 +69,8 @@ public class MemberController extends BaseController {
 		List<UserOnlineBo> list = customSessionManager.getAllUser();
 		return new ModelAndView("member/online","list",list);
 	}
+	
+	
 	/**
 	 * 在线用户详情
 	 * @return
