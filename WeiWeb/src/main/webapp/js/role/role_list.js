@@ -27,14 +27,14 @@ $(function() {
 					fixed : true,
 					formatter : function(cellvalue, options, rowObject) {
 						var result = "<a href='javascript:void(0)' onclick=\"wei.dialog.openIrame('成员管理','{0}')\">[成员管理]</a>"
-							.format(window.baseRoot + '/role/memberList.shtml/'+rowObject.id);
+							.format(window.baseRoot + '/role/memberList/'+rowObject.id+'.shtml');
 						if (!rowObject.isSystem) {
 							result = result + "<a href=\"javascript:void(0)\" onclick=\"wei.dialog.openIrame('角色编辑','{0}')\">[编辑]</a>"
-							.format(window.baseRoot + '/role/input.shtml/'
-									+ rowObject.id);
+							.format(window.baseRoot + '/role/input/'
+									+ rowObject.id+'.shtml');
 							result = result + "<a href=\"javascript:void(0)\" onclick=\"wei.dialog.openIrame('详情','{0}')\">[详情]</a>"
-							.format(window.baseRoot + '/role/info.shtml/'
-									+ rowObject.id);
+							.format(window.baseRoot + '/role/info/'
+									+ rowObject.id+'.shtml');
 							result = result + "<a href=\"javascript:void(0)\" data-id=\"{0}\"  class=\"weiDeleteRow\">[删除]</a>"
 							.format(rowObject.id);
 						} 

@@ -20,8 +20,8 @@ $(function(){
 					                	 width: 280,
 					                	 fixed:true,
 					                     formatter:function(cellvalue, options, rowObject){
-					                    	 return "<a href=\"javascript:void(0)\" onclick=\"wei.dialog.openIrame('字典编辑','"+baseRoot+"/sysdict/edit/"+rowObject.dictType+"')\">[编辑]</a>&nbsp;" +
-					                    	 		"<a href=\"javascript:void(0)\" onclick=\"wei.dialog.openIrame('字典详情','"+baseRoot+"/sysdict/info/"+rowObject.dictType+"')\">[详情]</a>&nbsp;" +
+					                    	 return "<a href=\"javascript:void(0)\" onclick=\"wei.dialog.openIrame('字典编辑','"+baseRoot+"/sysdict/edit/"+rowObject.dictType+".shtml"+"')\">[编辑]</a>&nbsp;" +
+					                    	 		"<a href=\"javascript:void(0)\" onclick=\"wei.dialog.openIrame('字典详情','"+baseRoot+"/sysdict/info/"+rowObject.dictType+".shtml"+"')\">[详情]</a>&nbsp;" +
 					                    	 		"<a href=\"javascript:void(0)\" data-id=\""+rowObject.id+"\" class=\"weiDeleteRow\" >[删除]</a>";
 					                     }
 					                 }

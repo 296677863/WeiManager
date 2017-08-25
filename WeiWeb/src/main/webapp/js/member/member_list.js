@@ -52,8 +52,8 @@ $(function () {
                 fixed: true,
                 formatter: function (cellvalue, options, rowObject) {
                     var result = "<a href=\"javascript:void(0)\" onclick=\"wei.dialog.openIrame('用户编辑','{0}')\">[编辑]</a>"
-                        .format(window.baseRoot + '/member/edit.shtml'
-                            + rowObject.id);
+                        .format(window.baseRoot + '/member/edit/'
+                            + rowObject.id+'.shtml');
                     if (rowObject.status) {
                         result = result
                             + '<a href="javascript:updateStatus(\'{0}\',false)">[停用]</a>'
@@ -64,8 +64,8 @@ $(function () {
                                 .format(rowObject.id);
                     }
                     result = result + "<a href=\"javascript:void(0)\" onclick=\"wei.dialog.openIrame('用户详情','{0}')\">[详情]</a>"
-                            .format(window.baseRoot + '/member/info.shtml'
-                                + rowObject.id);
+                            .format(window.baseRoot + '/member/info/'
+                                + rowObject.id+'.shtml');
                     return result;
                 }
             }]
