@@ -25,8 +25,9 @@
 							<input type="text" class="default-input input-left " placeholder="请输入名称" name="name"  value=""/>
 							</div>
 						</div>
-						<div class="col-sm-5 pl0"><div class="group-div">
-							
+						<div class="col-sm-5 pl0">
+						<div class="group-div">
+						</div>	
 						</div>		
 						<div class="col-sm-2 pl0">
 							<div class="icon-btn-div">
