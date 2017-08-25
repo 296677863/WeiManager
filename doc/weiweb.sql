@@ -16,6 +16,23 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`weiweb` /*!40100 DEFAULT CHARACTER SET 
 
 USE `weiweb`;
 
+/*Table structure for table `sys_config` */
+
+DROP TABLE IF EXISTS `sys_config`;
+
+CREATE TABLE `sys_config` (
+  `id` varchar(32) NOT NULL,
+  `create_date` datetime DEFAULT NULL,
+  `modify_date` datetime DEFAULT NULL,
+  `param_name` varchar(255) DEFAULT NULL,
+  `param_type` varchar(255) DEFAULT NULL,
+  `param_value` varchar(255) DEFAULT NULL,
+  `show_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `sys_config` */
+
 /*Table structure for table `sys_dict` */
 
 DROP TABLE IF EXISTS `sys_dict`;
@@ -93,6 +110,8 @@ insert  into `u_permission`(`id`,`create_date`,`code`,`modify_date`,`data_level`
 ('23',NULL,NULL,NULL,NULL,NULL,NULL,'个人中心',1,NULL,NULL,'/user',NULL),
 ('24',NULL,NULL,NULL,NULL,NULL,2,'字典列表',4,NULL,NULL,'/sysdict/list.shtml','22'),
 ('25',NULL,NULL,NULL,NULL,NULL,2,'菜单管理',6,NULL,NULL,'/menu/list.shtml','22'),
+('26',NULL,NULL,NULL,NULL,NULL,1,'系统监控',3,NULL,NULL,'/monitor',NULL),
+('27',NULL,NULL,NULL,NULL,NULL,2,'连接池监控',1,NULL,NULL,'/druid/index.html','26'),
 ('4',NULL,NULL,NULL,NULL,NULL,2,'权限列表',4,NULL,NULL,'/permission/list.shtml','22'),
 ('6',NULL,NULL,NULL,NULL,NULL,2,'权限添加',NULL,NULL,NULL,'/permission/addPermission.shtml',NULL),
 ('7',NULL,NULL,NULL,NULL,NULL,2,'权限删除',NULL,NULL,NULL,'/permission/deletePermissionById.shtml',NULL),
@@ -164,7 +183,9 @@ insert  into `u_role_permission`(`rid`,`pid`) values
 (1,21),
 (1,22),
 (1,25),
-(1,24);
+(1,24),
+(1,26),
+(1,27);
 
 /*Table structure for table `u_user` */
 
