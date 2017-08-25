@@ -57,6 +57,7 @@
 		<property name="mapperLocations"  >
 			<list>
 				<value>classpath:com/weiweb/common/mapper/*.xml</value>
+				<value>classpath:com/weiweb/system/mapper/*.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -68,7 +69,7 @@
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>	
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.weiweb.common.dao" />
+		<property name="basePackage" value="com.weiweb.*.dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 	 <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
