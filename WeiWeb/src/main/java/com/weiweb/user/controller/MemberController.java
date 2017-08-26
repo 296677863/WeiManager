@@ -171,5 +171,12 @@ public class MemberController extends BaseController {
 		return isHas;
 	}
 	
+	@RequestMapping("/info/{id}")
+	public String info( @PathVariable("id")String id,ModelMap model){
+		if(!StringUtils.isEmpty(id))
+			model.addAttribute("bean",userService.selectByPrimaryKey(Long.parseLong(id)));
+		return "/member/info";
+	}
+	
 	
 }

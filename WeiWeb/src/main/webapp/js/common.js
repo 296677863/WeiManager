@@ -822,7 +822,6 @@ $(function(){
             data =  $.parseJSON(text);
 		}catch(e) {
 		}
-		debugger;
 		if(data.user_status=="300"){
 			 top.layer.alert("请重新登陆！", {icon: 5},function(){
                  if (window != top) {
