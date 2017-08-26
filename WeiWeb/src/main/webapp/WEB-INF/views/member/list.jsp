@@ -32,7 +32,6 @@
 						<button class="m-btn maincolor main-btn weiOpenBtn" data-title="新增用户" data-url="${base}/member/add.shtml" 
 							type="button"><span>新增</span></button>
 						<button class="m-btn disable-btn" id="deleteButton" type="button"><span>批量删除</span></button>
-						<button class="m-btn disable-btn" id="resePwdBtn" type="button"><span>密码重置</span></button>
 					</div>
 				</form>
 			</div>

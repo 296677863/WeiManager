@@ -35,16 +35,9 @@ public class SimpleAuthFilter extends AccessControlFilter {
 		}
 		Subject subject = getSubject(request, response);
 		Session session = subject.getSession();
-		Map<String, String> resultMap = new HashMap<String, String>();
 		SessionStatus sessionStatus = (SessionStatus) session.getAttribute(CustomSessionManager.SESSION_STATUS);
 		if (null != sessionStatus && !sessionStatus.isOnlineStatus()) {
-			//判断是不是Ajax请求
-			if (ShiroFilterUtils.isAjax(request) ) {
-				LoggerUtils.debug(getClass(), "当前用户已经被踢出，并且是Ajax请求！");
-				resultMap.put("user_status", "300");
-				resultMap.put("message", "您已经被踢出，请重新登录！");
-				out(response, resultMap);
-			}
+			
 			return  Boolean.FALSE;
 		}
 		return Boolean.TRUE;
@@ -67,8 +60,17 @@ public class SimpleAuthFilter extends AccessControlFilter {
 		 * 如果还有问题，请咨询我。
 		 */
 		WebUtils.saveRequest(request);
-		//再重定向
-		WebUtils.issueRedirect(request, response, "/open/kickedOut.shtml");
+		//判断是不是Ajax请求
+		if (ShiroFilterUtils.isAjax(request) ) {
+			Map<String, String> resultMap = new HashMap<String, String>();
+			LoggerUtils.debug(getClass(), "当前用户已经被踢出，并且是Ajax请求！");
+			resultMap.put("user_status", "300");
+			resultMap.put("message", "您已经被踢出，请重新登录！");
+			out(response, resultMap);
+		}else{
+			//再重定向
+			WebUtils.issueRedirect(request, response, "/open/kickedOut.shtml");
+		}
 		return false;
 	}
 

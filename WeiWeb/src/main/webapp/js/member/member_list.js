@@ -2,7 +2,6 @@
  * #######################################################################################
  * 列表加载数据
  */
-var $resePwdBtn = $("#resePwdBtn");
 var $deleteButton = $("#deleteButton");
 
 $(function () {
@@ -127,7 +126,7 @@ function updateStatus(id, isEnable) {
 
                 var $checkedIds = $("#listTable input[name='ids']:enabled:checked");
                 $.ajax({
-                    url: window.baseRoot + "/member/forbidUserById.sthml",
+                    url: window.baseRoot + "/member/forbidUserById.shtml",
                     data:data,
                     type: "POST",
                     dataType: "json",
@@ -138,8 +137,6 @@ function updateStatus(id, isEnable) {
                             $deleteButton.addClass("disable-btn");
                             $deleteButton.removeClass("maincolor main-btn");
 
-                            $resePwdBtn.addClass("disable-btn");
-                            $resePwdBtn.removeClass("maincolor main-btn");
                         } else {
                             wei.dialog.layerMsg('当前用户不能停用！', 2);
                         }
