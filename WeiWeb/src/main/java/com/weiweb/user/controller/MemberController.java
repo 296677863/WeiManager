@@ -167,6 +167,7 @@ public class MemberController extends BaseController {
 				isHas=  false;
 				break;
 			}
+			
 		}
 		return isHas;
 	}
