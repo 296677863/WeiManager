@@ -16,8 +16,14 @@
       This element was generated on Fri Aug 25 14:05:11 CST 2017.
     -->
     #foreach($column in $columns)
-	
-       ${column.columnName},
+	 #set($strEnd = $item.Length - 1)
+		#if ($strEnd.equals($i)) 
+		${column.columnName}
+		#end
+		#if ($strEnd!=$i) 
+		 ${column.columnName},
+		#end 
+	 #set($i=$i+1)
 	#end
   </sql>
 	<select id="queryObject" resultType="${package}.entity.${className}Entity">
