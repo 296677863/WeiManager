@@ -528,16 +528,7 @@ public class DateUtil {
         return dt;
     }
 
-    public static java.util.Date convertToDate(String str) {
-        SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-        java.util.Date dt = null;
-        try {
-            dt = fmt.parse(str);
-        } catch (ParseException ex) {
-            dt = new java.util.Date();
-        }
-        return dt;
-    }
+ 
 
     public static String dateFromat(Date date, int minute) {
         String dateFormat = null;
@@ -568,5 +559,306 @@ public class DateUtil {
     	String timeDir=DateUtil.dateToString(new Date(),DateUtil.ISO_EXPANDED_DATE_FORMAT);
 		System.out.println(timeDir);
 	}
+    
+  
+    	public static final String getFormateDate(String formate) {
+    		SimpleDateFormat f = new SimpleDateFormat(formate, Locale.US);
+    		return f.format(new Date());
+    	}
+
+    	public static final String getDateTime() {
+    		return getFormateDate("yyyy-MM-dd HH:mm:ss");
+    	}
+
+    	public static final String getDate() {
+    		return getFormateDate("yyyy-MM-dd");
+    	}
+
+    	public static final String getYear() {
+    		return getFormateDate("yyyy");
+    	}
+
+    	public static final String getShortYear() {
+    		return getFormateDate("yy");
+    	}
+
+    	public static final String getMonth() {
+    		return getFormateDate("MM");
+    	}
+
+    	public static final String getShortMonth() {
+    		return getFormateDate("M");
+    	}
+
+    	public static final String getDay() {
+    		return getFormateDate("dd");
+    	}
+
+    	public static final String getShortDay() {
+    		return getFormateDate("d");
+    	}
+
+    	public static final String getTime() {
+    		return getFormateDate("HH:mm:ss");
+    	}
+
+    	public static final boolean isDate(String dateStr) {
+    		Date dt = parseSimpleDate(dateStr);
+    		return dt != null ? true : parseSimpleDateTime(dateStr) != null;
+    	}
+
+    	public static final boolean isDate(String pattern, String dateStr) {
+    		return parseSimpleDT(pattern, dateStr) != null;
+    	}
+
+    	public static final Date parseDateTime(String dateStr) {
+    		try {
+    			return DateFormat.getDateTimeInstance().parse(dateStr);
+    		} catch (ParseException arg1) {
+    			return null;
+    		}
+    	}
+
+    	public static final Date parseDate(String dateStr) {
+    		try {
+    			return DateFormat.getDateInstance().parse(dateStr);
+    		} catch (ParseException arg1) {
+    			return null;
+    		}
+    	}
+
+    	public static final Date parseSimpleDateTime(String dateStr) {
+    		return parseSimpleDT("yyyy-MM-dd HH:mm:ss", dateStr);
+    	}
+
+    	public static final Date parseSimpleDate(String dateStr) {
+    		return parseSimpleDT("yyyy-MM-dd", dateStr);
+    	}
+
+    	public static final Date parseSimpleTime(String timeStr) {
+    		return parseSimpleDT("HH:mm:ss", timeStr);
+    	}
+
+    	public static final Date parseSimpleDT(String pattern, String dateStr) {
+    		try {
+    			return (new SimpleDateFormat(pattern, Locale.US)).parse(dateStr);
+    		} catch (ParseException arg2) {
+    			return null;
+    		}
+    	}
+
+    	public static final int compareDate(Date date1, Date date2) {
+    		return date1.before(date2) ? -1 : (date1.after(date2) ? 1 : 0);
+    	}
+
+    	public static final boolean isBefore(Date date1, Date date2) {
+    		return date1 != null && date2 != null ? date1.before(date2) : false;
+    	}
+
+    	public static final boolean isBeforeNow(Date date1) {
+    		return isBefore(date1, Calendar.getInstance().getTime());
+    	}
+
+    	public static final boolean isAfter(Date date1, Date date2) {
+    		return date1 != null && date2 != null ? date1.after(date2) : false;
+    	}
+
+    	public static final boolean isAfterNow(Date date1) {
+    		return isAfter(date1, Calendar.getInstance().getTime());
+    	}
+
+    	public static final boolean isEquals(Date date1, Date date2) {
+    		return date1 != null && date2 != null ? date1.equals(date2) : false;
+    	}
+
+    	public static final boolean isEqualsNow(Date date1) {
+    		return isEquals(date1, Calendar.getInstance().getTime());
+    	}
+
+    	public static final Date getNowDate(int... deviation) {
+    		return setDate(new Date(), deviation);
+    	}
+
+    	public static final Date setDate(Date date, int... deviation) {
+    		Calendar cal = Calendar.getInstance(Locale.US);
+    		cal.setTime(date);
+    		if (deviation.length < 1) {
+    			return cal.getTime();
+    		} else {
+    			int[] filed = new int[] { 1, 2, 5, 11, 12, 13 };
+
+    			for (int i = 0; i < deviation.length; ++i) {
+    				cal.add(filed[i], deviation[i]);
+    			}
+
+    			return cal.getTime();
+    		}
+    	}
+
+    	public static final String dateTimeTips(Date dt) {
+    		Calendar cal = Calendar.getInstance();
+    		long times = cal.getTimeInMillis() - dt.getTime();
+    		return times <= 60000L ? "1 分钟前"
+    				: (times <= 3600000L ? times / 60000L + " 分钟前"
+    						: (times <= 86400000L ? times / 3600000L + " 小时前"
+    								: (times <= 604800000L ? times / 86400000L + " 天前"
+    										: (times <= 2592000000L ? times / 604800000L + " 星期前"
+    												: (times <= 31104000000L ? times / 2592000000L + " 个月前"
+    														: times / 31104000000L + " 年前")))));
+    	}
+
+    	public static final String dateTips(String dateStr) {
+    		Date dt = parseSimpleDate(dateStr);
+    		return dt == null ? dateStr : dateTimeTips(dt);
+    	}
+
+    	public static final String dateTimeTips(String dateTime) {
+    		Date dt = parseSimpleDateTime(dateTime);
+    		return dt == null ? dateTime : dateTimeTips(dt);
+    	}
+
+    	public static String getNow() {
+    		Date nowDate = new Date();
+    		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    		return format.format(nowDate);
+    	}
+
+    	public static String formatDate(Date date, String fmt) {
+    		SimpleDateFormat format = new SimpleDateFormat(fmt);
+    		return format.format(date);
+    	}
+
+    	public static String getMinuteSelectHtml(String selectName) {
+    		StringBuffer sb = (new StringBuffer("<select id=\'")).append(selectName).append("\' name=\'").append(selectName)
+    				.append("\'>");
+
+    		for (int i = 0; i < 60; ++i) {
+    			sb.append("<option value=\'").append(i).append("\'>").append(i).append("</option>");
+    		}
+
+    		sb.append("</select>");
+    		return sb.toString();
+    	}
+
+    	public static String getFirstDay() {
+    		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+    		Calendar calendar = Calendar.getInstance();
+    		Date theDate = calendar.getTime();
+    		GregorianCalendar gcLast = (GregorianCalendar) Calendar.getInstance();
+    		gcLast.setTime(theDate);
+    		gcLast.set(5, 1);
+    		String day_first = df.format(gcLast.getTime());
+    		StringBuffer str = (new StringBuffer()).append(day_first).append(" 00:00:00");
+    		return str.toString();
+    	}
+
+    	public static String getFirstDay(String date) throws ParseException {
+    		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+    		Date theDate = df.parse(date);
+    		GregorianCalendar gcLast = (GregorianCalendar) Calendar.getInstance();
+    		gcLast.setTime(theDate);
+    		gcLast.set(5, 1);
+    		String day_first = df.format(gcLast.getTime());
+    		StringBuffer str = (new StringBuffer()).append(day_first).append(" 00:00:00");
+    		return str.toString();
+    	}
+
+    	public static String getCompleteDate(String date) {
+    		String[] dateTemp = date.split("-");
+    		if (dateTemp[1].length() == 1 && Integer.parseInt(dateTemp[1]) < 10) {
+    			dateTemp[1] = "0" + dateTemp[1];
+    		}
+
+    		if (dateTemp[1].length() == 1 && Integer.parseInt(dateTemp[2]) < 10) {
+    			dateTemp[2] = "0" + dateTemp[2];
+    		}
+
+    		return dateTemp[0] + "-" + dateTemp[1] + "-" + dateTemp[2];
+    	}
+
+    	public static String getLastDay() {
+    		Calendar calendar = Calendar.getInstance();
+    		calendar.set(5, calendar.getActualMaximum(5));
+    		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+    		return format.format(calendar.getTime());
+    	}
+
+    	public static String getLastDay(String date) throws ParseException {
+    		Calendar calendar = Calendar.getInstance();
+    		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    		calendar.setTime(sdf.parse(date));
+    		calendar.set(5, calendar.getActualMaximum(5));
+    		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+    		return format.format(calendar.getTime());
+    	}
+
+    	public static String getMoveMonth(String dateStr, int pos) {
+    		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    		Date dt = sdf.parse(dateStr, new ParsePosition(0));
+    		Calendar rightNow = Calendar.getInstance();
+    		rightNow.setTime(dt);
+    		rightNow.add(2, pos);
+    		Date dt1 = rightNow.getTime();
+    		return sdf.format(dt1);
+    	}
+
+    	public static String[] getMothList(String da1, String da2) throws ParseException {
+    		StringBuffer sb = new StringBuffer();
+    		Date d1 = (new SimpleDateFormat("yyyy-MM")).parse(da1);
+    		Date d2 = (new SimpleDateFormat("yyyy-MM")).parse(da2);
+    		Calendar dd = Calendar.getInstance();
+    		dd.setTime(d1);
+    		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
+
+    		while (dd.getTime().before(d2)) {
+    			String str = sdf.format(dd.getTime());
+    			sb.append(str + ",");
+    			dd.add(2, 1);
+    		}
+
+    		sb.append(sdf.format(dd.getTime()));
+    		return sb.toString().split(",");
+    	}
+
+    	public static String[] getWeeks(String da1, String da2) throws ParseException {
+    		GregorianCalendar c_begin = new GregorianCalendar();
+    		GregorianCalendar c_end = new GregorianCalendar();
+    		StringBuffer sb = new StringBuffer();
+    		c_begin.setTime(convertToDate(da1));
+    		c_end.setTime(convertToDate(da2));
+    		int count = 1;
+    		c_end.add(6, 1);
+
+    		for (; c_begin.before(c_end); c_begin.add(6, 1)) {
+    			if (c_begin.get(7) == 1) {
+    				sb.append("第" + count + "周,");
+    				++count;
+    			}
+    		}
+
+    		return sb.toString().split(",");
+    	}
+
+    	
+
+    	public static String convertToStr(Date time) {
+    		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    		return sdf.format(time);
+    	}
+
+    	public static String convertToStrwithformat(Date time, String format) {
+    		SimpleDateFormat sdf = new SimpleDateFormat(format);
+    		return sdf.format(time);
+    	}
+
+    	public static Date convertToDate(String time) throws ParseException {
+    		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    		return sdf.parse(time);
+    	}
+
+    	public static Date convertToDate(String time, String format) throws ParseException {
+    		SimpleDateFormat sdf = new SimpleDateFormat(format);
+    		return sdf.parse(time);
+    	}
     
 }
