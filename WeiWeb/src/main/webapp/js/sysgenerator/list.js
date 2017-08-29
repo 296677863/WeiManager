@@ -34,7 +34,7 @@ $(function() {
             shadeClose: true,
             btn: ['取 消', '确 定'],
             skin: 'popup-one',
-            content: '<div class="popup-div"><i class="iconfont pop-warning"></i><div class="pop-title"><p>是否确定删除？</p><div class="pop-content"></div></div></div>',
+            content: '<div class="popup-div"><i class="iconfont pop-warning"></i><div class="pop-title"><p>是否确定生成？</p><div class="pop-content"></div></div></div>',
             btn1:function(index, layero){
                 layer.close(index);
                 $("#genButton").addClass("disable-btn");

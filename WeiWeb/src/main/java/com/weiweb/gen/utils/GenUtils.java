@@ -176,10 +176,10 @@ public class GenUtils{
 		if (template.contains("Controller.java.vm")) {
 			return packagePath + "controller" + File.separator + className + "Controller.java";
 		}
-		if (template.contains("list.html.vm")) {
+		if (template.contains("list2.html.vm")) {
 			return "main" + File.separator + "webapp" + File.separator + "WEB-INF" + File.separator + "page" + File.separator + "generator" + File.separator + className.toLowerCase() + ".html";
 		}
-		if (template.contains("list.js.vm")) {
+		if (template.contains("list2.js.vm")) {
 			return "main" + File.separator + "webapp" + File.separator + "js" + File.separator + "generator" + File.separator + className.toLowerCase() + ".js";
 		}
 		if (template.contains("menu.sql.vm")) {
