@@ -112,6 +112,8 @@ insert  into `u_permission`(`id`,`create_date`,`code`,`modify_date`,`data_level`
 ('25',NULL,NULL,NULL,NULL,NULL,2,'菜单管理',6,NULL,NULL,'/menu/list.shtml','22'),
 ('26',NULL,NULL,NULL,NULL,NULL,1,'系统监控',3,NULL,NULL,'/monitor',NULL),
 ('27',NULL,NULL,NULL,NULL,NULL,2,'连接池监控',1,NULL,NULL,'/druid/index.html','26'),
+('28',NULL,NULL,NULL,NULL,NULL,1,'代码工具',4,NULL,NULL,'/sysgenerator',NULL),
+('29',NULL,NULL,NULL,NULL,NULL,2,'代码生成',1,NULL,NULL,'/sysgenerator/index.shtml','28'),
 ('4',NULL,NULL,NULL,NULL,NULL,2,'权限列表',4,NULL,NULL,'/permission/list.shtml','22'),
 ('6',NULL,NULL,NULL,NULL,NULL,2,'权限添加',NULL,NULL,NULL,'/permission/addPermission.shtml',NULL),
 ('7',NULL,NULL,NULL,NULL,NULL,2,'权限删除',NULL,NULL,NULL,'/permission/deletePermissionById.shtml',NULL),
@@ -185,7 +187,9 @@ insert  into `u_role_permission`(`rid`,`pid`) values
 (1,25),
 (1,24),
 (1,26),
-(1,27);
+(1,27),
+(1,28),
+(1,29);
 
 /*Table structure for table `u_user` */
 
