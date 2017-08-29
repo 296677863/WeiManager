@@ -13,13 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.weiweb.common.controller.BaseController;
 import com.weiweb.core.mybatis.page.Pagination;
 import com.weiweb.gen.model.TableEntity;
 import com.weiweb.gen.service.SysGeneratorService;
 
 @Controller
 @RequestMapping("/sysgenerator")
-public class SysGeneratorController {
+public class SysGeneratorController extends BaseController{
 	@Autowired
 	private SysGeneratorService sysGeneratorService;
 
@@ -30,7 +31,8 @@ public class SysGeneratorController {
 	@RequestMapping(value="listData")
 	@ResponseBody
 	public Pagination<TableEntity> listData(String findContent,ModelMap modelMap,Integer pageNo){
-		return  sysGeneratorService.list(findContent, modelMap, pageNo);
+		modelMap.put("findContent", findContent);
+		return  sysGeneratorService.list(modelMap,pageNo,pageSize);
 	}
 	
 	@RequestMapping(value = { "code" }, method = { RequestMethod.GET, RequestMethod.POST })

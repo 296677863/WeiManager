@@ -20,5 +20,6 @@ public interface SysGeneratorService {
 	/** 生成代码 */
 	byte[] generatorCode(String[] tableNames);
 	
-	Pagination<TableEntity> list(String findContent,ModelMap modelMap,Integer pageNo);
+	Pagination<TableEntity> list(Map<String, Object> resultMap,
+			Integer pageNo, Integer pageSize);
 }

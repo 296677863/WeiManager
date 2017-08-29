@@ -1,6 +1,7 @@
 package com.weiweb.gen.service.impl;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.zip.ZipOutputStream;
@@ -8,19 +9,19 @@ import java.util.zip.ZipOutputStream;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.ModelMap;
 
+import com.weiweb.core.mybatis.BaseMybatisDao;
 import com.weiweb.core.mybatis.page.Pagination;
-import com.weiweb.gen.dao.SysGeneratorDao;
+import com.weiweb.gen.dao.SysGeneratorMapper;
 import com.weiweb.gen.model.TableEntity;
 import com.weiweb.gen.service.SysGeneratorService;
 import com.weiweb.gen.utils.GenUtils;
 
 @Service("sysGeneratorService")
-public class SysGeneratorServiceImpl implements SysGeneratorService{
+public class SysGeneratorServiceImpl extends BaseMybatisDao<SysGeneratorMapper> implements SysGeneratorService{
 
 	@Autowired
-	private SysGeneratorDao sysGeneratorDao;
+	private SysGeneratorMapper sysGeneratorMapper;
 	
 	@Override
 	public byte[] generatorCode(String[] tableNames) {
@@ -44,17 +45,18 @@ public class SysGeneratorServiceImpl implements SysGeneratorService{
 
 	@Override
 	public Map<String, String> queryTable(String tableName) {
-		return sysGeneratorDao.queryTable(tableName);
+		return sysGeneratorMapper.queryTable(tableName);
 	}
 	
 	@Override
 	public List<Map<String, String>> queryColumns(String tableName) {
-		return sysGeneratorDao.queryColumns(tableName);
+		return sysGeneratorMapper.queryColumns(tableName);
 	}
 
 	@Override
-	public Pagination<TableEntity> list(String findContent, ModelMap modelMap, Integer pageNo) {
-		return sysGeneratorDao.list(findContent, modelMap, pageNo);
+	public Pagination<TableEntity> list(Map<String, Object> resultMap,
+			Integer pageNo, Integer pageSize) {
+		return super.findPage(resultMap, pageNo, pageSize);
 	}
 	
 

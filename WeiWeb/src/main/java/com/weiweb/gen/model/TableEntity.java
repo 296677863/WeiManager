@@ -1,10 +1,12 @@
 package com.weiweb.gen.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 
-public class TableEntity {
+public class TableEntity implements Serializable{
 	
+	private static final long serialVersionUID = -630780977516564223L;
 	// 表的名称
 	private String				tableName;
 	// 表的备注
