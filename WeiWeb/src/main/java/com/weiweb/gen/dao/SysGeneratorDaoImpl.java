@@ -11,9 +11,15 @@ import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.ModelMap;
+
+import com.weiweb.common.utils.LoggerUtils;
+import com.weiweb.core.mybatis.BaseMybatisDao;
+import com.weiweb.core.mybatis.page.Pagination;
+import com.weiweb.gen.model.TableEntity;
 
 @Repository
-public class SysGeneratorDaoImpl extends SqlSessionDaoSupport implements SysGeneratorDao{
+public class SysGeneratorDaoImpl extends BaseMybatisDao<TableEntity> implements SysGeneratorDao{
 
 	@Override
 	public Map<String, String> queryTable(String tableName) {
@@ -64,6 +70,56 @@ public class SysGeneratorDaoImpl extends SqlSessionDaoSupport implements SysGene
 		}
 		
 		return ls;
+	}
+
+	@Override
+	public Pagination<TableEntity> list(String findContent, ModelMap modelMap, Integer pageNo,Integer pageSize) {
+		
+		pageNo = null == pageNo ? 1 : pageNo;
+	    pageSize = null == pageSize ? 10 : pageSize;
+		Pagination page = new Pagination();
+		page.setPageNo(pageNo);
+		page.setPageSize(pageSize);
+		
+		int offset = (page.getPageNo() - 1) * page.getPageSize();
+		String page_sql = String.format(" limit %s , %s", offset,pageSize);
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("select table_name tableName, engine, table_comment tableComment, create_time createTime from information_schema.tables ");
+		sql.append(" 	where table_schema = (select database())");
+		String countSql=sql.toString();
+		sql.append(page_sql);
+		String pagesql=sql.toString();
+		try {
+			List<TableEntity> resultList = new ArrayList<TableEntity>();
+			Connection conn = this.getSqlSession().getConnection();
+			PreparedStatement ps = conn.prepareStatement(pagesql);
+			ps.execute();
+			ResultSet rs = ps.getResultSet();
+			while(rs.next()){
+				TableEntity bean = new TableEntity();
+				bean.setTableName(rs.getString("tableName"));
+				bean.setComments(rs.getString("tableComment"));
+				resultList.add(bean);
+			}
+			page.setList(resultList);
+			
+			PreparedStatement ps2 = conn.prepareStatement(countSql);
+			ps2.execute();
+			ResultSet set = ps2.getResultSet();
+			while (set.next()) {
+				page.setTotalCount(set.getInt(1));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return page;
+	}
+
+	@Override
+	public Pagination<TableEntity> list(String findContent, ModelMap modelMap, Integer pageNo) {
+		return this.list(findContent, modelMap, pageNo,null);
 	}
 
 }

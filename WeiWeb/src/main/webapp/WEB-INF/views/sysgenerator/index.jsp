@@ -19,27 +19,10 @@
 					class="form-horizontal m-t-xs" novalidate="novalidate">
 					<div class="form-group col-sm-12 icon-right pb15">
 							
-						<div class="col-sm-5 pl0">
-							<div class="group-div">
-							<label class="label-left">名称:</label>
-							<input type="text" class="default-input input-left " placeholder="请输入名称" name="name"  value=""/>
-							</div>
-						</div>
-						<div class="col-sm-5 pl0">
-						<div class="group-div">
-						</div>	
-						</div>		
-						<div class="col-sm-2 pl0">
-							<div class="icon-btn-div">
-							<button class="m-btn maincolor main-btn" id="selectButton" type="button"><span>查询</span></button>
-							<button class="m-btn maincolor main-btn" id="resetButton" type="reset"><span>重置</span></button>
-						</div>
-						</div>
+					
 					</div>
 					<div class="form-group col-sm-12 icon-left">
-						<button class="m-btn maincolor main-btn weiOpenBtn" data-title="新增角色" data-url="${base}/role/add.shtml" 
-							type="button"><span>新增</span></button>
-						<button class="m-btn disable-btn" id="deleteButton" type="button"><span>批量删除</span></button>
+						<button class="m-btn disable-btn" id="genButton" type="button"><span>生成代码</span></button>
 					</div>
 				</form>
 			</div>
@@ -51,7 +34,7 @@
 	</div>
 
 	<%@ include file="/common/footer.jsp"%>
-	<script type="text/javascript" src="${base}/js/role/role_list.js?v=<wei:version/>"></script>
+	<script type="text/javascript" src="${base}/js/sysgenerator/list.js?v=<wei:version/>"></script>
 </body>
 
 </html>

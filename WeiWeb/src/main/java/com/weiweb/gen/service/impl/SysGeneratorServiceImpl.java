@@ -8,8 +8,11 @@ import java.util.zip.ZipOutputStream;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.ModelMap;
 
+import com.weiweb.core.mybatis.page.Pagination;
 import com.weiweb.gen.dao.SysGeneratorDao;
+import com.weiweb.gen.model.TableEntity;
 import com.weiweb.gen.service.SysGeneratorService;
 import com.weiweb.gen.utils.GenUtils;
 
@@ -47,6 +50,11 @@ public class SysGeneratorServiceImpl implements SysGeneratorService{
 	@Override
 	public List<Map<String, String>> queryColumns(String tableName) {
 		return sysGeneratorDao.queryColumns(tableName);
+	}
+
+	@Override
+	public Pagination<TableEntity> list(String findContent, ModelMap modelMap, Integer pageNo) {
+		return sysGeneratorDao.list(findContent, modelMap, pageNo);
 	}
 	
 
