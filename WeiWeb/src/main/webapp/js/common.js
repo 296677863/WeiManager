@@ -289,7 +289,8 @@ wei = (function () {
                 $table_list.trigger("weijqgridSelectAll",[aRowids,status]);//绑定全选事件回调
             },
             onSelectRow: function (rowid, status) {
-                var ids = $("#table_list").jqGrid("getGridParam", "selarrrow");
+                debugger;
+            	var ids = $("#table_list").jqGrid("getGridParam", "selarrrow");
                 if (ids.length > 0) {
                     window.selectIds = ids;
                     $deleteButton.removeClass("disable-btn");

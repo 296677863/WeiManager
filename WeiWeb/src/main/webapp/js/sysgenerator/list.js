@@ -11,7 +11,8 @@ $(function() {
 				{
 					name : 'tableName',
 					index : 'tableName',
-					align : 'left'
+					align : 'left',
+					key:true
 				},
 				{
 					name : 'comments',
@@ -44,7 +45,8 @@ $(function() {
             btn2:function(index, layero){
                 layer.close(index);
                 wei.ajax.ajaxTagSu("code.shtml",{'tables':selectIds.join(",")},function (message) {
-                    if (message.type == "success") {
+                    
+                	if (message.type == "success") {
                         wei.dialog.layerMsg("生成成功！",null,null,function(){
                             window.selectIds = [];
                             $("#genButton").addClass("disable-btn");

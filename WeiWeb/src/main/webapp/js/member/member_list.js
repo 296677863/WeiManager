@@ -72,22 +72,10 @@ $(function () {
     var jqGrid = wei.grid(config);
 
     jqGrid.bind("weijqgridSelectOne", function (event, aRowids, status) {
-        if (window.selectIds.length > 0) {
-            $resePwdBtn.removeClass("disable-btn");
-            $resePwdBtn.addClass("maincolor main-btn");
-        } else {
-            $resePwdBtn.addClass("disable-btn");
-            $resePwdBtn.removeClass("maincolor main-btn");
-        }
+       
     });
     jqGrid.bind("weijqgridSelectAll", function (event, aRowids, status) {
-        if (window.selectIds.length > 0) {
-            $resePwdBtn.removeClass("disable-btn");
-            $resePwdBtn.addClass("maincolor main-btn");
-        } else {
-            $resePwdBtn.addClass("disable-btn");
-            $resePwdBtn.removeClass("maincolor main-btn");
-        }
+       
     });
    
 });

@@ -22,7 +22,7 @@
 					
 					</div>
 					<div class="form-group col-sm-12 icon-left">
-						<button class="m-btn disable-btn" id="genButton" type="button"><span>生成代码</span></button>
+						<button class="m-btn maincolor main-btn" id="genButton" type="button"><span>生成代码</span></button>
 					</div>
 				</form>
 			</div>
