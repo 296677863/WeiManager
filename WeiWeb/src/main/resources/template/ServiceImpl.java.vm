@@ -1,62 +1,67 @@
 package ${package}.service;
-import org.springframework.stereotype.Repository;
+
+import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.ModelMap;
+import com.weiweb.core.mybatis.BaseMybatisDao;
+import com.weiweb.core.mybatis.page.Pagination;
+
 import ${package}.dao.${className}Dao;
-import ${package}.domain.${className}DO;
-import ${package}.domain.${className}VO;
-import ${package}.qvo.${className}Query;
+import ${package}.model.${className};
+import ${package}.bo.${className}BO;
+import ${package}.service.${className}Service;
+
 import java.util.List;
 import java.util.Map;
-import com.ybg.base.jdbc.BaseMap;
-import com.ybg.base.util.Page;
 
 
 
-@Repository
-public class ${className}ServiceImpl implements ${className}Service {
+
+@Service
+public class ${className}ServiceImpl extends BaseMybatisDao<${className}Mapper> implements ${className}Service {
 	@Autowired
-	private ${className}Dao ${classname}Dao;
+	private ${className}Mapper ${classname}Mapper;
+	
 	
 	@Override
-	 /** 返回主键的创建
-	 * 
-	 * @throws Exception **/
-	public ${className}VO save(${className}VO bean) throws Exception{
-	return ${classname}Dao.save(bean);
-	
+	public int deleteByPrimaryKey(${pk.attrType} id) {
+		return ${classname}Mapper.deleteByPrimaryKey(id);
 	}
 	
-	/** 更新数据，条件 和 需要更新的字段都不能为空 不限个数个条件
-	 * 
-	 * @author Deament
-	 * @param updatemap
-	 *            需要更新的字段和值
-	 * @param wheremap
-	 *            更新中的条件字段和值
-	 * @param table_name
-	 *            表的名称 **/
+	@Override
+	public ${className} insert(${className} record) {
+		${className}Mapper.insert(record);
+		return record;
+	}
+	
+	@Override
+	public ${className} insertSelective(${className} record) {
+		
+		${className}Mapper.insertSelective(record);
+		return record;
+	}
+	
+	@Override
+	public ${className} selectByPrimaryKey(${pk.attrType} id) {
+		return ${className}Mapper.selectByPrimaryKey(id);
+	}
 
 	@Override
-	public	void update(BaseMap<String, Object> updatemap, BaseMap<String, Object> wheremap){
-		${classname}Dao.update(updatemap,wheremap);
+	public int updateByPrimaryKey(${className} record) {
+		return ${className}Mapper.updateByPrimaryKey(record);
+	}
+
+	@Override
+	public int updateByPrimaryKeySelective(${className} record) {
+		return ${className}Mapper.updateByPrimaryKeySelective(record);
+	}
+
+	
+	@Override
+	public Pagination<${className}> findPage(Map<String, Object> resultMap,
+			Integer pageNo, Integer pageSize) {
+		return super.findPage(resultMap, pageNo, pageSize);
 	}
 	
-	/** 分页查询 **/
-	@Override
-	public	Page list(Page page,${className}Query qvo)throws Exception{
-		return ${classname}Dao.list(page,qvo);
-	}
 	
-	/** 不分页查询 **/
-	@Override
-	public	List<${className}VO> list(${className}Query qvo) throws Exception{
-		return ${classname}Dao.list(qvo);
-	}
-	/** 根据条件删除 **/
-	public void remove(BaseMap<String, Object> wheremap){
-		${classname}Dao.remove(wheremap);
-	}
-	public ${className}VO get(${pk.attrType} id){
-		return 	${classname}Dao.get(id);
-	}
 }

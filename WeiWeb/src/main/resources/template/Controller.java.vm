@@ -1,35 +1,35 @@
 package ${package}.controller;
-import java.util.HashMap;
-import java.util.Map;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
-import java.util.ArrayList;
+
+
+
+import java.util.Date;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
+
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.ybg.base.jdbc.BaseMap;
-import org.springframework.web.bind.annotation.RequestBody;
-import com.ybg.base.util.Json;
-import com.ybg.base.util.Page;
-import ${package}.domain.${className}VO;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+
+import com.weiweb.common.controller.BaseController;
+import com.weiweb.common.utils.StringUtils;
+import com.weiweb.core.mybatis.page.Pagination;
+import com.weiweb.core.shiro.po.Message;
+import com.weiweb.core.shiro.session.CustomSessionManager;
+
+import ${package}.model.${className};
 import ${package}.service.${className}Service;
-import ${package}.domain.${className}DO;
-import ${package}.qvo.${className}Query;
-import com.ybg.base.util.ValidatorUtils;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.HttpStatus;
-import springfox.documentation.annotations.ApiIgnore;
+import ${package}.bo.${className}BO;
+
+
 
 /**
  * ${comments}
@@ -38,109 +38,70 @@ import springfox.documentation.annotations.ApiIgnore;
  * @email ${email}
  * @date ${datetime}
  */
- @Api("${className}管理")
 @Controller
 @RequestMapping("${pathName}")
-public class ${className}Controller {
+public class ${className}Controller extends BaseController{
 	@Autowired
 	private ${className}Service ${classname}Service;
-		
-	@ApiOperation(value = "${className}管理页面", notes = "", produces = MediaType.TEXT_HTML_VALUE)
-	@RequestMapping(value = { "index.do" }, method = { RequestMethod.GET, RequestMethod.POST })
-	public String index() {		
-		return "/system/${classname}/index";
+	
+	@RequestMapping(value="list")
+	public ModelAndView list(ModelMap map,Integer pageNo,String findContent){
+		return new ModelAndView("${pathName}/list");
 	}
 	
-	@ApiOperation(value = "${className}分页列表", notes = "JSON ", produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiImplicitParams({ @ApiImplicitParam(name = "pageNow", value = "当前页数", required = true, dataType = "Integer"), @ApiImplicitParam(name = "qvo", value = "查询页数", required = false, dataType = "${className}Qvo") })
+	@RequestMapping("/listData")
 	@ResponseBody
-	@RequestMapping(value = { "list.do" }, method = { RequestMethod.GET, RequestMethod.POST })
-	public Page list(@ModelAttribute ${className}Query qvo, @RequestParam(name = "pageNow", required = false, defaultValue = "0") Integer pageNow, ModelMap map) throws Exception {
-		qvo.setBlurred(true);
-		Page page = new Page();
-		page.setCurPage(pageNow);
-		page = ${classname}Service.list(page, qvo);
-		page.init();
+	public Pagination<${classname}> listData(${classname} user,Integer pageNo, ModelMap map){
+	
+		Pagination<${classname}> page = ${classname}Service.findByPage(map,pageNo,pageSize);
 		return page;
+		
+
+	}
+	
+	@RequestMapping(value="delete${classname}ById",method=RequestMethod.POST)
+	@ResponseBody
+	public Message delete${classname}ById(String ids){
+		if( ${classname}Service.delete${classname}ById(ids)){
+			return ERROR_MESSAGE;
+		}else{
+			return SUCCESS_MESSAGE;
+		}
+	}
+	
+	@RequestMapping("/add")
+	public String add( ModelMap model){
+		return "/${pathName}/add";
+	}
+	
+	@RequestMapping("/edit/{id}")
+	public String edit( @PathVariable("id")String id,ModelMap model){
+		if(!StringUtils.isEmpty(id))
+			model.addAttribute("bean",${classname}Service.selectByPrimaryKey(id));
+		return "/${pathName}/edit";
 	}
 		
-	@ApiOperation(value = "更新${className}", notes = "", produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping("/save")
 	@ResponseBody
-	@RequestMapping(value = { "update.do" }, method = { RequestMethod.GET, RequestMethod.POST })
-	public Json update(@RequestBody ${className}VO ${classname}) {
-		Json j = new Json();
-		j.setSuccess(true);
-		ValidatorUtils.validateEntity(${classname});
-		try {
-			BaseMap<String, Object> updatemap = new BaseMap<String, Object>();
-			#foreach($column in $columns)
-			#if($column.columnName != $pk.columnName)
-	  		updatemap.put("${column.columnName}", ${classname}.get${column.attrName}());
-			#end 
-			#end 
-			BaseMap<String, Object> wheremap = new BaseMap<String, Object>();			
-			wheremap.put("id", ${classname}.get${pk.attrName}());			
-			${classname}Service.update(updatemap, wheremap);
+	public Message save(${classname} bean,RedirectAttributes redirectAttributes){
+		try{
+			${classname}Service.insert(bean);
 		} catch (Exception e) {
 			e.printStackTrace();
-			j.setMsg("操作失败");
-			return j;
+			return ERROR_MESSAGE;
 		}
-		j.setMsg("操作成功");
-		return j;
+		return Message.success(bean);
 	}
 	
-	@ApiOperation(value = "根据ID删除${classname}", notes = " ", produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiImplicitParam(name = "ids", value = "删除${classname}", required = true, dataType = "java.lang.String")
-	@ResponseBody
-	@RequestMapping(value = { "remove.do" }, method = { RequestMethod.GET, RequestMethod.POST })
-	public Json remove(@RequestParam(name = "ids", required = true) String ids2) {
-		Json j = new Json();
-		j.setSuccess(true);
-		try {
-			String[] ids = ids2.split(",");
-			for (String id : ids) {
-				BaseMap<String, Object> wheremap= new BaseMap<String, Object>();
-				wheremap.put("${pk.attrname}", id);
-				${classname}Service.remove(wheremap);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			j.setMsg("操作失败");
-			return j;
-		}
-		j.setMsg("操作成功");
-		return j;
+	@RequestMapping("/info/{id}")
+	public String info( @PathVariable("id")String id,ModelMap model){
+		if(!StringUtils.isEmpty(id))
+			model.addAttribute("bean",${classname}Service.selectByPrimaryKey(id));
+		return "/${pathName}/info";
 	}
 	
-	@ApiOperation(value = "创建${classname}", notes = " ", produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	@RequestMapping(value = { "create.do" }, method = { RequestMethod.GET, RequestMethod.POST })
-	public Json create(@RequestBody ${className}VO bean) {
-		Json j = new Json();
-		j.setSuccess(true);
-		ValidatorUtils.validateEntity(bean);
-		try {
-			${classname}Service.save(bean);
-		} catch (Exception e) {
-			e.printStackTrace();
-			j.setMsg("操作失败");
-			return j;
-		}
-		j.setMsg("操作成功");
-		return j;
-	}
 	
-	@ApiOperation(value = "获取单个${className}", notes = "", produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiImplicitParams({ @ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "java.lang.String") })
-	@RequestMapping(value = { "get.do" }, method = { RequestMethod.GET, RequestMethod.POST })
-	public ResponseEntity<Map<String, Object>> get(@RequestParam(name = "id", required = true) String id) throws Exception {
-		Map<String, Object> result = new HashMap<String, Object>();
-		${className}VO bean = ${classname}Service.get(id);		
-		result.put("${classname}", bean);
-		ResponseEntity<Map<String, Object>> map = new ResponseEntity<Map<String, Object>>(result, HttpStatus.OK);
-		return map;
-	}
+	
 	
 	
 }

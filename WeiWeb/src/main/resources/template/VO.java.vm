@@ -1,5 +1,5 @@
 package ${package}.domain;
-public class ${className}VO extends ${className}DO {
+public class ${className}BO extends ${className} {
 	
 	/**
 	 * 

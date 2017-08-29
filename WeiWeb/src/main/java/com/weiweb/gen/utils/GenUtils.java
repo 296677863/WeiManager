@@ -30,16 +30,12 @@ public class GenUtils{
 		List<String> templates = new ArrayList<String>();
 		templates.add("template/DO.java.vm");
 		templates.add("template/Dao.java.vm");
-		
 		templates.add("template/Service.java.vm");
 		templates.add("template/ServiceImpl.java.vm");
 		templates.add("template/Controller.java.vm");
-		templates.add("template/list.html.vm");
-		templates.add("template/list.js.vm");
-		templates.add("template/menu.sql.vm");
+		templates.add("template/list2.html.vm");
+		templates.add("template/list2.js.vm");
 		templates.add("template/VO.java.vm");
-		templates.add("template/Query.java.vm");
-		templates.add("template/Mapper.java.vm");
 		return templates;
 	}
 	/** 生成代码
