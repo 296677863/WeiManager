@@ -44,29 +44,8 @@ $(function() {
             },
             btn2:function(index, layero){
                 layer.close(index);
-                wei.ajax.ajaxTagSu("code.shtml",{'tables':selectIds.join(",")},function (message) {
-                    
-                	if (message.type == "success") {
-                        wei.dialog.layerMsg("生成成功！",null,null,function(){
-                            window.selectIds = [];
-                            $("#genButton").addClass("disable-btn");
-                            $("#genButton").removeClass("delete-color main-btn");
-                            wei.jqrefush();
-                        });
-                    }else{
-                        selectIds=[];
-                        if(message.content){
-                            wei.dialog.layerMsg(message.content,2);
-                        }else{
-                            wei.dialog.layerMsg('生成失败！',2);
-                        }
-
-                    }
-                    $("#genButton").addClass("disable-btn");
-                    $("#genButton").addClass("maincolor main-btn");
-                   
-
-                });
+                location.href='code.shtml?tables='+selectIds.join(",");
+                $("#genButton").addClass("maincolor main-btn");
             }
         });
 	});
