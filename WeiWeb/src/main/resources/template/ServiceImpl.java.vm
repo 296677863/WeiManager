@@ -29,16 +29,13 @@ public class ${className}ServiceImpl extends BaseMybatisDao<${className}Mapper> 
 	}
 	
 	@Override
-	public ${className} insert(${className} record) {
-		${className}Mapper.insert(record);
-		return record;
+	public int insert(${className} record) {
+		return ${className}Mapper.insert(record);
 	}
 	
 	@Override
-	public ${className} insertSelective(${className} record) {
-		
-		${className}Mapper.insertSelective(record);
-		return record;
+	public int insertSelective(${className} record) {
+		return ${className}Mapper.insertSelective(record);
 	}
 	
 	@Override

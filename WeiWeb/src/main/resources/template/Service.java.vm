@@ -20,7 +20,8 @@ import com.weiweb.core.mybatis.page.Pagination;
  */
 public interface ${className}Service {
 
-    Pagination<${className}> findByPage(ModelMap map, Integer pageNo, int pageSize);
+    Pagination<${className}> findByPage(Map<String, Object> resultMap,
+			Integer pageNo, Integer pageSize);
 	
 	
 	int deleteByPrimaryKey(${pk.attrType} id);
