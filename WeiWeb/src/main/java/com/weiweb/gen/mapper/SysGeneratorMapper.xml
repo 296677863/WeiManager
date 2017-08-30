@@ -50,7 +50,7 @@
     <include refid="limit_sql" />
   </select>
   <select id="findCount" resultMap="BaseResultMap" >
- 	 select count(id) from information_schema.tables
+ 	 select count(*) from information_schema.tables
   	<include refid="where_all" />
   </select>
   
