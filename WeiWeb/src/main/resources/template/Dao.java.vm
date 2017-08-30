@@ -12,13 +12,13 @@ import ${package}.model.${className};
  */
 public interface ${className}Mapper {
 
-	int deleteByPrimaryKey((${pk.attrType} id);
+	int deleteByPrimaryKey(${pk.attrType} id);
 	
 	int insert(${className} record);
 	 
 	int insertSelective(${className} record); 
 	
-	${className} selectByPrimaryKey((${pk.attrType} id);
+	${className} selectByPrimaryKey(${pk.attrType} id);
 	
 	int updateByPrimaryKeySelective(${className} record);
 
