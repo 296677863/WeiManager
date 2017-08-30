@@ -79,4 +79,19 @@ public class ScheduleJobController extends BaseController{
 	}
 	
 	
+	@ResponseBody
+	@RequestMapping(value = { "run.do" }, method = { RequestMethod.GET, RequestMethod.POST })
+	public void run(String jobIds) {
+		String[] ids = jobIds.split(",");
+		for (String idstr : ids) {
+			Long[] longid = new Long[1];
+			try {
+				longid[0] = Long.parseLong(idstr);
+			} catch (Exception e) {
+				continue;
+			}
+			scheduleJobService.run(longid);
+		}
+	}
+	
 }

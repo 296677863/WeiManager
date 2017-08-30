@@ -36,6 +36,9 @@ public interface ScheduleJobService {
 	int updateByPrimaryKeySelective(ScheduleJobModel  record);
 
     int updateByPrimaryKey(ScheduleJobModel  record);
+
+
+	void run(Long[] longid);
 	
 	 
 }

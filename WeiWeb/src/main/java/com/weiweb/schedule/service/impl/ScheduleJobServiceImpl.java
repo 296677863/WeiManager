@@ -57,6 +57,11 @@ public class ScheduleJobServiceImpl extends BaseMybatisDao<ScheduleJobMapper> im
 		return super.findPage(resultMap, pageNo, pageSize);
 	}
 
+	@Override
+	public void run(Long[] longid) {
+		
+	}
+
 	
 	
 }
