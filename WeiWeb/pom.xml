@@ -282,11 +282,7 @@
 			<version>0.1</version>
 		</dependency>
 		<!-- freemarker + shiro（标签） begin -->
-		<dependency>
-			<artifactId>quartz</artifactId>
-			<groupId>org.opensymphony.quartz</groupId>
-			<version>1.6.1</version>
-		</dependency>
+	
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-all</artifactId>
@@ -307,6 +303,12 @@
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-quartz</artifactId>
 			<version>1.2.5</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>quartz</artifactId>
+					<groupId>org.opensymphony.quartz</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
@@ -418,6 +420,17 @@
 			</exclusions>
 		</dependency>
 		
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>2.2.3</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>c3p0</artifactId>
+					<groupId>c3p0</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 	</dependencies>
   
 </project>

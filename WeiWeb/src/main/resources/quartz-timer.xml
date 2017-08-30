@@ -11,8 +11,18 @@
 	http://www.springframework.org/schema/task/spring-task-4.0.xsd
 	http://www.springframework.org/schema/mvc 
 	http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+	
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">  
+      	<property name="dataSource" ref="dataSource"></property>
+      	<property name="applicationContextSchedulerContextKey" value="applicationContextKey" />
+		<property name="configLocation" value="classpath:quartz.properties" /> 
+		<property name="schedulerName" value="RenrenScheduler"></property>
+		<property name="autoStartup" value="true"></property>
+		<property name="startupDelay" value="30"></property>
+		<property name="overwriteExistingJobs" value="true"></property>
+	</bean>
 
-	<task:executor id="executor" pool-size="5" />  
+<!--<task:executor id="executor" pool-size="5" />  
     <task:scheduler id="scheduler" pool-size="10" />  
-    <task:annotation-driven executor="executor" scheduler="scheduler" />
+    <task:annotation-driven executor="executor" scheduler="scheduler" />  -->	
 </beans>

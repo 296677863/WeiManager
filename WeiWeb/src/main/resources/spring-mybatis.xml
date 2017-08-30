@@ -105,4 +105,6 @@
 <!--			expression="execution(public * net.wenyifan.*.service.*.*(..))" />-->
 <!--		<aop:advisor advice-ref="txAdvice" pointcut-ref="myPointcut" />-->
 <!--	</aop:config>-->
+
+	<import resource="quartz-timer.xml"/>
 </beans>
