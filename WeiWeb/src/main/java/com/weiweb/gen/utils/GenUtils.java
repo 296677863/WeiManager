@@ -30,6 +30,7 @@ public class GenUtils{
 		List<String> templates = new ArrayList<String>();
 		templates.add("template/DO.java.vm");
 		templates.add("template/Dao.java.vm");
+		templates.add("template/Dao.xml.vm");
 		templates.add("template/Service.java.vm");
 		templates.add("template/ServiceImpl.java.vm");
 		templates.add("template/Controller.java.vm");
@@ -155,18 +156,18 @@ public class GenUtils{
 			return packagePath + "qvo" + File.separator + className + "Query.java";
 		}
 		if (template.contains("Dao.java.vm")) {
-			return packagePath + "dao" + File.separator + className + "Dao.java";
+			return packagePath + "dao" + File.separator + className + "Mapper.java";
 		}
-		if (template.contains("DaoImpl.java.vm")) {
-			return packagePath + "dao" + File.separator + className + "DaoImpl.java";
-		}
-		if (template.contains("Mapper.java.vm")) {
-			return packagePath + "mapper" + File.separator + className + "Mapper.java";
-		}
-		
-//		if (template.contains("Dao.xml.vm")) {
-//			return packagePath + "dao" + File.separator + className + "Dao.xml";
+//		if (template.contains("DaoImpl.java.vm")) {
+//			return packagePath + "dao" + File.separator + className + "DaoImpl.java";
 //		}
+//		if (template.contains("Mapper.java.vm")) {
+//			return packagePath + "mapper" + File.separator + className + "Mapper.java";
+//		}
+		
+		if (template.contains("Dao.xml.vm")) {
+			return packagePath + "mapper" + File.separator + className + "Mapper.xml";
+		}
 		if (template.contains("Service.java.vm")) {
 			return packagePath + "service" + File.separator + className + "Service.java";
 		}
