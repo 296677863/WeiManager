@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.weiweb.gen.dao.ScheduleJobLogMapper">
+<mapper namespace="com.weiweb.schedule.dao.ScheduleJobLogMapper">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap id="BaseResultMap" type="com.weiweb.gen.model.ScheduleJobLog" >
+    <resultMap id="BaseResultMap" type="com.weiweb.schedule.model.ScheduleJobLog" >
         <result property="logId" column="log_id"/>
         <result property="jobId" column="job_id"/>
         <result property="beanName" column="bean_name"/>
@@ -63,7 +63,7 @@
     where log_id = #{logId}
   </select>
   
-    <insert id="insertSelective" parameterType="com.weiweb.gen.model.ScheduleJobLog">
+    <insert id="insertSelective" parameterType="com.weiweb.schedule.model.ScheduleJobLog">
     
     <selectKey keyProperty="log_id" order="AFTER" resultType="java.lang.String">
       SELECT LAST_INSERT_ID()
@@ -119,7 +119,7 @@
 	    </trim>
   </insert>
   
-   <update id="updateByPrimaryKeySelective" parameterType="com.weiweb.gen.model.ScheduleJobLog">
+   <update id="updateByPrimaryKeySelective" parameterType="com.weiweb.schedule.model.ScheduleJobLog">
   
     update schedule_job_log
     <set>
@@ -157,7 +157,7 @@
     where log_id = #{logId}
   </delete>
   
-	 <insert id="insert" parameterType="com.weiweb.gen.model.ScheduleJobLog">
+	 <insert id="insert" parameterType="com.weiweb.schedule.model.ScheduleJobLog">
    
     <selectKey keyProperty="log_id" order="AFTER" resultType="java.lang.String">
       SELECT LAST_INSERT_ID()
@@ -208,7 +208,7 @@
 
 	
 
-	<update id="updateByPrimaryKey" parameterType="com.weiweb.gen.model.ScheduleJobLog">
+	<update id="updateByPrimaryKey" parameterType="com.weiweb.schedule.model.ScheduleJobLog">
   
     update schedule_job_log 
     		<set>

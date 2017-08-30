@@ -59,6 +59,7 @@
 				<value>classpath:com/weiweb/common/mapper/*.xml</value>
 				<value>classpath:com/weiweb/system/mapper/*.xml</value>
 				<value>classpath:com/weiweb/gen/mapper/*.xml</value>
+				<value>classpath:com/weiweb/schedule/mapper/*.xml</value>
 			</list>
 		</property>
 	</bean>

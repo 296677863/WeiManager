@@ -1,11 +1,6 @@
 
 /************************************ 列表加载数据 ****************************/
 $(function() {
-	$(".chosen-select").chosen(wei.defaults.chosenConfig);
-    $(".chosen-single").find("span").width($("input[name='name']").width());
-	$(window).bind('resize', function () {
-		$(".chosen-single").find("span").width($("input[name='name']").width());
-	});
 	var config = {
 		url : window.baseRoot + "/schedule/listData.shtml",
 		multiselect : true,
@@ -15,7 +10,8 @@ $(function() {
 				{
 					name : 'jobId',
 					index : 'jobId',
-					align : 'left'
+					align : 'left',
+					key: true
 				},
 				{
 					name : 'beanName',
@@ -56,14 +52,14 @@ $(function() {
 					width : 280,
 					fixed : true,
 					formatter : function(cellvalue, options, rowObject) {
-						var result = result + "<a href=\"javascript:void(0)\" onclick=\"wei.dialog.openIrame('编辑','{0}')\">[编辑]</a>"
+						var result = "<a href=\"javascript:void(0)\" onclick=\"wei.dialog.openIrame('编辑','{0}')\">[编辑]</a>"
 						.format(window.baseRoot + '/role/input/'
-								+ rowObject.id+'.shtml');
+								+ rowObject.jobId+'.shtml');
 						result = result + "<a href=\"javascript:void(0)\" onclick=\"wei.dialog.openIrame('详情','{0}')\">[详情]</a>"
 						.format(window.baseRoot + '/role/info/'
-								+ rowObject.id+'.shtml');
+								+ rowObject.jobId+'.shtml');
 						result = result + "<a href=\"javascript:void(0)\" data-id=\"{0}\"  class=\"weiDeleteRow\">[删除]</a>"
-						.format(rowObject.id);
+						.format(rowObject.jobId);
 						return result;
 					}
 				} ]

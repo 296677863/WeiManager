@@ -26,6 +26,11 @@ public class ScheduleJobModel implements Serializable {
 	/** 创建时间 */
 	private String				createTime;
 	
+	//
+	private String gmtCreate;
+	//
+	private String gmtModified;
+	
 	@Override
 	public String toString() {
 		return "ScheduleJobDO [jobId=" + jobId + ", beanName=" + beanName + ", methodName=" + methodName + ", params=" + params + ", cronExpression=" + cronExpression + ", status=" + status + ", remark=" + remark + ", createTime=" + createTime + "]";
@@ -122,4 +127,22 @@ public class ScheduleJobModel implements Serializable {
 	public String getCreateTime() {
 		return createTime;
 	}
+
+	public String getGmtCreate() {
+		return gmtCreate;
+	}
+
+	public void setGmtCreate(String gmtCreate) {
+		this.gmtCreate = gmtCreate;
+	}
+
+	public String getGmtModified() {
+		return gmtModified;
+	}
+
+	public void setGmtModified(String gmtModified) {
+		this.gmtModified = gmtModified;
+	}
+	
+	
 }

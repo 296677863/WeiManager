@@ -49,7 +49,7 @@ public class ScheduleJobController extends BaseController{
 	
 	@RequestMapping("/add")
 	public String add( ModelMap model){
-		return "/schedulejob/add";
+		return "/schedule/add";
 	}
 	
 	@RequestMapping("/edit/{id}")
@@ -63,7 +63,7 @@ public class ScheduleJobController extends BaseController{
 	@ResponseBody
 	public Message save(ScheduleJobModel bean,RedirectAttributes redirectAttributes){
 		try{
-			scheduleJobService.insert(bean);
+			scheduleJobService.insertSelective(bean);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ERROR_MESSAGE;
