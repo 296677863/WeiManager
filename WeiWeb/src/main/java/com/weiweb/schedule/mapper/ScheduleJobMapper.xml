@@ -150,6 +150,15 @@
     where job_id = #{jobId}
   </delete>
   
+  <select id="queryListBybeanName" parameterType="java.lang.String" resultMap="BaseResultMap" >
+  	select job_id,bean_name,method_name,params,cron_expression,status,remark,create_time  from schedule_job job 
+  	where 1=1 
+  	 <if test="beanName != null">
+  	    and bean_name=#{beanName}
+  	 </if>
+  	   and status = 0 
+  </select>
+  
 	 <insert id="insert" parameterType="com.weiweb.schedule.model.ScheduleJobModel">
    
     <selectKey keyProperty="job_id" order="AFTER" resultType="java.lang.String">

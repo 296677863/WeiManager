@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,13 +40,37 @@ public class ScheduleJobController extends BaseController{
 	
 	@RequestMapping(value="deletescheduleJobById",method=RequestMethod.POST)
 	@ResponseBody
-	public Message deletescheduleJobById(String ids){
-		if( ids!=null){
-			return ERROR_MESSAGE;
-		}else{
-			return SUCCESS_MESSAGE;
+	public Message deletescheduleJobById(String jobIds){
+		String[] ids = jobIds.split(",");
+		for (String idstr : ids) {
+			Long[] longid = new Long[1];
+			try {
+				longid[0] = Long.parseLong(idstr);
+			} catch (Exception e) {
+				continue;
+			}
+			scheduleJobService.deleteBatch(longid);
 		}
+	    return SUCCESS_MESSAGE;
+	
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = { "pause" }, method = { RequestMethod.GET, RequestMethod.POST })
+	public Message pause(String jobIds) {
+		String[] ids = jobIds.split(",");
+		for (String idstr : ids) {
+			Long[] longid = new Long[1];
+			try {
+				longid[0] = Long.parseLong(idstr);
+			} catch (Exception e) {
+				continue;
+			}
+			scheduleJobService.pause(longid);
+		}
+		return SUCCESS_MESSAGE;
+	}
+	
 	
 	@RequestMapping("/add")
 	public String add( ModelMap model){
@@ -56,14 +81,28 @@ public class ScheduleJobController extends BaseController{
 	public String edit( @PathVariable("id")String id,ModelMap model){
 		if(!StringUtils.isEmpty(id))
 			model.addAttribute("bean",scheduleJobService.selectByPrimaryKey(Long.parseLong(id)));
-		return "/schedulejob/edit";
+		return "/schedule/edit";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = { "update" }, method = { RequestMethod.GET, RequestMethod.POST })
+	public Message update(@RequestBody ScheduleJobModel scheduleJob) {
+		// 数据校验
+		try {
+			scheduleJobService.update(scheduleJob);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ERROR_MESSAGE;
+		}
+		return SUCCESS_MESSAGE;
+	}
+	
 		
 	@RequestMapping("/save")
 	@ResponseBody
 	public Message save(ScheduleJobModel bean,RedirectAttributes redirectAttributes){
 		try{
-			scheduleJobService.insertSelective(bean);
+			scheduleJobService.save(bean);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ERROR_MESSAGE;
@@ -80,8 +119,8 @@ public class ScheduleJobController extends BaseController{
 	
 	
 	@ResponseBody
-	@RequestMapping(value = { "run.do" }, method = { RequestMethod.GET, RequestMethod.POST })
-	public void run(String jobIds) {
+	@RequestMapping(value = { "run" }, method = { RequestMethod.GET, RequestMethod.POST })
+	public Message run(String jobIds) {
 		String[] ids = jobIds.split(",");
 		for (String idstr : ids) {
 			Long[] longid = new Long[1];
@@ -92,6 +131,24 @@ public class ScheduleJobController extends BaseController{
 			}
 			scheduleJobService.run(longid);
 		}
+		return SUCCESS_MESSAGE;
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = { "resume.do" }, method = { RequestMethod.GET, RequestMethod.POST })
+	public Message resume(String jobIds) {
+		String[] ids = jobIds.split(",");
+		for (String idstr : ids) {
+			Long[] longid = new Long[1];
+			try {
+				longid[0] = Long.parseLong(idstr);
+			} catch (Exception e) {
+				continue;
+			}
+			scheduleJobService.resume(longid);
+		}
+		return SUCCESS_MESSAGE;
 	}
 	
 }

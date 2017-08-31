@@ -1,5 +1,7 @@
 package com.weiweb.schedule.dao;
 
+import java.util.List;
+
 import com.weiweb.schedule.model.ScheduleJobModel;
 
 
@@ -23,6 +25,10 @@ public interface ScheduleJobMapper {
 	int updateByPrimaryKeySelective(ScheduleJobModel record);
 
 	int updateByPrimaryKey(ScheduleJobModel record);
+
+	List<ScheduleJobModel> queryListBybeanName(String  beanName);
+
+	ScheduleJobModel queryObject(Long jobId);
 	 
 	
 }

@@ -1,13 +1,11 @@
 package com.weiweb.schedule.service;
 
-import com.weiweb.schedule.model.ScheduleJobModel;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
-import org.springframework.ui.ModelMap;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.weiweb.core.mybatis.page.Pagination;
+import com.weiweb.schedule.model.ScheduleJobModel;
 
 
 /**
@@ -38,7 +36,24 @@ public interface ScheduleJobService {
     int updateByPrimaryKey(ScheduleJobModel  record);
 
 
-	void run(Long[] longid);
+    @Transactional
+	void save(ScheduleJobModel scheduleJob) throws Exception;
+	
+	@Transactional
+	void update(ScheduleJobModel scheduleJob);
+	
+	@Transactional
+	void deleteBatch(Long[] jobIds);
+	
+	
+	@Transactional
+	void run(Long... jobIds);
+	
+	@Transactional
+	void pause(Long... jobIds);
+	
+	@Transactional
+	void resume(Long... jobIds);
 	
 	 
 }
