@@ -26,7 +26,6 @@
 		</property>
 	</bean>
 	
-	
 	<import resource="spring-mybatis.xml"/>
 	<import resource="spring-cache.xml"/>
 	<import resource="spring-shiro.xml"/>
