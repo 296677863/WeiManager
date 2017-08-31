@@ -3,9 +3,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.foxinmy</groupId>
-		<artifactId>weixin4j</artifactId>
-		<version>1.7.7</version>
+		<groupId>com.weiweb</groupId>
+		<artifactId>WeiManager</artifactId>
+		<version>0.0.1</version>
 	</parent>
 	<artifactId>weixin4j-base</artifactId>
 	<name>weixin4j-base</name>
@@ -15,11 +15,12 @@
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
-			<version>${fastjson.version}</version>
+			<version>1.2.31</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
+			<version>4.8.2</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-httpclient</groupId>

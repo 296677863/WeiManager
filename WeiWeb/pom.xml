@@ -431,6 +431,20 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.weiweb</groupId>
+			<artifactId>weixin4j-base</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.weiweb</groupId>
+			<artifactId>weixin4j-mp</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		
 	</dependencies>
+	
+
   
 </project>

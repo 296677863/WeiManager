@@ -5,6 +5,12 @@
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp"/>
+        <dependent-module archiveName="weixin4j-base-0.0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/weixin4j-base/weixin4j-base">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="weixin4j-mp-0.0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/weixin4j-mp/weixin4j-mp">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="WeiWeb"/>
         <property name="java-output-path" value="/WeiWeb/target/classes"/>
     </wb-module>
