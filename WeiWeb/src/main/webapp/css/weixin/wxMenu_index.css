@@ -1,0 +1,156 @@
+.width-div{
+	    min-height: 500px;
+	    position: relative;
+}
+.row-menu-div{
+    min-height: 42px;
+    line-height: 42px;
+    overflow: auto;
+/*     border-bottom: 1px dashed #515151; */
+}
+.chlid-img{
+	display: block;
+    width: 23px;
+    height: 25px;
+    background-image: url("./images/wechaticon.png");
+    background-position: 2px -9px;
+    margin-left: 5px;
+        margin-top: 8px;
+}
+.group-border{
+	min-height: 572px;
+}
+
+.wechat-footer{
+	width: 100%;
+    height: 50px;
+    line-height: 50px;
+    border-top: 1px solid #E7E7EB;
+    background: #FAFAFA;
+    position: absolute;
+    bottom: 1px;
+}
+.keyboard{
+       width: 44px;
+    height: 50px;
+    background-image: url("./images/wechaticon.png");
+    background-position: -30px -6px;
+    float:left;
+    border-right:1px solid #E7E7EB;
+ 
+}
+.wechat-menu-div{
+		float:left;
+	width: 85%;
+}
+
+.wechat-menu-ul>li{
+	float:left;
+	width:33.3%;
+    text-align: center;
+    cursor: pointer;
+        position: relative;
+            border-right: 1px solid #E7E7EB;
+}
+
+.wechat-menu-ul>li>a{
+	 color:#616161;
+	 overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 98%;
+    display: block;
+}
+.wechat-menu-ul li.pre_menu_link{
+	    border: 1px solid #44b549;
+    line-height: 48px;
+    background-color: #fff;
+  
+}
+.pre_menu_link>a{
+	color:#44b549!important;
+}
+.sub_pre_menu_box {
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+    width: 100%;
+   /*  border: 1px solid #d0d0d0; */
+    background-color: #fff;
+    bottom: 60px;
+    background-color: #fafafa;
+    border-top-width: 0;
+    display:none;
+}
+.sub_pre_menu_inner {
+    display: block;
+    border-top: 1px solid #e7e7eb;
+    width: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    cursor: pointer;
+}
+.sub_pre_menu_list li {
+	height:44px;
+	line-height: 44px;
+	border-left: 1px solid #d0d0d0;
+    border-right: 1px solid #d0d0d0;
+    margin: 0 -1px -1px;
+    width:100%;
+}
+.sub_pre_menu_list li:last-child {
+    border-bottom: 1px solid #d0d0d0;
+}
+.sub_pre_menu_box .arrow {
+    position: absolute;
+    left: 50%;
+    margin-left: -6px;
+}
+.sub_pre_menu_box .arrow_out {
+    bottom: -6px;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-width: 6px;
+    border-style: dashed;
+    border-color: transparent;
+    border-bottom-width: 0;
+    border-top-color: #d0d0d0;
+    border-top-style: solid;
+}
+.sub_pre_menu_box .arrow_in {
+    bottom: -5px;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-width: 6px;
+    border-style: dashed;
+    border-color: transparent;
+    border-bottom-width: 0;
+    border-top-color: #fafafa;
+    border-top-style: solid;
+}
+.sub_pre_menu_list li.current {
+    background-color: #fff;
+    border: 1px solid #44b549;
+    position: relative;
+    z-index: 1;
+    line-height: 45px;
+}
+.sub_pre_menu_list li.current a {
+    color: #44b549;
+}
+.message-content{
+	width: 100%;
+    position: absolute;
+    bottom: 60px;
+}
+.sendmessage-div{
+	width:295px;
+	min-height: 200px;
+	margin: 0 auto;
+    background-color: #fff;
+        padding: 15px 12px;
+}
