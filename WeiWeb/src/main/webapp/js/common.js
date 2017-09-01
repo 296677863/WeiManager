@@ -236,7 +236,7 @@ wei = (function () {
                 },
                 total: function (data) {
                     // json中代表页码总数的数据
-                    return data.totalPages;
+                    return data.totalPage;
                 },
                 records: function (data) {
                     // json中代表数据行总数的数据
