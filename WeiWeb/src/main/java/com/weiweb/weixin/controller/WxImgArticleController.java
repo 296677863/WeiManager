@@ -29,14 +29,14 @@ import com.weiweb.weixin.service.WxImgArticleService;
  * @date 2017-09-01
  */
 @Controller
-@RequestMapping("wximgarticle")
+@RequestMapping("/base/wximgarticle")
 public class WxImgArticleController extends BaseController{
 	@Autowired
 	private WxImgArticleService wxImgArticleService;
 	
 	@RequestMapping(value="list")
 	public ModelAndView list(ModelMap map,Integer pageNo,String findContent){
-		return new ModelAndView("wximgarticle/list");
+		return new ModelAndView("weixin/wxImgArticle/list");
 	}
 	
 	@RequestMapping("/listData")
@@ -62,14 +62,14 @@ public class WxImgArticleController extends BaseController{
 	
 	@RequestMapping("/add")
 	public String add( ModelMap model){
-		return "/wximgarticle/add";
+		return "weixin/wxImgArticle/add";
 	}
 	
 	@RequestMapping("/edit/{id}")
 	public String edit( @PathVariable("id")String id,ModelMap model){
 		if(!StringUtils.isEmpty(id))
 			model.addAttribute("bean",wxImgArticleService.selectByPrimaryKey(id));
-		return "/wximgarticle/edit";
+		return "weixin/wxImgArticle/edit";
 	}
 		
 	@RequestMapping("/save")
@@ -88,7 +88,7 @@ public class WxImgArticleController extends BaseController{
 	public String info( @PathVariable("id")String id,ModelMap model){
 		if(!StringUtils.isEmpty(id))
 			model.addAttribute("bean",wxImgArticleService.selectByPrimaryKey(id));
-		return "/wximgarticle/info";
+		return "weixin/wxImgArticle/info";
 	}
 	
 	
