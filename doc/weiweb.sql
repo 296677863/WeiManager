@@ -275,7 +275,7 @@ CREATE TABLE `schedule_job_log` (
   `gmt_create` datetime DEFAULT NULL,
   PRIMARY KEY (`log_id`),
   KEY `job_id` (`job_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6471 DEFAULT CHARSET=utf8 COMMENT='定时任务日志';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='定时任务日志';
 
 /*Data for the table `schedule_job_log` */
 
@@ -379,6 +379,8 @@ insert  into `u_permission`(`id`,`create_date`,`code`,`modify_date`,`data_level`
 ('29',NULL,NULL,NULL,NULL,NULL,2,'代码生成',1,NULL,NULL,'/sysgenerator/index.shtml','28'),
 ('30',NULL,NULL,NULL,NULL,NULL,1,'任务管理',1,NULL,NULL,'/schedule',NULL),
 ('31',NULL,NULL,NULL,NULL,NULL,2,'定时任务',1,NULL,NULL,'/schedule/list.shtml','30'),
+('32',NULL,NULL,NULL,NULL,NULL,1,'微信管理',1,NULL,NULL,'/wx',NULL),
+('33',NULL,NULL,NULL,NULL,NULL,2,'自定义菜单',1,NULL,NULL,'/base/wxmenu/index.shtml','32'),
 ('4',NULL,NULL,NULL,NULL,NULL,2,'权限列表',4,NULL,NULL,'/permission/list.shtml','22'),
 ('6',NULL,NULL,NULL,NULL,NULL,2,'权限添加',NULL,NULL,NULL,'/permission/addPermission.shtml',NULL),
 ('7',NULL,NULL,NULL,NULL,NULL,2,'权限删除',NULL,NULL,NULL,'/permission/deletePermissionById.shtml',NULL),
@@ -456,7 +458,9 @@ insert  into `u_role_permission`(`rid`,`pid`) values
 (1,28),
 (1,29),
 (1,30),
-(1,31);
+(1,31),
+(1,32),
+(1,33);
 
 /*Table structure for table `u_user` */
 
@@ -497,6 +501,26 @@ insert  into `u_user_role`(`uid`,`rid`) values
 (11,3),
 (11,4),
 (1,1);
+
+/*Table structure for table `wx_img_article` */
+
+DROP TABLE IF EXISTS `wx_img_article`;
+
+CREATE TABLE `wx_img_article` (
+  `id` varchar(32) NOT NULL,
+  `create_date` datetime DEFAULT NULL,
+  `modify_date` datetime DEFAULT NULL,
+  `author` varchar(255) DEFAULT NULL,
+  `content` varchar(255) DEFAULT NULL,
+  `cover` varchar(255) DEFAULT NULL,
+  `href` varchar(255) DEFAULT NULL,
+  `show_cover` bit(1) DEFAULT NULL,
+  `summary` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `wx_img_article` */
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
