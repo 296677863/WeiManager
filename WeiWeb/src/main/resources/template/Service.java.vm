@@ -20,7 +20,7 @@ import com.weiweb.core.mybatis.page.Pagination;
  */
 public interface ${className}Service {
 
-    Pagination<${className}> findByPage(Map<String, Object> resultMap,
+    Pagination<${className}> findPage(Map<String, Object> resultMap,
 			Integer pageNo, Integer pageSize);
 	
 	

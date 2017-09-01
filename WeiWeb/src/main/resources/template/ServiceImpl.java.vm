@@ -30,27 +30,27 @@ public class ${className}ServiceImpl extends BaseMybatisDao<${className}Mapper> 
 	
 	@Override
 	public int insert(${className} record) {
-		return ${className}Mapper.insert(record);
+		return ${classname}Mapper.insert(record);
 	}
 	
 	@Override
 	public int insertSelective(${className} record) {
-		return ${className}Mapper.insertSelective(record);
+		return ${classname}Mapper.insertSelective(record);
 	}
 	
 	@Override
 	public ${className} selectByPrimaryKey(${pk.attrType} id) {
-		return ${className}Mapper.selectByPrimaryKey(id);
+		return ${classname}Mapper.selectByPrimaryKey(id);
 	}
 
 	@Override
 	public int updateByPrimaryKey(${className} record) {
-		return ${className}Mapper.updateByPrimaryKey(record);
+		return ${classname}Mapper.updateByPrimaryKey(record);
 	}
 
 	@Override
 	public int updateByPrimaryKeySelective(${className} record) {
-		return ${className}Mapper.updateByPrimaryKeySelective(record);
+		return ${classname}Mapper.updateByPrimaryKeySelective(record);
 	}
 
 	
