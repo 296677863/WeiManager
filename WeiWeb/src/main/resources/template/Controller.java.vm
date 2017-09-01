@@ -51,9 +51,9 @@ public class ${className}Controller extends BaseController{
 	
 	@RequestMapping("/listData")
 	@ResponseBody
-	public Pagination<${classname}> listData(${classname} user,Integer pageNo, ModelMap map){
+	public Pagination<${className}> listData(${className} user,Integer pageNo, ModelMap map){
 	
-		Pagination<${classname}> page = ${classname}Service.findByPage(map,pageNo,pageSize);
+		Pagination<${className}> page = ${classname}Service.findByPage(map,pageNo,pageSize);
 		return page;
 		
 
@@ -61,8 +61,9 @@ public class ${className}Controller extends BaseController{
 	
 	@RequestMapping(value="delete${classname}ById",method=RequestMethod.POST)
 	@ResponseBody
-	public Message delete${classname}ById(String ids){
-		if( ${classname}Service.delete${classname}ById(ids)){
+	public Message delete${classname}ByIds(String ids){
+		String[] arryids = ids.split(",");
+		if( ${classname}Service.delete${classname}ByIds(arryids)){
 			return ERROR_MESSAGE;
 		}else{
 			return SUCCESS_MESSAGE;
@@ -83,7 +84,7 @@ public class ${className}Controller extends BaseController{
 		
 	@RequestMapping("/save")
 	@ResponseBody
-	public Message save(${classname} bean,RedirectAttributes redirectAttributes){
+	public Message save(${className} bean,RedirectAttributes redirectAttributes){
 		try{
 			${classname}Service.insert(bean);
 		} catch (Exception e) {

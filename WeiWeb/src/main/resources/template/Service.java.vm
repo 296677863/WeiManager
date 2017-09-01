@@ -38,5 +38,9 @@ public interface ${className}Service {
 
     int updateByPrimaryKey(${className}  record);
 	
+	boolean delete${className}ByIds(String[] arryids);
+	
+	 
+	
 	 
 }

@@ -60,5 +60,13 @@ public class ${className}ServiceImpl extends BaseMybatisDao<${className}Mapper> 
 		return super.findPage(resultMap, pageNo, pageSize);
 	}
 	
+	@Override
+	@Transactional
+	boolean delete${className}ByIds(String[] arryids){
+		for(String id:arryids){
+			 ${classname}Mapper.deleteByPrimaryKey(id);
+		}
+		return true;
+	}
 	
 }
