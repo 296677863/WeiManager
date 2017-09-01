@@ -246,7 +246,7 @@ wei = (function () {
                 repeatitems: false
             },
             prmNames: {
-                page: "pageNumber", // 表示请求页码的参数名称
+                page: "pageNo", // 表示请求页码的参数名称
                 rows: "pageSize", // 表示请求行数的参数名称
                 sort: "orderProperty", // 表示用于排序的列名的参数名称
                 order: "orderDirection", // 表示采用的排序方式的参数名称
