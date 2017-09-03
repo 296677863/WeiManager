@@ -823,7 +823,7 @@ $(function(){
             data =  $.parseJSON(text);
 		}catch(e) {
 		}
-		if(data.user_status=="300"){
+		if(data&&data.user_status&&data.user_status=="300"){
 			 top.layer.alert("请重新登陆！", {icon: 5},function(){
                  if (window != top) {
                      top.location.reload();

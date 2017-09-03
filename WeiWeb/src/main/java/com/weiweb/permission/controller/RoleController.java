@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,10 +15,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.weiweb.common.controller.BaseController;
 import com.weiweb.common.model.URole;
+import com.weiweb.common.model.UUser;
 import com.weiweb.common.utils.LoggerUtils;
 import com.weiweb.core.mybatis.page.Pagination;
 import com.weiweb.permission.service.RoleService;
 import com.weiweb.user.manager.UserManager;
+import com.weiweb.user.service.UUserService;
 
 
 @Controller
@@ -26,6 +29,9 @@ import com.weiweb.user.manager.UserManager;
 public class RoleController extends BaseController {
 	@Autowired
 	RoleService roleService;
+	
+	@Autowired
+	UUserService userService;
 	/**
 	 * 角色列表
 	 * @return
@@ -36,10 +42,23 @@ public class RoleController extends BaseController {
 		return "role/list";
 	}
 	@RequestMapping(value="listData")
-	public ModelAndView index(String findContent,ModelMap modelMap){
+	@ResponseBody
+	public Pagination<URole> index(String findContent,ModelMap modelMap){
 		modelMap.put("findContent", findContent);
 		Pagination<URole> role = roleService.findPage(modelMap,pageNo,pageSize);
-		return new ModelAndView("role/list","page",role);
+		return role;
+	}
+	
+	@RequestMapping("memberList/{roleId}")
+	public String memberList(@PathVariable("roleId") String roleId){
+		return "role/memberList";
+	}
+	
+	@RequestMapping("memberListData")
+	@ResponseBody
+	public  Pagination<UUser> memberListData(String roleId,ModelMap modelMap){
+		modelMap.put("roleId", roleId);
+		return userService.findUserByroleId(modelMap, pageNo, pageSize);
 	}
 	/**
 	 * 角色添加

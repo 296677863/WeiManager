@@ -5,7 +5,7 @@
   <parent>
     <groupId>com.weiweb</groupId>
     <artifactId>WeiManager</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
   </parent>
   <groupId>com.weiweb</groupId>
   <artifactId>WeiWeb</artifactId>

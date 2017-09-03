@@ -47,4 +47,6 @@ public interface UUserService {
 
 	List<UUser> getUserByNickname(String nickname);
 
+	Pagination<UUser> findUserByroleId( ModelMap modelMap, int pageNo, int pageSize);
+
 }

@@ -205,6 +205,11 @@ public class UUserServiceImpl extends BaseMybatisDao<UUserMapper> implements UUs
 		return userMapper.findUserByNickname(nickname);
 	}
 
+	@Override
+	public Pagination<UUser> findUserByroleId(ModelMap modelMap, int pageNo, int pageSize) {
+		return super.findPage("findUserByroleId", "findUserCountByroleId", modelMap, pageNo, pageSize);
+	}
+
 
 	
 	
