@@ -112,7 +112,7 @@
   	</collection>
   </resultMap>
   <!-- 根据用户ID，查询所有权限 -->
-  <select id="findNowAllPermission" resultMap="findNowAllPermission_resultMap">
+  <select id="findNowAllPermission" resultMap="findNowAllPermission_resultMap" parameterType="java.lang.Long">
 	select ur.id,ur.name,ur.type , 
 		up.id pid,up.create_date,up.modify_date,up.code,up.data_level,up.icon_id,up.level,up.name pname,up.sort,up.status,up.target,up.url purl,up.parent
 		from (select rid from u_user_role where uid = #{userId,jdbcType=BIGINT}) uur 
@@ -122,7 +122,12 @@
   </select>
    <!-- Mybatis 一对多 Demo  end -->
    
-   
+   <select id="findAllPermissionById" resultMap="findNowAllPermission_resultMap" parameterType="java.lang.Long">
+   select ur.id,ur.name,ur.type , 
+		up.id pid,up.create_date,up.modify_date,up.code,up.data_level,up.icon_id,up.level,up.name pname,up.sort,up.status,up.target,up.url purl,up.parent
+		from u_role ur,u_permission up,u_role_permission urp
+		where ur.id= #{roleId,jdbcType=BIGINT} and urp.rid=ur.id and urp.pid=up.id
+   </select>
    
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -130,6 +135,8 @@
     from u_role
     where id = #{id,jdbcType=BIGINT}
   </select>
+  
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from u_role
     where id = #{id,jdbcType=BIGINT}

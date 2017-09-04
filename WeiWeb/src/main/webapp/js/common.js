@@ -892,7 +892,7 @@ $(function(){
             },
             btn2:function(index, layero){
                 layer.close(index);
-                wei.ajax.ajaxTagSu("deleteUserById.shtml",{'ids':selectIds.join(",")},function (message) {
+                wei.ajax.ajaxTagSu("delete.shtml",{'ids':selectIds.join(",")},function (message) {
 
 
                     if (message.type == "success") {
@@ -966,7 +966,7 @@ $(function(){
             },
             btn2:function(index, layero){
                 layer.close(index);
-                wei.ajax.ajaxTagSu("delete",{'ids':v_id},function (message) {
+                wei.ajax.ajaxTagSu("delete.shtml",{'ids':v_id},function (message) {
                     if (message.type == "success") {
                         wei.dialog.layerMsg("删除成功！",null,null,function(){
                             if(true == reload){

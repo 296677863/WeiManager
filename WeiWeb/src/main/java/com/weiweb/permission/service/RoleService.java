@@ -31,8 +31,10 @@ public interface RoleService {
 			Map<String, Object> resultMap, Integer pageNo, Integer pageSize);
 	//根据用户ID查询角色（role），放入到Authorization里。
 	Set<String> findRoleByUserId(Long userId);
+	
+	 List<URole> findNowAllPermission();
 
-	List<URole> findNowAllPermission();
+	URole findAllPermissionById(Long roleId);
 	//初始化数据
 	void initData();
 

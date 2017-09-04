@@ -59,7 +59,7 @@ public class ${className}Controller extends BaseController{
 
 	}
 	
-	@RequestMapping(value="delete${classname}ById",method=RequestMethod.POST)
+	@RequestMapping(value="delete",method=RequestMethod.POST)
 	@ResponseBody
 	public Message delete${classname}ByIds(String ids){
 		String[] arryids = ids.split(",");

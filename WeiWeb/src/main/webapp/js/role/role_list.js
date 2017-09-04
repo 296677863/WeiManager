@@ -30,7 +30,7 @@ $(function() {
 							.format(window.baseRoot + '/role/memberList/'+rowObject.id+'.shtml');
 						if (!rowObject.isSystem) {
 							result = result + "<a href=\"javascript:void(0)\" onclick=\"wei.dialog.openIrame('角色编辑','{0}')\">[编辑]</a>"
-							.format(window.baseRoot + '/role/input/'
+							.format(window.baseRoot + '/role/edit/'
 									+ rowObject.id+'.shtml');
 							result = result + "<a href=\"javascript:void(0)\" onclick=\"wei.dialog.openIrame('详情','{0}')\">[详情]</a>"
 							.format(window.baseRoot + '/role/info/'

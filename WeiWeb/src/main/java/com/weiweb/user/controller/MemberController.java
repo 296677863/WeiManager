@@ -95,7 +95,7 @@ public class MemberController extends BaseController {
 	 * @param ids	如果有多个，以“,”间隔。
 	 * @return
 	 */
-	@RequestMapping(value="deleteUserById",method=RequestMethod.POST)
+	@RequestMapping(value="delete",method=RequestMethod.POST)
 	@ResponseBody
 	public Message deleteUserById(String ids){
 		if( userService.deleteUserById(ids)){

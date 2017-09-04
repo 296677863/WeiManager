@@ -18,6 +18,7 @@ import com.weiweb.common.model.URole;
 import com.weiweb.common.model.UUser;
 import com.weiweb.common.utils.LoggerUtils;
 import com.weiweb.core.mybatis.page.Pagination;
+import com.weiweb.core.shiro.po.Message;
 import com.weiweb.permission.service.RoleService;
 import com.weiweb.user.manager.UserManager;
 import com.weiweb.user.service.UUserService;
@@ -60,6 +61,18 @@ public class RoleController extends BaseController {
 		modelMap.put("roleId", roleId);
 		return userService.findUserByroleId(modelMap, pageNo, pageSize);
 	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	@ResponseBody
+	public Message update(URole role) {
+		try {
+			roleService.updateByPrimaryKeySelective(role);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ERROR_MESSAGE;
+		}
+		return Message.success(role);
+	}
 	/**
 	 * 角色添加
 	 * @param role
@@ -79,12 +92,28 @@ public class RoleController extends BaseController {
 		}
 		return resultMap;
 	}
+	
+	@RequestMapping("/edit/{id}")
+	public String input(@PathVariable("id") String id,  ModelMap model){
+		URole role=roleService.findAllPermissionById(Long.parseLong(id));
+		model.addAttribute("bean",role);
+		model.addAttribute("menus", role.getPermissions());
+		return "/role/edit";
+	}
+	
+	@RequestMapping("/info/{id}")
+	public String info(@PathVariable("id") String id,  ModelMap model){
+		URole role=roleService.findAllPermissionById(Long.parseLong(id));
+		model.addAttribute("bean",role);
+		model.addAttribute("menus", role.getPermissions());
+		return "/role/info";
+	}
 	/**
 	 * 删除角色，根据ID，但是删除角色的时候，需要查询是否有赋予给用户，如果有用户在使用，那么就不能删除。
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value="deleteRoleById",method=RequestMethod.POST)
+	@RequestMapping(value="delete",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String,Object> deleteRoleById(String ids){
 		return roleService.deleteRoleById(ids);
