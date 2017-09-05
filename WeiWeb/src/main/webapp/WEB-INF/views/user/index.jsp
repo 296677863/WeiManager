@@ -21,9 +21,9 @@
     <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
 		<div id="wrapper">
 		<div class="headerleft bg-color">
-			<div style="width: 380px;margin: 0 auto;">
+			<!--  <div style="width: 380px;margin: 0 auto;">
 			<img src="${base}/images/index/jinghui.png" class="index-logo" /><span class="font-color-one" style="font-size: 20px">${main_top_name}</span>
-			</div>
+			</div>-->
 		</div>
 		<div class="row border-bottom" style="margin-left: 100%;">
            <nav class="navbar navbar-static-top bg-color" role="navigation" style="margin-bottom: 0">
