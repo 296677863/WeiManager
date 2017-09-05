@@ -7,6 +7,7 @@ import java.util.Set;
 import com.weiweb.common.model.UPermission;
 import com.weiweb.common.model.URole;
 import com.weiweb.core.mybatis.page.Pagination;
+import com.weiweb.core.shiro.po.Message;
 import com.weiweb.permission.bo.UPermissionBo;
 import com.weiweb.system.bo.Menu;
 
@@ -25,7 +26,7 @@ public interface PermissionService {
 
     int updateByPrimaryKey(UPermission record);
 
-	Map<String, Object> deletePermissionById(String ids);
+	Message deletePermissionById(String ids);
 
 	Pagination<UPermission> findPage(Map<String,Object> resultMap, Integer pageNo,
 			Integer pageSize);

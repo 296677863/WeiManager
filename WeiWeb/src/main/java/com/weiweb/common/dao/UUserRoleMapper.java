@@ -16,4 +16,6 @@ public interface UUserRoleMapper {
 	int deleteRoleByUserIds(Map<String, Object> resultMap);
 
 	List<Long> findUserIdByRoleId(Long id);
+
+	void deleteByRid(Long id);
 }

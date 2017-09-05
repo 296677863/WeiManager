@@ -93,7 +93,7 @@ public class PermissionController extends BaseController {
 	 */
 	@RequestMapping(value="delete",method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> deletePermissionById(String ids){
+	public Message deletePermissionById(String ids){
 		return permissionService.deletePermissionById(ids);
 	}
 }

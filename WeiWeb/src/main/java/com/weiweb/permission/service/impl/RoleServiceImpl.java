@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.weiweb.common.dao.URoleMapper;
 import com.weiweb.common.dao.URolePermissionMapper;
 import com.weiweb.common.dao.UUserMapper;
+import com.weiweb.common.dao.UUserRoleMapper;
 import com.weiweb.common.model.URole;
 import com.weiweb.common.model.UUser;
 import com.weiweb.common.utils.LoggerUtils;
@@ -34,7 +35,8 @@ public class RoleServiceImpl extends BaseMybatisDao<URoleMapper> implements Role
 	UUserMapper userMapper;
 	@Autowired
 	URolePermissionMapper rolePermissionMapper;
-
+	@Autowired
+	UUserRoleMapper userRoleMapper;
 	@Override
 	public int deleteByPrimaryKey(Long id) {
 		return roleMapper.deleteByPrimaryKey(id);
@@ -94,12 +96,14 @@ public class RoleServiceImpl extends BaseMybatisDao<URoleMapper> implements Role
 				if(new Long(1).equals(id)){
 					resultMessage.setType(Type.error);
 					resultMessage.setContent("操作失败，系统管理员不能删除。");
+					return resultMessage;
 				}else{
 					List<UUser> user=userMapper.findUserByRoleId(id);
 					URole role=this.selectByPrimaryKey(id);
 					if(user!=null&&user.size()!=0){
 						resultMessage.setType(Type.error);
 						resultMessage.setContent("操作失败，"+role.getName()+"'角色下存在成员，无法删除");
+						return resultMessage;
 					}
 				}
 			}

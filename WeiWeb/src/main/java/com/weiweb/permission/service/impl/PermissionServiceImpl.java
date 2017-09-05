@@ -19,6 +19,8 @@ import com.weiweb.common.utils.LoggerUtils;
 import com.weiweb.common.utils.StringUtils;
 import com.weiweb.core.mybatis.BaseMybatisDao;
 import com.weiweb.core.mybatis.page.Pagination;
+import com.weiweb.core.shiro.po.Message;
+import com.weiweb.core.shiro.po.Message.Type;
 import com.weiweb.core.shiro.token.manager.TokenManager;
 import com.weiweb.permission.bo.UPermissionBo;
 import com.weiweb.permission.service.PermissionService;
@@ -72,8 +74,8 @@ public class PermissionServiceImpl extends BaseMybatisDao<UPermissionMapper> imp
 	}
 
 	@Override
-	public Map<String, Object> deletePermissionById(String ids) {
-		Map<String,Object> resultMap = new HashMap<String,Object>();
+	public Message deletePermissionById(String ids) {
+		Message resultMessage=new Message();
 		try {
 			int successCount=0,errorCount=0;
 			String resultMsg ="删除%s条，失败%s条";
@@ -86,28 +88,31 @@ public class PermissionServiceImpl extends BaseMybatisDao<UPermissionMapper> imp
 			
 			for (String idx : idArray) {
 				Long id = new Long(idx);
-				
 				List<URolePermission> rolePermissions= rolePermissionMapper.findRolePermissionByPid(id);
 				if(null != rolePermissions && rolePermissions.size() > 0){
 					errorCount += rolePermissions.size();
-				}else{
-					successCount+=this.deleteByPrimaryKey(id);
+					resultMessage.setType(Type.error);
+					resultMessage.setContent("请确认是否没有角色使用！");
+					return resultMessage;
 				}
 			}
-			resultMap.put("status", 200);
-			//如果有成功的，也有失败的，提示清楚。
-			if(errorCount > 0){
-				resultMsg = String.format(resultMsg, successCount,errorCount);
-			}else{
-				resultMsg = "操作成功";
+			for(String idx:idArray){
+				Long id = new Long(idx);
+				successCount+=this.deleteByPrimaryKey(id);
+				resultMessage.setType(Type.success);
+				resultMessage.setContent("操作成功！");
+				return resultMessage;
 			}
-			resultMap.put("resultMsg", resultMsg);
+			
 		} catch (Exception e) {
 			LoggerUtils.fmtError(getClass(), e, "根据IDS删除用户出现错误，ids[%s]", ids);
-			resultMap.put("status", 500);
-			resultMap.put("message", "删除出现错误，请刷新后再试！");
+//			resultMap.put("status", 500);
+//			resultMap.put("message", "删除出现错误，请刷新后再试！");
+			resultMessage.setType(Type.error);
+			resultMessage.setContent("操作失败！");
+			return resultMessage;
 		}
-		return resultMap;
+		return resultMessage;
 	}
 
 	@SuppressWarnings("unchecked")
