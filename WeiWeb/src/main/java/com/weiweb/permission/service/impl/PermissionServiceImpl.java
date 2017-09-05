@@ -22,6 +22,7 @@ import com.weiweb.core.mybatis.page.Pagination;
 import com.weiweb.core.shiro.token.manager.TokenManager;
 import com.weiweb.permission.bo.UPermissionBo;
 import com.weiweb.permission.service.PermissionService;
+import com.weiweb.system.bo.Menu;
 
 @Service
 public class PermissionServiceImpl extends BaseMybatisDao<UPermissionMapper> implements PermissionService {
@@ -194,6 +195,11 @@ public class PermissionServiceImpl extends BaseMybatisDao<UPermissionMapper> imp
 	@Override
 	public List<UPermission> findUserMenus(List<URole> roles) {
 		return null;
+	}
+
+	@Override
+	public List<Menu> findParentMenus() {
+		return permissionMapper.findLevelMenu(1);
 	}
 
 	

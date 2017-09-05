@@ -106,6 +106,7 @@ public class RoleServiceImpl extends BaseMybatisDao<URoleMapper> implements Role
 			for(String idx : idArray ){
 				Long id = new Long(idx);
 				count+=this.deleteByPrimaryKey(id);
+				rolePermissionMapper.deleteByRid(id);
 				resultMessage.setType(Type.success);
 				resultMessage.setContent("操作成功！");
 			}

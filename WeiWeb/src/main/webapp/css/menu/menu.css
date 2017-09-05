@@ -45,3 +45,23 @@
     text-align: right;
 }
 
+
+.group-border{
+	  /*   overflow: auto; */
+	
+    height: 225px;
+}
+.group-div{
+	    margin-bottom: 15px;
+}
+.chosen-container-single-nosearch{
+	width:95%!important;
+}
+.delete-icon{
+	margin-left:20px;
+	margin-right:20px;
+}
+
+.choose-icon{
+	font-size:20px;
+}

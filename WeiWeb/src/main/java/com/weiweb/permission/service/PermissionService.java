@@ -8,6 +8,7 @@ import com.weiweb.common.model.UPermission;
 import com.weiweb.common.model.URole;
 import com.weiweb.core.mybatis.page.Pagination;
 import com.weiweb.permission.bo.UPermissionBo;
+import com.weiweb.system.bo.Menu;
 
 
 public interface PermissionService {
@@ -37,4 +38,6 @@ public interface PermissionService {
 	Set<String> findPermissionByUserId(Long userId);
 
 	List<UPermission> findUserMenus(List<URole> roles);
+
+	List<Menu> findParentMenus();
 }

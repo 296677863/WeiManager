@@ -37,7 +37,7 @@
 						</div>
 					</div>
 					<div class="form-group col-sm-12 icon-left">
-						<button class="m-btn maincolor main-btn weiOpenBtn" data-title="新增权限" data-url="${base}/role/add.shtml" 
+						<button class="m-btn maincolor main-btn weiOpenBtn" data-title="新增权限" data-url="${base}/permission/add.shtml" 
 							type="button"><span>新增</span></button>
 						<button class="m-btn disable-btn" id="deleteButton" type="button"><span>批量删除</span></button>
 					</div>

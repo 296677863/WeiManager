@@ -75,8 +75,13 @@ public class RoleController extends BaseController {
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	@ResponseBody
 	public Message update(URole role) {
+		
 		try {
-			roleService.updateByPrimaryKeySelective(role);
+			if(role.getId()!=null){
+				roleService.updateByPrimaryKeySelective(role);
+			}else{
+				roleService.insertSelective(role);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ERROR_MESSAGE;
