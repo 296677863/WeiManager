@@ -125,7 +125,7 @@ public class RoleController extends BaseController {
 	 */
 	@RequestMapping(value="delete",method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> deleteRoleById(String ids){
+	public Message deleteRoleById(String ids){
 		return roleService.deleteRoleById(ids);
 	}
 	/**

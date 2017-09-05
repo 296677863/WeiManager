@@ -13,9 +13,12 @@ import com.weiweb.common.dao.URoleMapper;
 import com.weiweb.common.dao.URolePermissionMapper;
 import com.weiweb.common.dao.UUserMapper;
 import com.weiweb.common.model.URole;
+import com.weiweb.common.model.UUser;
 import com.weiweb.common.utils.LoggerUtils;
 import com.weiweb.core.mybatis.BaseMybatisDao;
 import com.weiweb.core.mybatis.page.Pagination;
+import com.weiweb.core.shiro.po.Message;
+import com.weiweb.core.shiro.po.Message.Type;
 import com.weiweb.core.shiro.token.manager.TokenManager;
 import com.weiweb.permission.bo.RolePermissionAllocationBo;
 import com.weiweb.permission.service.RoleService;
@@ -74,11 +77,11 @@ public class RoleServiceImpl extends BaseMybatisDao<URoleMapper> implements Role
 		return super.findPage("findRoleAndPermission", "findCount", resultMap, pageNo, pageSize);
 	}
 	@Override
-	public Map<String, Object> deleteRoleById(String ids) {
-		Map<String,Object> resultMap = new HashMap<String,Object>();
+	public Message deleteRoleById(String ids) {
+		Message resultMessage=new Message();
 		try {
 			int count=0;
-			String resultMsg = "删除成功。";
+			
 			String[] idArray = new String[]{};
 			if(StringUtils.contains(ids, ",")){
 				idArray = ids.split(",");
@@ -86,24 +89,33 @@ public class RoleServiceImpl extends BaseMybatisDao<URoleMapper> implements Role
 				idArray = new String[]{ids};
 			}
 			
-			c:for (String idx : idArray) {
+			for (String idx : idArray) {
 				Long id = new Long(idx);
 				if(new Long(1).equals(id)){
-					resultMsg = "操作成功，But'系统管理员不能删除。";
-					continue c;
+					resultMessage.setType(Type.error);
+					resultMessage.setContent("操作失败，系统管理员不能删除。");
 				}else{
-					count+=this.deleteByPrimaryKey(id);
+					List<UUser> user=userMapper.findUserByRoleId(id);
+					URole role=this.selectByPrimaryKey(id);
+					if(user!=null&&user.size()!=0){
+						resultMessage.setType(Type.error);
+						resultMessage.setContent("操作失败，"+role.getName()+"'角色下存在成员，无法删除");
+					}
 				}
 			}
-			resultMap.put("status", 200);
-			resultMap.put("count", count);
-			resultMap.put("resultMsg", resultMsg);
+			for(String idx : idArray ){
+				Long id = new Long(idx);
+				count+=this.deleteByPrimaryKey(id);
+				resultMessage.setType(Type.success);
+				resultMessage.setContent("操作成功！");
+			}
+			return resultMessage;
 		} catch (Exception e) {
 			LoggerUtils.fmtError(getClass(), e, "根据IDS删除用户出现错误，ids[%s]", ids);
-			resultMap.put("status", 500);
-			resultMap.put("message", "删除出现错误，请刷新后再试！");
+			resultMessage.setType(Type.error);
+			resultMessage.setContent("删除出现错误，请刷新后再试！");
 		}
-		return resultMap;
+		return resultMessage;
 	}
 
 	@Override

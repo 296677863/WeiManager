@@ -6,6 +6,7 @@ import java.util.Set;
 
 import com.weiweb.common.model.URole;
 import com.weiweb.core.mybatis.page.Pagination;
+import com.weiweb.core.shiro.po.Message;
 import com.weiweb.permission.bo.RolePermissionAllocationBo;
    
 public interface RoleService {
@@ -25,7 +26,7 @@ public interface RoleService {
 	Pagination<URole> findPage(Map<String, Object> resultMap, Integer pageNo,
 			Integer pageSize);
 
-	Map<String, Object> deleteRoleById(String ids);
+	Message deleteRoleById(String ids);
 
 	Pagination<RolePermissionAllocationBo> findRoleAndPermissionPage(
 			Map<String, Object> resultMap, Integer pageNo, Integer pageSize);

@@ -28,4 +28,7 @@ public interface UUserMapper {
 
 	List<UUser> findUserByNickname(String nickname);
 
+	List<UUser> findUserByRoleId(Long roleId);
+
+
 }

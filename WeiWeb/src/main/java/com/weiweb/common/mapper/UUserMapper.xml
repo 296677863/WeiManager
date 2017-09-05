@@ -107,6 +107,13 @@ SELECT count(u.id) FROM
     where nickname = #{nickname,jdbcType=VARCHAR} 
   </select>
   
+  <select id="findUserByRoleId" resultMap="BaseResultMap">
+    select 
+     <include refid="Base_Column_List" />
+    from u_user uu,u_user_role uur where uur.rid=#{roleId} and uu.id=uur.uid
+  </select>
+  
+
   
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 

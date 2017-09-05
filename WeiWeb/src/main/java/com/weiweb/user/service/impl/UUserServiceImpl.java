@@ -106,6 +106,7 @@ public class UUserServiceImpl extends BaseMybatisDao<UUserMapper> implements UUs
 				isHasCurrent = true;
 			}else{
 				count+=this.deleteByPrimaryKey(new Long(id));
+				userRoleMapper.deleteByUserId(new Long(id));
 			}
 			
 		}
