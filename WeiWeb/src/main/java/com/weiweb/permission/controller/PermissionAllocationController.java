@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -35,11 +36,8 @@ public class PermissionAllocationController extends BaseController {
 	 * @param findContent
 	 * @return
 	 */
-	@RequestMapping(value="allocation")
-	public ModelAndView allocation(ModelMap modelMap,Integer pageNo,String findContent){
-		modelMap.put("findContent", findContent);
-		Pagination<RolePermissionAllocationBo> boPage = roleService.findRoleAndPermissionPage(modelMap,pageNo,pageSize);
-		modelMap.put("page", boPage);
+	@RequestMapping(value="allocation/{id}")
+	public ModelAndView allocation(@PathVariable("roleId") String roleId){
 		return new ModelAndView("permission/allocation");
 	}
 	

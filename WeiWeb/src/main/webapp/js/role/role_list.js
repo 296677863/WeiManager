@@ -28,7 +28,8 @@ $(function() {
 					formatter : function(cellvalue, options, rowObject) {
 						var result = "<a href='javascript:void(0)' onclick=\"wei.dialog.openIrame('成员管理','{0}')\">[成员管理]</a>"
 							.format(window.baseRoot + '/role/memberList/'+rowObject.id+'.shtml');
-						if (!rowObject.isSystem) {
+							result =result + "<a href='javascript:void(0)' onclick=\"wei.dialog.openIrame('权限分配','{0}')\">[权限分配]</a>"
+							.format(window.baseRoot + '/permission/allocation/'+rowObject.id+'.shtml');
 							result = result + "<a href=\"javascript:void(0)\" onclick=\"wei.dialog.openIrame('角色编辑','{0}')\">[编辑]</a>"
 							.format(window.baseRoot + '/role/edit/'
 									+ rowObject.id+'.shtml');
@@ -37,7 +38,6 @@ $(function() {
 									+ rowObject.id+'.shtml');
 							result = result + "<a href=\"javascript:void(0)\" data-id=\"{0}\"  class=\"weiDeleteRow\">[删除]</a>"
 							.format(rowObject.id);
-						} 
 						return result;
 					}
 				} ]
