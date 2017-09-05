@@ -39,6 +39,16 @@
 				<div class="border-module">
 					<div class="group-border mb20">
 						<div class="group-title">权限分配</div>
+						<div class="checkbox">
+						<label><input type="checkbox" selectallbox="">全选</label>
+						</div>
+						<div class="checkbox">
+						<label><input type="checkbox" selectbox="" id="4" checked="checked" name="权限列表">权限列表</label>
+						</div>
+						<div class="checkbox">
+						<label><input type="checkbox" selectbox="" id="6" checked="checked" name="权限添加">权限添加</label>
+						</div>
+						
 						<ul class="role-purview">
 
 							<c:forEach items="${menus}" var="menu">
