@@ -127,7 +127,6 @@ public class RoleServiceImpl extends BaseMybatisDao<URoleMapper> implements Role
 
 	@Override
 	public URole findAllPermissionById(Long roleId) {
-		
 		return roleMapper.findAllPermissionById(roleId);
 	}
 

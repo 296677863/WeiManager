@@ -50,6 +50,16 @@ public class RoleController extends BaseController {
 		return role;
 	}
 	
+	/***
+	 * 添加角色
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/add")
+	public String add( ModelMap model){
+		return "/role/edit";
+	}
+	
 	@RequestMapping("memberList/{roleId}")
 	public String memberList(@PathVariable("roleId") String roleId){
 		return "role/memberList";

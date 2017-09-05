@@ -2,65 +2,42 @@ $(function() {
 	var config = {
 		url : window.baseRoot + "/role/memberListData.shtml?roleId="+roleId,
 		multiselect : false,
-		colNames : [ '用户名', 'E-mail', '姓名', '部门', '最后登录日期', '最后登录IP', '状态',
-				'创建日期', '操作' ],
-		colModel : [
-				{
-					name : 'username',
-					index : 'username',
-					align : 'left',
-					width : 100,
-					fixed : true,
-				},
-				{
-					name : 'email',
-					index : 'email',
-					align : 'left',
-					width : 150,
-					fixed : true,
-				},
-				{
-					name : 'name',
-					index : 'name',
-					align : 'left',
-					width : 100,
-					fixed : true,
-				},
-				{
-					name : 'department',
-					index : 'department',
-					align : 'left'
-				},
-				{
-					name : 'loginDate',
-					index : 'loginDate',
-					formatter : function(cellvalue, options, rowObject) {
-						return wei.formateDate.getDate(cellvalue);
-					}
-				},
-				{
-					name : 'loginIp',
-					index : 'loginIp',
-				},
-				{
-					name : 'isEnabled',
-					index : 'isEnabled',
-					formatter : function(cellvalue, options, rowObject) {
-						if (cellvalue) {
-							return '<font class="admin-state subcolor-three">正常</font>';
-						} else {
-							return '<font class="admin-state subcolor-one">停用</font>';
-						}
-
-					}
-				},
-				{
-					name : 'createDate',
-					index : 'createDate',
-					formatter : function(cellvalue, options, rowObject) {
-						return wei.formateDate.getDate(cellvalue);
-					}
-				},
+		 colNames: ['昵称','Email/帐号','登录状态','创建时间','最后登录时间','操作'],
+	        colModel: [
+	            {
+	                name: 'nickname',
+	                index: 'nickname',
+	                align: 'left',
+	                width: 100,
+	            },
+	            {
+	                name: 'email',
+	                index: 'email',
+	                align: 'left',
+	                width: 150,
+	                fixed: true,
+	            },
+	            {
+	                name: 'status',
+	                index: 'status',
+	                align: 'left',
+	                width: 100,
+	            },
+	             
+	            {
+	                name: 'createTime',
+	                index: 'createTime',
+	                formatter: function (cellvalue, options, rowObject) {
+	                    return wei.formateDate.getDate(cellvalue);
+	                }
+	            },
+	            {
+	                name: 'lastLoginTime',
+	                index: 'lastLoginTime',
+	                formatter: function (cellvalue, options, rowObject) {
+	                    return wei.formateDate.getDate(cellvalue);
+	                }
+	            },
 				{
 					width : 150,
 					fixed : true,
