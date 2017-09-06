@@ -7,12 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.weiweb.common.controller.BaseController;
 import com.weiweb.core.mybatis.page.Pagination;
+import com.weiweb.core.shiro.po.Message;
 import com.weiweb.permission.bo.URoleBo;
 import com.weiweb.permission.bo.UserRoleAllocationBo;
 import com.weiweb.permission.service.PermissionService;
@@ -35,23 +37,30 @@ public class UserRoleAllocationController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value="allocation")
-	public ModelAndView allocation(ModelMap modelMap,Integer pageNo,String findContent){
-		modelMap.put("findContent", findContent);
-		Pagination<UserRoleAllocationBo> boPage = userService.findUserAndRole(modelMap,pageNo,pageSize);
-		modelMap.put("page", boPage);
+	public ModelAndView allocation(){
 		return new ModelAndView("role/allocation");
 	}
+	
+	@RequestMapping("allocationData")
+	@ResponseBody
+	public Pagination<UserRoleAllocationBo> allocationData(ModelMap modelMap,Integer pageNo,String findContent){
+		modelMap.put("findContent", findContent);
+		Pagination<UserRoleAllocationBo> boPage = userService.findUserAndRole(modelMap,pageNo,pageSize);
+		return boPage;
+	}
+	
 	
 	/**
 	 * 根据用户ID查询权限
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value="selectRoleByUserId")
-	@ResponseBody
-	public List<URoleBo> selectRoleByUserId(Long id){
-		List<URoleBo> bos = userService.selectRoleByUserId(id);
-		return bos;
+	@RequestMapping(value="selectRole/{userId}")
+	public String selectRoleByUserId(@PathVariable("userId") String id,ModelMap model){
+		List<URoleBo> bos = userService.selectRoleByUserId(new Long(id));
+		model.addAttribute("userId", id);
+		model.addAttribute("bos", bos);
+		return "role/selectRole";
 	}
 	/**
 	 * 操作用户的角色
@@ -61,7 +70,7 @@ public class UserRoleAllocationController extends BaseController {
 	 */
 	@RequestMapping(value="addRole2User")
 	@ResponseBody
-	public Map<String,Object> addRole2User(Long userId,String ids){
+	public Message addRole2User(Long userId,String ids){
 		return userService.addRole2User(userId,ids);
 	}
 	/**

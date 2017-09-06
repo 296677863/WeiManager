@@ -7,6 +7,7 @@ import org.springframework.ui.ModelMap;
 
 import com.weiweb.common.model.UUser;
 import com.weiweb.core.mybatis.page.Pagination;
+import com.weiweb.core.shiro.po.Message;
 import com.weiweb.permission.bo.URoleBo;
 import com.weiweb.permission.bo.UserRoleAllocationBo;
 
@@ -41,7 +42,7 @@ public interface UUserService {
 
 	List<URoleBo> selectRoleByUserId(Long id);
 
-	Map<String, Object> addRole2User(Long userId, String ids);
+	Message addRole2User(Long userId, String ids);
 
 	Map<String, Object> deleteRoleByUserIds(String userIds);
 

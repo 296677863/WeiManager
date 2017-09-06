@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
@@ -18,6 +16,8 @@ import com.weiweb.common.model.UUserRole;
 import com.weiweb.common.utils.LoggerUtils;
 import com.weiweb.core.mybatis.BaseMybatisDao;
 import com.weiweb.core.mybatis.page.Pagination;
+import com.weiweb.core.shiro.po.Message;
+import com.weiweb.core.shiro.po.Message.Type;
 import com.weiweb.core.shiro.session.CustomSessionManager;
 import com.weiweb.core.shiro.token.manager.TokenManager;
 import com.weiweb.permission.bo.URoleBo;
@@ -147,8 +147,9 @@ public class UUserServiceImpl extends BaseMybatisDao<UUserMapper> implements UUs
 	}
 
 	@Override
-	public Map<String, Object> addRole2User(Long userId, String ids) {
-		Map<String,Object> resultMap = new HashMap<String, Object>();
+	public Message addRole2User(Long userId, String ids) {
+//		Map<String,Object> resultMap = new HashMap<String, Object>();
+		Message message =new Message();
 		int count = 0;
 		try {
 			//先删除原有的。
@@ -172,16 +173,17 @@ public class UUserServiceImpl extends BaseMybatisDao<UUserMapper> implements UUs
 					}
 				}
 			}
-			resultMap.put("status", 200);
-			resultMap.put("message", "操作成功");
+			message.setType(Type.success);
+			message.setContent("操作成功!");
 		} catch (Exception e) {
-			resultMap.put("status", 200);
-			resultMap.put("message", "操作失败，请重试！");
-		}
+//			resultMap.put("status", 200);
+//			resultMap.put("message", "操作失败，请重试！");
+			message.setType(Type.error);
+			message.setContent("操作失败，请重试！");}
 		//清空用户的权限，迫使再次获取权限的时候，得重新加载
 		TokenManager.clearUserAuthByUserId(userId);
-		resultMap.put("count", count);
-		return resultMap;
+//		resultMap.put("count", count);
+		return message;
 	}
 
 	@Override
