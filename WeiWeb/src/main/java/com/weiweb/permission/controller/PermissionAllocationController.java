@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.weiweb.common.controller.BaseController;
+import com.weiweb.core.shiro.po.Message;
 import com.weiweb.permission.bo.UPermissionBo;
 import com.weiweb.permission.service.PermissionService;
 import com.weiweb.permission.service.RoleService;
@@ -37,21 +38,12 @@ public class PermissionAllocationController extends BaseController {
 	@RequestMapping(value="allocation/{roleId}")
 	public ModelAndView allocation(@PathVariable("roleId") String roleId,ModelMap model){
 		List<UPermissionBo> permissionBos = permissionService.selectPermissionById(new Long(roleId));
+		model.addAttribute("roleId", roleId);
 		model.addAttribute("permissions", permissionBos);
 		return new ModelAndView("permission/allocation");
 	}
 	
-	/**
-	 * 根据角色ID查询权限
-	 * @param id
-	 * @return
-	 */
-	@RequestMapping(value="selectPermissionById")
-	@ResponseBody
-	public List<UPermissionBo> selectPermissionById(Long id){
-		List<UPermissionBo> permissionBos = permissionService.selectPermissionById(id);
-		return permissionBos;
-	}
+
 	/**
 	 * 操作角色的权限
 	 * @param roleId 	角色ID
@@ -60,7 +52,7 @@ public class PermissionAllocationController extends BaseController {
 	 */
 	@RequestMapping(value="addPermission2Role")
 	@ResponseBody
-	public Map<String,Object> addPermission2Role(Long roleId,String ids){
+	public Message addPermission2Role(Long roleId,String ids){
 		return permissionService.addPermission2Role(roleId,ids);
 	}
 	/**

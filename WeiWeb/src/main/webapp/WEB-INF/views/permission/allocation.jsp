@@ -32,8 +32,8 @@
 		<div class="ibox-content">
 			<!-- 新版本 -->
 			<form id="inputForm">
-				<input type="hidden" name="id" value="${bean.id }" />
-				<input type="hidden" name="authoritiesArray" id="authoritiesArray" />
+				<input type="hidden" name="roleId" value="${roleId }" />
+				<input type="hidden" name="ids" id="authoritiesArray" />
 				<div class="border-module">
 					<div class="group-border mb20">
 						<div class="group-title">权限分配</div>
@@ -107,7 +107,68 @@
 	<script src="${base}/js/common/jquery/jquery1.8.3.min.js?v=<wei:version/>"></script>
 	<script src="${base}/js/bootstrap.min.js?v=<wei:version/>"></script>
 	<%@ include file="/common/footer.jsp"%>
-
+	<script type="text/javascript">
+	$(function(){
+		getDataInfo();
+		function  getDataInfo(){
+			var ids = [];
+			$(".check-div[name='menuCheck']").each(function(){
+				var $this =$(this);
+				var v_check=$this.attr("check");
+				var v_menu_id=$this.attr("menu");
+				if(v_check == 1){
+					ids.push(v_menu_id);
+				}
+			
+			});
+			$("#authoritiesArray").val(ids.join(","));
+		}
+		$(".selectAll").click(function(){
+			var v_check=$(this).attr("check");
+			$(".check-div").each(function(){
+				if(v_check == 1){
+					$(this).addClass("white-color");
+					$(this).attr("check","1");
+				}else{
+					$(this).removeClass("white-color");
+					$(this).attr("check","0");
+				}
+			});
+		});
+		var $inputForm = $("#inputForm");
+		$inputForm.validate($.extend({},{
+			rules : {
+				
+			},
+			messages : {
+				
+			},
+			submitHandler: function(form) {   
+				$("button[type='submit']").attr("disabled","disabled");
+				 $("button[type='submit']").addClass("disable-btn");
+				 $("button[type='submit']").removeClass("maincolor");
+				 $("button[type='submit']").removeClass("main-btn");
+				 
+				$(form).find(":submit").prop("disabled", true);
+				getDataInfo()
+				wei.ajax.ajaxTagSu(window.baseRoot+"/permission/addPermission2Role.shtml",$inputForm.serialize(),function (message) {
+	                if (message.type == "success") {
+	                    wei.dialog.msgIframe(message.content);
+	                }else{
+	                    $("button[type='submit']").removeAttr("disabled");
+	                    $("button[type='submit']").removeClass("disable-btn");
+	                    $("button[type='submit']").addClass("maincolor");
+	                    $("button[type='submit']").addClass("main-btn");
+	                    wei.dialog.errorlayerMsg(message.content);
+	                }
+	            });
+				return false;
+			}
+		},wei.defaults.validateTooltip));
+		
+	});
+	
+	</script>
 	<script type="text/javascript"
 		src="${base}/js/bootstrap-switch.js?v=<wei:version/>"></script>
 </body>

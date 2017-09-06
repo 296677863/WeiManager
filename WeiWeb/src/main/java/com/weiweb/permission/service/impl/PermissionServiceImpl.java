@@ -128,7 +128,7 @@ public class PermissionServiceImpl extends BaseMybatisDao<UPermissionMapper> imp
 	}
 
 	@Override
-	public Map<String, Object> addPermission2Role(Long roleId, String ids) {
+	public Message addPermission2Role(Long roleId, String ids) {
 		//先删除原有的。
 		rolePermissionMapper.deleteByRid(roleId);
 		return executePermission(roleId, ids);
@@ -139,8 +139,9 @@ public class PermissionServiceImpl extends BaseMybatisDao<UPermissionMapper> imp
 	 * @param ids
 	 * @return
 	 */
-	private Map<String, Object> executePermission(Long roleId, String ids){
-		Map<String,Object> resultMap = new HashMap<String, Object>();
+	private Message executePermission(Long roleId, String ids){
+//		Map<String,Object> resultMap = new HashMap<String, Object>();
+		Message message =new Message();
 		int count = 0;
 		try {
 			//如果ids,permission 的id 有值，那么就添加。没值象征着：把这个角色（roleId）所有权限取消。
@@ -162,18 +163,22 @@ public class PermissionServiceImpl extends BaseMybatisDao<UPermissionMapper> imp
 					}
 				}
 			}
-			resultMap.put("status", 200);
-			resultMap.put("message", "操作成功");
+//			resultMap.put("status", 200);
+//			resultMap.put("message", "操作成功");
+			message.setType(Type.success);
+			message.setContent("操作成功!");
 		} catch (Exception e) {
-			resultMap.put("status", 200);
-			resultMap.put("message", "操作失败，请重试！");
+//			resultMap.put("status", 200);
+//			resultMap.put("message", "操作失败，请重试！");
+			message.setType(Type.error);
+			message.setContent("操作失败，请重试！");
 		}
 		//清空拥有角色Id为：roleId 的用户权限已加载数据，让权限数据重新加载
 		List<Long> userIds = userRoleMapper.findUserIdByRoleId(roleId);
 		
 		TokenManager.clearUserAuthByUserId(userIds);
-		resultMap.put("count", count);
-		return resultMap;
+//		resultMap.put("count", count);
+		return message;
 		
 	}
 

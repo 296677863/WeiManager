@@ -32,7 +32,7 @@ public interface PermissionService {
 			Integer pageSize);
 	List<UPermissionBo> selectPermissionById(Long id);
 
-	Map<String, Object> addPermission2Role(Long roleId,String ids);
+	Message addPermission2Role(Long roleId,String ids);
 
 	Map<String, Object> deleteByRids(String roleIds);
 	//根据用户ID查询权限（permission），放入到Authorization里。
