@@ -82,7 +82,7 @@
 							
 								<td>
 									<a class="weiOpenBtn" data-title="详情" data-url="${base}/member/onlineDetails/${bean.sessionId}.shtml">[查看详情]</a>
-									<a id="changeSessionStatus" href="javascript:void(0);" sessionId="${bean.sessionId}" status="${(bean.sessionStatus eq true?1:0)}">[${(bean.sessionStatus eq true?'踢出':'激活')}]</a>
+									<a class="changeSessionStatus" href="javascript:void(0);" sessionId="${bean.sessionId}" status="${(bean.sessionStatus eq true?1:0)}">${(bean.sessionStatus eq true?'[踢出]':'[激活]')}</a>
 									
 								</td>
 							</tr>
@@ -98,7 +98,7 @@
 	
 	<script type="text/javascript">
 		$(function(){
-			$("#changeSessionStatus").on('click',function(){
+			$(".changeSessionStatus").on('click',function(){
 				var self = $(this);
 				var text = $.trim(self.text());
 				var index = layer.confirm("确定"+ text +"？",function(){
@@ -115,7 +115,7 @@
 			$.post("${base}/member/changeSessionStatus.shtml",{status:status,sessionIds:sessionIds},function(result){
 				layer.close(load);
 				if(result && result.status == 200){
-					return self.text(result.sessionStatusText),
+					return self.text("["+result.sessionStatusText+"]"),
 								self.attr('status',result.sessionStatus),
 									self.parent().prev().text(result.sessionStatusTextTd);
 									layer.msg('操作成功'),!1;

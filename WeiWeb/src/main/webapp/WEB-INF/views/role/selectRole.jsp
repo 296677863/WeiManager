@@ -62,13 +62,13 @@
 										<div class="input-left" style="float: none;">
 											<div class="clearfix">
 														<div class="checked-list menuList">
-															<c:if test="${rolebo.marker eq rolebo.id }">
+															<c:if test="${rolebo.marker ne 0 }">
 																<div class="check-div white-color" name="menuCheck"
 																	check="1" menu="${rolebo.id }" >
 																	<i class="iconfont"></i>
 																</div>
 															</c:if>
-															<c:if test="${rolebo.marker ne rolebo.id }">
+															<c:if test="${rolebo.marker eq 0 }">
 																<div class="check-div" name="menuCheck" check="0"
 																	menu="${rolebo.id }" >
 																	<i class="iconfont"></i>

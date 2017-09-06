@@ -99,10 +99,26 @@
 		    var jqGrid = wei.grid(config);
 
 		    jqGrid.bind("weijqgridSelectOne", function (event, aRowids, status) {
-		       
+		    	var ids = $("#table_list").jqGrid("getGridParam", "selarrrow");
+		    	if (ids.length > 0) {
+                    $("#clearRoleButton").removeClass("disable-btn");
+                    $("#clearRoleButton").addClass("delete-color main-btn");
+                } else {
+                   
+                	 $("#clearRoleButton").addClass("disable-btn");
+                	 $("#clearRoleButton").removeClass("delete-color main-btn");
+                }
+		    	
 		    });
 		    jqGrid.bind("weijqgridSelectAll", function (event, aRowids, status) {
-		       
+		    	if (status) {
+                    $("#clearRoleButton").removeClass("disable-btn");
+                    $("#clearRoleButton").addClass("delete-color main-btn");
+                } else {
+                   
+                	 $("#clearRoleButton").addClass("disable-btn");
+                	 $("#clearRoleButton").removeClass("delete-color main-btn");
+                }
 		    });
 		   
 		});
