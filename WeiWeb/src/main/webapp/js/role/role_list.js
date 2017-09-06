@@ -23,7 +23,7 @@ $(function() {
 					align : 'left'
 				},
 				{
-					width : 280,
+					width : 320,
 					fixed : true,
 					formatter : function(cellvalue, options, rowObject) {
 						var result = "<a href='javascript:void(0)' onclick=\"wei.dialog.openIrame('成员管理','{0}')\">[成员管理]</a>"

@@ -40,7 +40,7 @@ String base = request.getContextPath();
     </div>
 
     <!-- 全局js -->
-    <script type="text/javascript" src="<%=base%>/js/common/jquery/jquery.min.js?v=<wei:version/>"></script>
+    <script type="text/javascript" src="<%=base%>/js/common/jquery/jquery1.8.3.min.js?v=<wei:version/>"></script>
     <script type="text/javascript" src="<%=base%>/js/bootstrap.min.js?v=<wei:version/>"></script>
 
 

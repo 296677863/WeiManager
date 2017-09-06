@@ -71,11 +71,14 @@
 		left join u_role_permission urp on urp.pid = up.id
 		left join (select id from u_role where id = #{id,jdbcType=BIGINT}) ur on ur.id = urp.rid
 		group by up.id
-  	 -->
+  	 
 		select up.id,ur.id roleId,up.name,up.url,ifnull(ur.id,0)marker from u_permission up
 		left join u_role_permission urp on urp.pid = up.id
 		left join (select id from u_role where id = #{id,jdbcType=BIGINT}) ur on ur.id = urp.rid
 		group by up.id
+		-->
+		SELECT up.id,urp.rid roleId,up.name,up.url,IFNULL(urp.rid,0)marker FROM u_permission up
+		LEFT JOIN u_role_permission urp ON urp.pid = up.id AND urp.rid=#{id,jdbcType=BIGINT}
 	  
 	  <!--
 		mysql 5.7 请用下面的。来自群内（上海|Java|大力水饺）

@@ -32,79 +32,62 @@
 		<div class="ibox-content">
 			<!-- 新版本 -->
 			<form id="inputForm">
-				<input type="hidden" name="id" value="${bean.id }" /> <input
-					type="hidden" name="createDate"
-					value="<fmt:formatDate value='${bean.createDate}' pattern='yyyy-MM-dd HH:mm:ss' />" />
+				<input type="hidden" name="id" value="${bean.id }" />
 				<input type="hidden" name="authoritiesArray" id="authoritiesArray" />
 				<div class="border-module">
 					<div class="group-border mb20">
 						<div class="group-title">权限分配</div>
-						<div class="checkbox">
-						<label><input type="checkbox" selectallbox="">全选</label>
-						</div>
-						<div class="checkbox">
-						<label><input type="checkbox" selectbox="" id="4" checked="checked" name="权限列表">权限列表</label>
-						</div>
-						<div class="checkbox">
-						<label><input type="checkbox" selectbox="" id="6" checked="checked" name="权限添加">权限添加</label>
-						</div>
-						
 						<ul class="role-purview">
-
-							<c:forEach items="${menus}" var="menu">
-								<c:if test="${menu.level==2 }">
-								
-											<li>
-												<div class="col-sm-12 pl0">
-													<div class="form-group">
-														<label class="label-left float-l"> <span>${menu.name}</span>
-														</label>
-														<div class="input-left" style="float: none;">
-
-															<div class="clearfix">
-																<div class="checked-list">
-																	<div class="check-div  selectAll" check="0"
-																		id="${menu.id }">
-																		<i class="iconfont"></i>
-																	</div>
-																	<span>全选</span>
-																</div>
-																<c:forEach items="${menus}" var="subMenu">
-																	<c:if test="${subMenu.parent.id == menu.id }">
-																		<c:set value="false" var="isCheck"></c:set>
-																		<c:forEach items="${bean.menus}" var="hasAuth">
-																			<c:if test="${hasAuth.id ==  subMenu.id}">
-																				<c:set value="true" var="isCheck"></c:set>
-																			</c:if>
-																		</c:forEach>
-
-																		<div class="checked-list menuList">
-																			<c:if test="${isCheck }">
-																				<div class="check-div white-color" name="menuCheck"
-																					check="1" menu="${subMenu.id }"
-																					parentMenu="${menu.id }">
-																					<i class="iconfont"></i>
-																				</div>
-																			</c:if>
-																			<c:if test="${!isCheck }">
-																				<div class="check-div" name="menuCheck" check="0"
-																					menu="${subMenu.id }" parentMenu="${menu.id }">
-																					<i class="iconfont"></i>
-																				</div>
-																			</c:if>
-																			<span>${subMenu.name }</span>
-																		</div>
-																	</c:if>
-																</c:forEach>
-															</div>
-														</div>
+							<li>
+							<div class="col-sm-12 pl0">
+									<div class="form-group">
+										<div class="input-left" style="float: none;">
+											<div class="clearfix">
+												<div class="checked-list">
+													<div class="check-div  selectAll" check="0"
+														id="">
+														<i class="iconfont"></i>
 													</div>
+													<span>全选</span>
 												</div>
-											</li>
-								</c:if>
+											</div>
+										</div>
+									</div>
+							</div>
+							</li>
+							<li>
+							<c:forEach items="${permissions}" var="permission" varStatus="status">
+								<div class="col-sm-12 pl0">
+									<div class="form-group">
+										<div class="input-left" style="float: none;">
+											<div class="clearfix">
+														<div class="checked-list menuList">
+															<c:if test="${permission.marker eq permission.roleId }">
+																<div class="check-div white-color" name="menuCheck"
+																	check="1" menu="${permission.id }" parentMenu="${permission.parent}">
+																	<i class="iconfont"></i>
+																</div>
+															</c:if>
+															<c:if test="${permission.marker ne permission.roleId }">
+																<div class="check-div" name="menuCheck" check="0"
+																	menu="${permission.id }" parentMenu="${permission.parent}">
+																	<i class="iconfont"></i>
+																</div>
+															</c:if>
+															<span>${permission.name }</span>
+														</div>
+													
+												
+											</div>
+										</div>
+									</div>
+								</div>
 							</c:forEach>
+							</li>
 						</ul>
-						<div class="col-sm-12 pl0">
+						
+					</div>
+					<div class="col-sm-12 pl0">
 							<div class="col-sm-4 pl0">
 								<div class="group-div">
 									<label class="label-left"></label>
@@ -117,7 +100,6 @@
 							</div>
 
 						</div>
-					</div>
 				</div>
 			</form>
 		</div>

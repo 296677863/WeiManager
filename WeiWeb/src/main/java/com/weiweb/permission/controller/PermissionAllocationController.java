@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.weiweb.common.controller.BaseController;
-import com.weiweb.core.mybatis.page.Pagination;
-import com.weiweb.permission.bo.RolePermissionAllocationBo;
 import com.weiweb.permission.bo.UPermissionBo;
 import com.weiweb.permission.service.PermissionService;
 import com.weiweb.permission.service.RoleService;
@@ -36,8 +34,10 @@ public class PermissionAllocationController extends BaseController {
 	 * @param findContent
 	 * @return
 	 */
-	@RequestMapping(value="allocation/{id}")
-	public ModelAndView allocation(@PathVariable("roleId") String roleId){
+	@RequestMapping(value="allocation/{roleId}")
+	public ModelAndView allocation(@PathVariable("roleId") String roleId,ModelMap model){
+		List<UPermissionBo> permissionBos = permissionService.selectPermissionById(new Long(roleId));
+		model.addAttribute("permissions", permissionBos);
 		return new ModelAndView("permission/allocation");
 	}
 	
