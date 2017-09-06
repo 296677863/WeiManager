@@ -49,7 +49,7 @@ public class SysDictServiceImpl extends BaseMybatisDao<SysDictMapper>  implement
 
 	@Override
 	public void saveDict(SysDict sysDict) {
-		
+		sysDictMapper.insert(sysDict);
 	}
 
 

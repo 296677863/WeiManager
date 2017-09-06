@@ -36,7 +36,7 @@
     <include refid="limit_sql" />
   </select>
   <select id="findCount" resultMap="BaseResultMap" >
- 	 select count(id) from  sys_dict
+ 	 select count(dict_id) from  sys_dict
   	<include refid="where_all" />
   </select>
 
@@ -67,13 +67,13 @@
   </delete>
   
   
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.weiweb.system.model.SysDict" >
+    <insert id="insert"  parameterType="com.weiweb.system.model.SysDict" >
     insert into sys_dict (dict_id, dict_name, dict_type
       )
     values (#{dictId,jdbcType=VARCHAR}, #{dictName,jdbcType=VARCHAR}, #{dictType,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.weiweb.system.model.SysDict" >
+  <insert id="insertSelective"  parameterType="com.weiweb.system.model.SysDict" >
     insert into sys_dict
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="dictId != null" >

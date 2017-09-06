@@ -1,6 +1,8 @@
 package com.weiweb.system.controller;
 
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -140,7 +142,10 @@ public class SysDictController  extends BaseController {
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	@ResponseBody
 	public Message save(SysDict sysDict ,RedirectAttributes redirectAttributes) {
-		return  SUCCESS_MESSAGE;
+		String dictId=UUID.randomUUID().toString().replace("-", "");
+		sysDict.setDictId(dictId);
+		sysDictService.saveDict(sysDict);
+		return  Message.success(sysDict);
 	}
 
 	

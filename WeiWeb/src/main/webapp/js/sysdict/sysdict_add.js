@@ -4,11 +4,21 @@
 
 $(function(){
 	$.validator.addClassRules({
-		selectLable: {
+		dictName: {
 			required: true
 		},
-		selectValue: {
+		dictType: {
 			required: true
+		},
+		detailName:{
+			required: true
+		},
+		detailCode:{
+			required:true
+		},
+		detailSort:{
+			required: true,
+			digits:true
 		},
 		sort: {
 			required: true,
@@ -21,16 +31,16 @@ $(function(){
 	$("#addForm").validate(wei.defaults.validateTooltip);
 	
 	/******************计算值越大越排后图标位置**************************/
-	function iconPosition(){
+	/*function iconPosition(){
 		var width=$(".sort").width();
 		var cursor= $(".cursor-icon").width()/2;
 		var totle=width+cursor-30;
 		$(".tips-wrap").css("left",totle);
 		
-	};
-	$(window).resize(function(){
+	};*/
+	/*$(window).resize(function(){
 		iconPosition();
-	});
+	});*/
 	$(document).on("mouseover",".cursor-icon",function(){
 		iconPosition();
 		$(".tips-wrap").show();
@@ -38,7 +48,7 @@ $(function(){
 	$(document).on("mouseout",".cursor-icon",function(){
 		$(".tips-wrap").hide();
 	})
-	iconPosition();
+	//iconPosition();
 	
 /***************************************编辑保存切换并同步数据库**************************************************/
 	$("#editButton").click(function(){
@@ -60,7 +70,7 @@ $(function(){
 	
 	function submitSelectClass($this){
 		$.ajax({
-			url : window.baseRoot + "/base/selectClass/updateSelectClass/",
+			url : window.baseRoot + "/sysdict/save.shtml",
 			type : "POST",
 			dataType : "json",
 			data : $("#headForm").serialize(),
@@ -75,7 +85,7 @@ $(function(){
                         $(".base-info").find(".default-input").attr("disabled","disabled");
                         $("#dataLevel").trigger('chosen:updated');
                         if($.trim($("#paramId").val()) == ''){
-                            $("#paramId").val($.parseJSON(message.content)["id"]);
+                            $("#paramId").val($.parseJSON(message.content)["dictId"]);
                         }
                         wei.closedialog.iframeJqrefush();
                     });
@@ -91,15 +101,15 @@ $(function(){
 		var add_html = '<div class="height-line">'+
 		'<div class="col-sm-10 pl0">'+
 		'    <div class="col-sm-4">'+
-		'        <input type="text" name="selectLable" class="default-input required" maxlength="200" placeholder="选择名称"'+
+		'        <input type="text" name="detailName" class="default-input required" maxlength="200" placeholder="选择名称"'+
 		'               style="width:80%"/>'+
 		'    </div>'+
 		'    <div class="col-sm-4">'+
-		'        <input type="text" name="selectValue" class="default-input required" maxlength="200" placeholder="选项值"'+
+		'        <input type="text" name="detailCode" class="default-input required" maxlength="200" placeholder="选项值"'+
 		'               style="width:80%"/>'+
 		'    </div>'+
 		'    <div class="col-sm-4 position">'+
-		'        <input type="text" name="sort" class="default-input sort float-l" maxlength="9" placeholder="排序号"'+
+		'        <input type="text" name="detailSort" class="default-input sort float-l" maxlength="9" placeholder="排序号"'+
 		'               style="width:80%"/>'+
 		'        <div class="tips-wrap">'+
 		'            <span class="arrows"></span>'+
@@ -143,18 +153,18 @@ $(function(){
 		'	<div class="col-sm-10 pl0">'+
 		'		<div class="col-sm-4 col-val">'+
 		'			<div class="dictionary-title">'+
-		'				<span>{selectLable}</span>'+
-		'				<input type="text" class="default-input" name="selectLable" value="{selectLable}"  style="display:none;width:80%"/>'+
+		'				<span>{detailName}</span>'+
+		'				<input type="text" class="default-input" name="detailName" value="{detailName}"  style="display:none;width:80%"/>'+
 		'			</div>'+
 		'		</div>'+
 		'		<div class="col-sm-4 col-val">'+
-		'			<div class="dictionary-title"><span>{selectValue}</span>'+
-		'			<input type="text" class="default-input" name="selectValue" value="{selectValue}" style="display:none;width:80%"/>'+
+		'			<div class="dictionary-title"><span>{detailCode}</span>'+
+		'			<input type="text" class="default-input" name="detailCode" value="{detailCode}" style="display:none;width:80%"/>'+
 		'		</div>'+
 		'		</div>'+
 		'		<div class="col-sm-4 col-val position">'+
-		'			<div class="dictionary-title"><span>{sort}</span>'+
-		'			<input type="text" class="default-input" name="sort" value="{sort}" style="display:none;width:80%"/>'+
+		'			<div class="dictionary-title"><span>{detailSort}</span>'+
+		'			<input type="text" class="default-input" name="detailSort" value="{detailSort}" style="display:none;width:80%"/>'+
 		'		</div>'+
 		'		</div>'+
 		'	</div>	'+
@@ -163,7 +173,7 @@ $(function(){
 		'		<a href="javascript:void(0)" class="delete-info">[删除]</a>'+
 		'	</div>'+
 		'</li>';
-	        v_html = v_html.format({id:formData["id"],selectLable:formData["selectLable"],selectValue:formData["selectValue"],sort:formData["sort"]});
+	        v_html = v_html.format({id:formData["id"],detailName:formData["detailName"],detailCode:formData["detailCode"],detailSort:formData["detailSort"]});
 	        $("#infoForm .dictionary-list").find("ul").prepend(v_html);
 	}
 	
