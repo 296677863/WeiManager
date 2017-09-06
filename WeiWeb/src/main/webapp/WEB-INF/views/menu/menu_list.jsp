@@ -18,7 +18,7 @@
 	<form id="listForm" action="${base}/menu/list.shtml" method="post">
 		<div class="ibox-content" style="min-height: 505px;">
 			 <div>
-	            <button class="m-btn maincolor main-btn weiOpenBtn" data-title="添加一级菜单" data-url="${base}/menu/add.shtml" type="button"><span>添加一级菜单</span></button>
+	           <!--   <button class="m-btn maincolor main-btn weiOpenBtn" data-title="添加一级菜单" data-url="${base}/menu/add.shtml" type="button"><span>添加一级菜单</span></button>-->
 	        </div>
 	        <div class="menu-table">
 	        	
@@ -27,20 +27,20 @@
 				        <td>排序</td>
 				        <td>菜单名称</td>
 				        <td>访问</td>
-	        			<td>操作</td>
+	        			 <!-- <td>操作</td>-->
 				    </tr>
 				    <c:forEach items="${parent}" var="bean" varStatus="status">
 				    	<tr id="${bean.id }">
 					        <td>${status.index+1}</td>
 		        			<td><span controller="true"></span>${bean.name}</td>
-		        			<td><a href="javascript:void(0)">${bean.url}</a></td>
-		        			<td>
+		        			<td></td>
+		        			 <!-- <td>
 		        				<div class="operation">
 			        				<a href="javascript:void(0)" onclick="wei.dialog.openIrame('添加子菜单','${base}/base/menu/addSub/${bean.id}')">[添加子菜单]</a>
 			        				<a href="javascript:void(0)" onclick="wei.dialog.openIrame('菜单编辑','${base}/base/menu/input/${bean.id}')">[编辑]</a>
 			        				<a href="javascript:void(0)" class="weiDeleteRow" data-id="${bean.id}" data-reload="true">[删除]</a>
 		        				</div>
-		        			</td>
+		        			</td>-->
 				    	</tr>
 						<c:set value="0" var="subMenuInxex"/>
 				    	<c:forEach items="${sub}" var="sub" varStatus="subStatus">
@@ -50,12 +50,12 @@
 							        <td>${status.index+1}.${subMenuInxex}</td>
 				        			<td>${sub.name}</td>
 				        			<td><a href="javascript:void(0)">${sub.url}</a></td>
-				        			<td>
+				        			<!--<td>
 				        				<div class="operation">
 					        				<a href="javascript:void(0)" onclick="wei.dialog.openIrame('菜单编辑','${base}/menu/input.shtml/${sub.id}')">[编辑]</a>
 					        				<a href="javascript:void(0)" class="weiDeleteRow" data-id="${sub.id}" data-reload="true">[删除]</a>
 				        				</div>
-				        			</td>
+				        			</td>-->
 							    </tr>
 						    </c:if>
 				    	</c:forEach>
