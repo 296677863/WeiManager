@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.alibaba.druid.util.StringUtils;
 import com.weiweb.common.controller.BaseController;
+import com.weiweb.common.utils.UUIDHelper;
 import com.weiweb.core.mybatis.page.Pagination;
 import com.weiweb.core.shiro.po.Message;
 import com.weiweb.system.model.SysDict;
@@ -142,7 +143,7 @@ public class SysDictController  extends BaseController {
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	@ResponseBody
 	public Message save(SysDict sysDict ,RedirectAttributes redirectAttributes) {
-		String dictId=UUID.randomUUID().toString().replace("-", "");
+		String dictId=UUIDHelper.gen();
 		sysDict.setDictId(dictId);
 		sysDictService.saveDict(sysDict);
 		return  Message.success(sysDict);

@@ -25,6 +25,7 @@
 		<div class="ibox-content" >
 			<form id="headForm">
 				<input type="hidden" name="dictId" id="paramId"  value="${bean.dictId}">
+				
 				<div class="border-module base-info">
 				<div class="group-border mb20" style="min-height: 90px;">
 					<div class="group-title">基本信息</div>
@@ -36,7 +37,7 @@
 							<div class="group-div">
 								<label class="label-left"><span class="priority">*</span>字典类型：</label>
 								<input type="text" class="default-input required input-left"
-									 placeholder="请输入字典类型" name="dictType" value="${bean.dictType}" data-val="${bean.dictType}"/>
+									 placeholder="请输入字典类型" name="dictType" id="dictType" vvalue="${bean.dictType}" data-val="${bean.dictType}"/>
 							</div>
 						</div>
 					

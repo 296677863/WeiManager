@@ -42,7 +42,7 @@ $(function(){
 		iconPosition();
 	});*/
 	$(document).on("mouseover",".cursor-icon",function(){
-		iconPosition();
+//		iconPosition();
 		$(".tips-wrap").show();
 	})
 	$(document).on("mouseout",".cursor-icon",function(){
@@ -141,7 +141,7 @@ $(function(){
 	        $.each($("#addForm").serializeArray(), function (i, item) {
 	            formData[item.name] = item.value;
 	        });
-	        formData["selectClass.id"]=$("#paramId").val();
+	        formData["dictType"]=$("#dictType").val();
 	        submitSelectDetailForm(formData);
 		}
 		
@@ -149,7 +149,7 @@ $(function(){
 	
 	function  addInfo(formData){
 		var v_html = '<li data-status="0">'+
-		'<input type="hidden" name="id" value="{id}"/>'+
+		'<input type="hidden" name="detail_id" value="{id}"/>'+
 		'	<div class="col-sm-10 pl0">'+
 		'		<div class="col-sm-4 col-val">'+
 		'			<div class="dictionary-title">'+
@@ -179,7 +179,7 @@ $(function(){
 	
 	function submitSelectDetailForm(jsonData){
 		$.ajax({
-			url : window.baseRoot + "/base/selectClass/updateSelectDetail/",
+			url : window.baseRoot + "/sysdictDeatil/updatedictDetail.shtml",
 			type : "POST",
 			dataType : "json",
 			data:jsonData,
@@ -246,7 +246,7 @@ $(function(){
 	
 	function saveSelectDetailForm(jsonData,$this,$li,that){
 		$.ajax({
-			url : window.baseRoot + "/base/selectClass/updateSelectDetail/",
+			url : window.baseRoot + "/sysdictDeatil/updatedictDetail.shtml",
 			type : "POST",
 			dataType : "json",
 			data:jsonData,
@@ -273,7 +273,7 @@ $(document).on("click",".delete-info",function(){
 	
 function deleteSelectDetailForm(v_id,$li){
 	$.ajax({
-		url : window.baseRoot + "/base/selectClass/deleteSelectDetail/",
+		url : window.baseRoot + "/sysdictDeatil/deleteDictDetail.shtml",
 		type : "POST",
 		dataType : "json",
 		data:{id:v_id},
