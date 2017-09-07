@@ -121,14 +121,28 @@
 									<ul class="nav nav-second-level collapse" aria-expanded="false">
 										<c:forEach items="${menus}" var="sub" varStatus="m" >
 											<c:if test="${sub.parent eq menu.id}">
-
 													<li>
-														<a class="J_menuItem" href="${base}<c:if test="${!fn:startsWith(sub.url, '/')}">/</c:if>${sub.url}"   data-index="${m.index}">
-															<%--<c:if test="${sub.iconId != null && sub.iconId ne ''}">--%>
-																<%--${sub.iconId}--%>
-															<%--</c:if>--%>
+														<c:choose>
+														<c:when test="${sub.target != null && sub.target ne ''}">
+															
+															<a  target="${sub.target}" href="${base}<c:if test="${!fn:startsWith(sub.url, '/')}">/</c:if>${sub.url}"   >
+															<c:if test="${sub.iconId != null && sub.iconId ne ''}">
+																${sub.iconId}
+															</c:if>
 															<span class="nav-label">${sub.name}</span>
 														</a>
+														</c:when>	
+															<c:otherwise>
+															<a class="J_menuItem"  href="${base}<c:if test="${!fn:startsWith(sub.url, '/')}">/</c:if>${sub.url}"   data-index="${m.index}">
+															<c:if test="${sub.iconId != null && sub.iconId ne ''}">
+																${sub.iconId}
+															</c:if>
+															<span class="nav-label">${sub.name}</span>
+														</a>
+															</c:otherwise>
+														
+														</c:choose>
+														
 													</li>
 
 											</c:if>
