@@ -1,7 +1,7 @@
 package com.weiweb.system.controller;
 
 
-import java.util.UUID;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -63,15 +63,22 @@ public class SysDictController  extends BaseController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/edit/{dictType}")
-	public String input(@PathVariable("dictType")String dictType,ModelMap model){
-		model.addAttribute("bean",sysDictService.findSysDictByType(dictType));
+	@RequestMapping("/edit")
+	public String input(String dictType,ModelMap model){
+		List<SysDict> sysDicts=sysDictService.findSysDictByType(dictType);
+		if(sysDicts!=null&&sysDicts.size()!=0){
+			model.addAttribute("bean",sysDicts.get(0));
+		}
+		
 		return "/sysdict/edit";
 	}
 	
-	@RequestMapping("/info/{dictType}")
-	public String info(@PathVariable("dictType")String dictType,ModelMap model){
-		model.addAttribute("bean",sysDictService.findSysDictByType(dictType));
+	@RequestMapping("/info")
+	public String info(String dictType,ModelMap model){
+		List<SysDict> sysDicts=sysDictService.findSysDictByType(dictType);
+		if(sysDicts!=null&&sysDicts.size()!=0){
+			model.addAttribute("bean",sysDicts.get(0));
+		}
 		return "/sysdict/info";
 	}
 	
@@ -84,7 +91,7 @@ public class SysDictController  extends BaseController {
 	@RequestMapping(value="/delete")
 	@ResponseBody
 	public Message delete(String[] ids ,RedirectAttributes redirectAttributes){
-		sysDictService.deleteUserById(ids);
+		sysDictService.deleteIds(ids);
 		return  SUCCESS_MESSAGE;
 		
 	}
@@ -95,45 +102,18 @@ public class SysDictController  extends BaseController {
 	 */
 	@RequestMapping(value = "/updateDict", method = RequestMethod.POST)
 	@ResponseBody
-	public Message updateSelectClass(SysDict sysDict){
+	public Message updateDict(SysDict sysDict){
 		if(!StringUtils.isEmpty(sysDict.getDictId())){
 			sysDictService.updateDict(sysDict);
 		}else{
+			String dictId=UUIDHelper.gen();
+			sysDict.setDictId(dictId);
 			sysDictService.saveDict(sysDict);
 		}
-		return  Message.success(sysDict);
+		return Message.success(sysDict);
 	}
 	
-	/*****
-	 * 保存字典详情
-	 * @return
-	 */
-	@RequestMapping(value = "/updateDictDetail", method = RequestMethod.POST)
-	@ResponseBody
-	public Message updateSelectDetail(SysDictDetail sysDictDetail){
-		if(!StringUtils.isEmpty(sysDictDetail.getDictType())){
-			return ERROR_MESSAGE;
-		}else{
-			return ERROR_MESSAGE;
-		}
-	}
-	
-	/*****
-	 * 字典管理详情删除
-	 * @param ids
-	 * @param redirectAttributes
-	 * @return
-	 */
-	@RequestMapping(value="/deleteDictDetail")
-	@ResponseBody
-	public Message deleteDictDetail(String id){
-		if(!StringUtils.isEmpty(id)){
-//			sysDictDetailService.delete(id);
-			return  SUCCESS_MESSAGE;
-		}else{
-			return ERROR_MESSAGE;
-		}
-	}
+
 	
 	
 

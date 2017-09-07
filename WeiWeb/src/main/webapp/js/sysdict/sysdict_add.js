@@ -70,7 +70,7 @@ $(function(){
 	
 	function submitSelectClass($this){
 		$.ajax({
-			url : window.baseRoot + "/sysdict/save.shtml",
+			url : window.baseRoot + "/sysdict/updateDict.shtml",
 			type : "POST",
 			dataType : "json",
 			data : $("#headForm").serialize(),
@@ -223,8 +223,8 @@ $(function(){
 				var v_name=that.parent().eq(i).find(".dictionary-title input").prop("name");
 				 formData[v_name] = value;
 			}
-			formData["id"]=$li.find("input").val();
-			formData["selectClass.id"]=$("#paramId").val();
+			formData["detailId"]=$li.find("input").val();
+			 formData["dictType"]=$("#dictType").val();
 			saveSelectDetailForm(formData,$this,$li,that);
 		}
 		

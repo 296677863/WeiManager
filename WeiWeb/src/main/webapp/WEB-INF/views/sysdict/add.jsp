@@ -37,7 +37,7 @@
 							<div class="group-div">
 								<label class="label-left"><span class="priority">*</span>字典类型：</label>
 								<input type="text" class="default-input required input-left"
-									 placeholder="请输入字典类型" name="dictType" id="dictType" vvalue="${bean.dictType}" data-val="${bean.dictType}"/>
+									 placeholder="请输入字典类型" name="dictType" id="dictType" value="${bean.dictType}" data-val="${bean.dictType}"/>
 							</div>
 						</div>
 					

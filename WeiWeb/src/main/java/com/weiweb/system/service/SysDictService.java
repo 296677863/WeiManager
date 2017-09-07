@@ -13,12 +13,13 @@ public interface SysDictService {
 
 	List<SysDict> findSysDictByType(String dictType);
 
-	void deleteUserById(String[] ids);
 
 	int deleteByPrimaryKey(String id);
 
 	void updateDict(SysDict sysDict);
 
 	void saveDict(SysDict sysDict);
+
+	void deleteIds(String[] ids);
 
 }

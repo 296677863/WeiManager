@@ -19,4 +19,5 @@ public interface SysDictMapper{
     int updateByPrimaryKeySelective(SysDict record);
 
     int updateByPrimaryKey(SysDict record);
+    SysDict selectByPrimaryKey(String dictId);
 }

@@ -17,6 +17,14 @@
       </if>
   </sql>
   
+     
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_dict
+    where dict_id = #{dictId,jdbcType=BIGINT}
+  </select>
+  
   <sql id="where_all">
   	<where>
   	<if test="findContent != null and findContent !='' " >
@@ -41,9 +49,9 @@
   </select>
 
   <resultMap id="findSysDict_resultMap" extends="BaseResultMap" type="com.weiweb.system.model.SysDict" >
-  	<collection property="sysDictDetails" javaType="com.weiweb.system.model.SysDictDetail">
-  	 	<id column="detail_id" property="id" jdbcType="BIGINT" />
-  	 	<result column="dict_type" property="dictType" jdbcType="VARCHAR"/>
+  	<collection property="sysDictDetails"  javaType="com.weiweb.system.model.SysDictDetail">
+  	 	<id column="detail_id" property="detailId" jdbcType="BIGINT" />
+  	 	<result column="dictType" property="dictType" jdbcType="VARCHAR"/>
   	 	<result column="detail_name" property="detailName" jdbcType="VARCHAR"/>
   	 	<result column="detail_code" property="detailCode" jdbcType="VARCHAR"/>
   	 	<result column="detail_sort" property="detailSort" jdbcType="VARCHAR"/>
@@ -56,9 +64,14 @@
   	</collection>
   </resultMap>
   
-  <select id="findSysDictById" resultMap="findSysDict_resultMap">
-  	select * from sys_dict sd
+  <select id="findSysDictByType" resultMap="findSysDict_resultMap">
+  <!--  	select * from sys_dict sd
 		left join(select * from sys_dict_detail where dict_type=#{dictType,jdbcType=VARCHAR}) sdd on sdd.dict_type = sd.dict_type
+ -->
+  SELECT sd.dict_id, sd.dict_name, sd.dict_type, sdd.detail_id, sdd.dict_type as dictType, sdd.detail_name, sdd.detail_code, sdd.detail_sort, sdd.detail_type, sdd.detail_state, 
+    sdd.detail_content, sdd.detail_remark, sdd.create_time, sdd.create_id
+       FROM sys_dict sd  LEFT JOIN sys_dict_detail sdd  ON
+		 sdd.dict_type = sd.dict_type WHERE sd.dict_type=#{dictType,jdbcType=VARCHAR}
   </select>
   
    <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >

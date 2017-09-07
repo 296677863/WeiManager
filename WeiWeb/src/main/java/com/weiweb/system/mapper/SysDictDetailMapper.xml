@@ -39,6 +39,12 @@
     from sys_dict_detail
     where detail_id = #{detailId,jdbcType=VARCHAR}
   </select>
+  <select id="selectByDictType" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select
+  	 <include refid="Base_Column_List" />
+    from sys_dict_detail
+    where dict_type = #{dictType,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     <!--
       WARNING - @mbggenerated
@@ -182,6 +188,7 @@
     </set>
     where detail_id = #{detailId,jdbcType=VARCHAR}
   </update>
+
   <update id="updateByPrimaryKey" parameterType="com.weiweb.system.model.SysDictDetail">
     <!--
       WARNING - @mbggenerated

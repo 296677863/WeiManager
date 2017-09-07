@@ -1,6 +1,7 @@
 package com.weiweb.system.model;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.List;
 
 public class SysDict implements Serializable{
@@ -15,7 +16,7 @@ public class SysDict implements Serializable{
 	//备注
 	private String dictRemark;
 	
-	private List<SysDictDetail> sysDictDetails;
+	private List<SysDictDetail> sysDictDetails = new LinkedList<SysDictDetail>();;
 	
 	public String getDictId() {
 		return dictId;

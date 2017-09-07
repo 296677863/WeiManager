@@ -30,13 +30,13 @@
 					<div class="group-title">基本信息</div>
 					<div class="col-sm-11 pl0" id="editstatus">
 						<div class="col-sm-4 pl0">
-							<div class="group-div"><label class="label-left">字典名称：</label><input type="text" class="default-input required input-left curror" name="name" placeholder="请输入字典名称" value="${bean.dictName}" disabled="disabled"></div>
+							<div class="group-div"><label class="label-left">字典名称：</label><input type="text" class="default-input required input-left curror" name="dictName" placeholder="请输入字典名称" value="${bean.dictName}" disabled="disabled"></div>
 						</div>
 						<div class="col-sm-4 pl0">
 							<div class="group-div">
 								<label class="label-left">字典类型：</label>
 								<input type="text" class="default-input required input-left curror"
-									 placeholder="请输入字典类型" name="dictType" value="${bean.dictType}" data-val="${bean.dictType}" disabled="disabled"/>
+									 placeholder="请输入字典类型" name="dictType" value="${bean.dictType}" id="dictType"  data-val="${bean.dictType}" disabled="disabled"/>
 							</div>
 						</div>
 					</div>

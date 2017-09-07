@@ -1,5 +1,8 @@
 package com.weiweb.system.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import com.weiweb.system.model.SysDictDetail;
 
 public interface SysDictDetailMapper {
@@ -39,4 +42,8 @@ public interface SysDictDetailMapper {
 	 * @mbggenerated  Thu Aug 24 11:05:18 CST 2017
 	 */
 	int updateByPrimaryKey(SysDictDetail record);
+
+	List<SysDictDetail> selectByDictType(String dictType);
+	
+	
 }
