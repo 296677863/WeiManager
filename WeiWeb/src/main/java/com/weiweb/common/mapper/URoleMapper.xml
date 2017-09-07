@@ -97,11 +97,11 @@
   <resultMap id="findNowAllPermission_resultMap" extends="BaseResultMap" type="com.weiweb.common.model.URole" >
   	<collection property="permissions" javaType="com.weiweb.common.model.UPermission">
   	 	<id column="pid" property="id" jdbcType="BIGINT" />
-  	 	<result column="create_date" property="create_date" jdbcType="DATE"/>
-  	 	<result column="modify_date" property="modify_date" jdbcType="DATE"/>
+  	 	<result column="create_date" property="createDate" jdbcType="DATE"/>
+  	 	<result column="modify_date" property="modifyDate" jdbcType="DATE"/>
   	 	<result column="code" property="code" jdbcType="VARCHAR"/>
-  	 	<result column="data_level" property="data_level" jdbcType="BIT"/>
-  	 	<result column="icon_id" property="icon_id" jdbcType="VARCHAR"/>
+  	 	<result column="data_level" property="dataLevel" jdbcType="BIT"/>
+  	 	<result column="icon_id" property="iconId" jdbcType="VARCHAR"/>
   	 	<result column="level" property="level" jdbcType="INTEGER"/>
     	<result column="pname" property="name" jdbcType="VARCHAR" />
     	<result column="sort" property="sort" jdbcType="INTEGER"/>
