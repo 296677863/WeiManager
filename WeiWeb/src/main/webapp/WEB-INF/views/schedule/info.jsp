@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>编辑详情</title>
+<title>详情</title>
 <%@ include file="/common/head.jsp"%>
 <link href="${base}/css/bootstrap-switch.css?v=<wei:version/>" rel="stylesheet" />
 <style>
@@ -32,7 +32,7 @@
 						<div class="col-sm-6 pl0">
 							<div class="group-div">
 								<label class="label-left">名称：</label>
-								<div class="input-left lh-div">${bean.name}</div>
+								<div class="input-left lh-div">${bean.beanName}</div>
 							</div>
 						</div>
 						<div class="col-sm-6 pl0">
@@ -44,16 +44,42 @@
 							
 							<div class="col-sm-6 pl0">
 							<div class="group-div">
-								<label class="label-left">角色类型：</label>
+								<label class="label-left">方法名称：</label>
 								 
-								   <div class="input-left lh-div">${bean.type}</div>
+								   <div class="input-left lh-div">${bean.methodName}</div>
 								  
 							</div>
 							</div>
 						</div>
 						<div class="col-sm-12 pl0">
-						
-							
+							<div class="col-sm-6 pl0">
+									<div class="group-div">
+										<label class="label-left">参数：</label>
+										 
+										   <div class="input-left lh-div">${bean.params }</div>
+										  
+									</div>
+							</div>
+						</div>
+							<div class="col-sm-12 pl0">
+							<div class="col-sm-6 pl0">
+									<div class="group-div">
+										<label class="label-left">cron表达式：</label>
+										 
+										   <div class="input-left lh-div">${bean.cronExpression }</div>
+										  
+									</div>
+							</div>
+						</div>
+							<div class="col-sm-12 pl0">
+							<div class="col-sm-6 pl0">
+									<div class="group-div">
+										<label class="label-left">备注：</label>
+										 
+										   <div class="input-left lh-div">${bean.remark }</div>
+										  
+									</div>
+							</div>
 						</div>
 						
 					</div>

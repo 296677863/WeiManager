@@ -6,7 +6,7 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-<title>修改定时任务</title>
+<title>添加定时任务</title>
 <%@ include file="/common/head.jsp"%>
 <link href="${base}/css/bootstrap-switch.css?v=<wei:version/>" rel="stylesheet" />
 <style>
@@ -25,7 +25,7 @@
 		</div>
 		<div class="ibox-content">
 			<!-- 新版 -->
-			<form id="inputForm" action="${base}/schedule/edit.shtml" method="post">
+			<form id="inputForm" action="${base}/schedule/save.shtml" method="post">
 				<div class="border-module">
 					<div class="group-border mb20" style="height: 350px;">
 						<div class="group-title">基本信息</div>

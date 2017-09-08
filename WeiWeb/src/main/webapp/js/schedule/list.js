@@ -5,7 +5,7 @@ $(function() {
 		url : window.baseRoot + "/schedule/listData.shtml",
 		multiselect : true,
         height: $(window).height() - $("#DataTables_Table_0_wrapper").height() - 150,
-		colNames : ['任务ID','Spring Bean','方法名','参数','状态','备注','定时表达式','创建时间','操作'],
+		colNames : ['任务ID','Spring Bean','方法名','参数','状态','定时表达式','创建时间','操作'],
 		colModel : [
 				{
 					name : 'jobId',
@@ -34,11 +34,6 @@ $(function() {
 					align : 'left'
 				},
 				{
-					name : 'remark',
-					index : 'remark',
-					align : 'left'
-				},
-				{
 					name : 'cronExpression',
 					index : 'cronExpression',
 					align : 'left'
@@ -49,13 +44,22 @@ $(function() {
 					align : 'left'
 				},
 				{
-					width : 280,
+					width : 320,
 					fixed : true,
 					formatter : function(cellvalue, options, rowObject) {
 						var result = "<a href=\"javascript:void(0)\" onclick=\"wei.dialog.openIrame('编辑','{0}')\">[编辑]</a>"
-						.format(window.baseRoot + '/role/input/'
+						.format(window.baseRoot + '/schedule/edit/'
 								+ rowObject.jobId+'.shtml');
 						result = result + "<a href=\"javascript:void(0)\" onclick=\"wei.dialog.openIrame('详情','{0}')\">[详情]</a>"
+						.format(window.baseRoot + '/schedule/info/'
+								+ rowObject.jobId+'.shtml');
+						result = result + "<a href=\"javascript:void(0)\" onclick=\"wei.dialog.openIrame('暂停','{0}')\">[暂停]</a>"
+						.format(window.baseRoot + '/role/info/'
+								+ rowObject.jobId+'.shtml');
+						result = result + "<a href=\"javascript:void(0)\" onclick=\"wei.dialog.openIrame('恢复','{0}')\">[恢复]</a>"
+						.format(window.baseRoot + '/role/info/'
+								+ rowObject.jobId+'.shtml');
+						result = result + "<a href=\"javascript:void(0)\" onclick=\"wei.dialog.openIrame('立即执行','{0}')\">[立即执行]</a>"
 						.format(window.baseRoot + '/role/info/'
 								+ rowObject.jobId+'.shtml');
 						result = result + "<a href=\"javascript:void(0)\" data-id=\"{0}\"  class=\"weiDeleteRow\">[删除]</a>"

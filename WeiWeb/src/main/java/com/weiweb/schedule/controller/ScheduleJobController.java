@@ -38,7 +38,7 @@ public class ScheduleJobController extends BaseController{
 
 	}
 	
-	@RequestMapping(value="deletescheduleJobById",method=RequestMethod.POST)
+	@RequestMapping(value="delete",method=RequestMethod.POST)
 	@ResponseBody
 	public Message deletescheduleJobById(String jobIds){
 		String[] ids = jobIds.split(",");

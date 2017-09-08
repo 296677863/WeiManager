@@ -53,7 +53,7 @@
                         <%--<div class="message">错误信息提示的地方</div>--%>
                         </div>
                         <div class="user-div">
-                           	<p><input type="checkbox" class="check-input" id="isRememberUsername" />记住用户名</p>
+                           	<p><input type="checkbox" class="check-input" id="isRememberUsername" />记住我30天</p>
                          </div>
 						<div class="btn-div login-btn" id="login-btn" >
                           登录
