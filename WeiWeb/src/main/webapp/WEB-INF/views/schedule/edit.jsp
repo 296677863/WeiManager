@@ -29,8 +29,9 @@
 				<div class="border-module">
 					<div class="group-border mb20" style="height: 350px;">
 						<div class="group-title">基本信息</div>
-						
-			 
+						<input type="hidden" name="jobId" value="${bean.jobId }">
+						 <input type="hidden" name="createTime" value="${bean.createTime }">
+						 <input type="hidden" name="status" value="${bean.status }">
 						<div class="col-sm-12 pl0">
 							<div class="col-sm-4 pl0">
 								<div class="group-div">

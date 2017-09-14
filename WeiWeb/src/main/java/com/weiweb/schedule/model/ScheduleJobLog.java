@@ -26,6 +26,13 @@ public class ScheduleJobLog implements Serializable {
 	/** 创建时间 */
 	private String				createTime;
 	
+
+	//
+	private String gmtCreate;
+	//
+	private String gmtModified;
+	
+	
 	@Override
 	public String toString() {
 		return "ScheduleJobLogEntity [logId=" + logId + ", jobId=" + jobId + ", beanName=" + beanName + ", methodName=" + methodName + ", params=" + params + ", status=" + status + ", error=" + error + ", times=" + times + ", createTime=" + createTime + "]";
@@ -102,4 +109,22 @@ public class ScheduleJobLog implements Serializable {
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
+
+	public String getGmtCreate() {
+		return gmtCreate;
+	}
+
+	public void setGmtCreate(String gmtCreate) {
+		this.gmtCreate = gmtCreate;
+	}
+
+	public String getGmtModified() {
+		return gmtModified;
+	}
+
+	public void setGmtModified(String gmtModified) {
+		this.gmtModified = gmtModified;
+	}
+	
+	
 }

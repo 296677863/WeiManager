@@ -61,6 +61,9 @@ CREATE TABLE `qrtz_cron_triggers` (
 
 /*Data for the table `qrtz_cron_triggers` */
 
+insert  into `qrtz_cron_triggers`(`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`,`CRON_EXPRESSION`,`TIME_ZONE_ID`) values 
+('RenrenScheduler','TASK_2','DEFAULT','0/30 * * * * ? ','Asia/Shanghai');
+
 /*Table structure for table `qrtz_fired_triggers` */
 
 DROP TABLE IF EXISTS `qrtz_fired_triggers`;
@@ -111,6 +114,9 @@ CREATE TABLE `qrtz_job_details` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `qrtz_job_details` */
+
+insert  into `qrtz_job_details`(`SCHED_NAME`,`JOB_NAME`,`JOB_GROUP`,`DESCRIPTION`,`JOB_CLASS_NAME`,`IS_DURABLE`,`IS_NONCONCURRENT`,`IS_UPDATE_DATA`,`REQUESTS_RECOVERY`,`JOB_DATA`) values 
+('RenrenScheduler','TASK_2','DEFAULT',NULL,'com.weiweb.schedule.util.ScheduleJob','0','0','0','0','��\0sr\0org.quartz.JobDataMap���迩��\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap�����](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMap�.�(v\n�\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMap���`�\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0*com.weiweb.schedule.model.ScheduleJobModel\0\0\0\0\0\0\0\0\nL\0beanNamet\0Ljava/lang/String;L\0\ncreateTimeq\0~\0	L\0cronExpressionq\0~\0	L\0	gmtCreateq\0~\0	L\0gmtModifiedq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statust\0Ljava/lang/Integer;xpt\0testTaskt\0\n2017-09-13t\00/30 * * * * ? ppsr\0java.lang.Long;��̏#�\0J\0valuexr\0java.lang.Number������\0\0xp\0\0\0\0\0\0\0t\0testt\0Hellot\0每30秒执行一次sr\0java.lang.Integer⠤���8\0I\0valuexq\0~\0\0\0\0\0x\0');
 
 /*Table structure for table `qrtz_locks` */
 
@@ -234,6 +240,9 @@ CREATE TABLE `qrtz_triggers` (
 
 /*Data for the table `qrtz_triggers` */
 
+insert  into `qrtz_triggers`(`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`,`JOB_NAME`,`JOB_GROUP`,`DESCRIPTION`,`NEXT_FIRE_TIME`,`PREV_FIRE_TIME`,`PRIORITY`,`TRIGGER_STATE`,`TRIGGER_TYPE`,`START_TIME`,`END_TIME`,`CALENDAR_NAME`,`MISFIRE_INSTR`,`JOB_DATA`) values 
+('RenrenScheduler','TASK_2','DEFAULT','TASK_2','DEFAULT',NULL,1505358330000,1505358300000,5,'PAUSED','CRON',1505294585000,0,NULL,2,'��\0sr\0org.quartz.JobDataMap���迩��\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap�����](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMap�.�(v\n�\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMap���`�\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0*com.weiweb.schedule.model.ScheduleJobModel\0\0\0\0\0\0\0\0\nL\0beanNamet\0Ljava/lang/String;L\0\ncreateTimeq\0~\0	L\0cronExpressionq\0~\0	L\0	gmtCreateq\0~\0	L\0gmtModifiedq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statust\0Ljava/lang/Integer;xpt\0testTaskt\0\n2017-09-13t\00/30 * * * * ? ppsr\0java.lang.Long;��̏#�\0J\0valuexr\0java.lang.Number������\0\0xp\0\0\0\0\0\0\0t\0testt\0Hellot\0每30秒执行一次sr\0java.lang.Integer⠤���8\0I\0valuexq\0~\0\0\0\0\0x\0');
+
 /*Table structure for table `schedule_job` */
 
 DROP TABLE IF EXISTS `schedule_job`;
@@ -250,12 +259,12 @@ CREATE TABLE `schedule_job` (
   `gmt_create` datetime DEFAULT NULL,
   `gmt_modified` datetime DEFAULT NULL,
   PRIMARY KEY (`job_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='定时任务';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='定时任务';
 
 /*Data for the table `schedule_job` */
 
 insert  into `schedule_job`(`job_id`,`bean_name`,`method_name`,`params`,`cron_expression`,`status`,`remark`,`create_time`,`gmt_create`,`gmt_modified`) values 
-(1,'tedst','test','test','test',NULL,'test',NULL,NULL,NULL);
+(2,'testTask','test','Hello','0/30 * * * * ? ',1,'每30秒执行一次','2017-09-13',NULL,NULL);
 
 /*Table structure for table `schedule_job_log` */
 
@@ -275,9 +284,13 @@ CREATE TABLE `schedule_job_log` (
   `gmt_create` datetime DEFAULT NULL,
   PRIMARY KEY (`log_id`),
   KEY `job_id` (`job_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='定时任务日志';
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8 COMMENT='定时任务日志';
 
 /*Data for the table `schedule_job_log` */
+
+insert  into `schedule_job_log`(`log_id`,`job_id`,`bean_name`,`method_name`,`params`,`status`,`error`,`times`,`create_time`,`gmt_modified`,`gmt_create`) values 
+(42,2,'testTask','test','Hello',0,'',1002,'2017-09-14',NULL,NULL),
+(43,2,'testTask','test','Hello',0,'',1007,'2017-09-14',NULL,NULL);
 
 /*Table structure for table `sys_config` */
 
@@ -366,15 +379,14 @@ insert  into `u_permission`(`id`,`create_date`,`code`,`modify_date`,`data_level`
 ('16',NULL,NULL,NULL,NULL,NULL,2,'角色列表删除',NULL,NULL,NULL,'/role/deleteRoleById.shtml',NULL),
 ('17',NULL,NULL,NULL,NULL,NULL,2,'角色列表添加',NULL,NULL,NULL,'/role/addRole.shtml',NULL),
 ('18',NULL,NULL,NULL,NULL,NULL,2,'角色列表',1,NULL,NULL,'/role/list.shtml','22'),
-('19',NULL,NULL,NULL,NULL,NULL,2,'权限分配',2,NULL,NULL,'/permission/allocation.shtml','22'),
-('20',NULL,NULL,NULL,NULL,NULL,2,'角色分配',3,NULL,NULL,'/role/allocation.shtml','22'),
+('20',NULL,NULL,NULL,NULL,NULL,2,'用户角色分配',3,NULL,NULL,'/role/allocation.shtml','22'),
 ('21',NULL,NULL,NULL,NULL,NULL,1,'用户管理',1,NULL,NULL,'/member',NULL),
-('22',NULL,NULL,NULL,NULL,NULL,1,'系统管理',2,NULL,NULL,'/permission',NULL),
+('22',NULL,NULL,NULL,NULL,' <i class=\"icon iconfont\">&#xe901;</i>',1,'系统管理',2,NULL,NULL,'/permission',NULL),
 ('23',NULL,NULL,NULL,NULL,NULL,NULL,'个人中心',1,NULL,NULL,'/user',NULL),
 ('24',NULL,NULL,NULL,NULL,NULL,2,'字典列表',4,NULL,NULL,'/sysdict/list.shtml','22'),
 ('25',NULL,NULL,NULL,NULL,NULL,2,'菜单管理',6,NULL,NULL,'/menu/list.shtml','22'),
 ('26',NULL,NULL,NULL,NULL,NULL,1,'系统监控',3,NULL,NULL,'/monitor',NULL),
-('27',NULL,NULL,NULL,NULL,NULL,2,'连接池监控',1,NULL,NULL,'/druid/index.html','26'),
+('27',NULL,NULL,NULL,NULL,NULL,2,'连接池监控',1,NULL,'_blank','/druid/index.html','26'),
 ('28',NULL,NULL,NULL,NULL,NULL,1,'代码工具',4,NULL,NULL,'/sysgenerator',NULL),
 ('29',NULL,NULL,NULL,NULL,NULL,2,'代码生成',1,NULL,NULL,'/sysgenerator/index.shtml','28'),
 ('30',NULL,NULL,NULL,NULL,NULL,1,'任务管理',1,NULL,NULL,'/schedule',NULL),
@@ -422,22 +434,16 @@ insert  into `u_role_permission`(`rid`,`pid`) values
 (4,10),
 (4,11),
 (4,12),
-(3,4),
-(3,6),
-(3,7),
 (3,13),
 (3,14),
 (3,15),
 (3,16),
 (3,17),
 (3,18),
-(3,19),
 (3,20),
-(1,4),
-(1,6),
-(1,7),
-(1,8),
-(1,9),
+(3,4),
+(3,6),
+(3,7),
 (1,10),
 (1,11),
 (1,12),
@@ -447,12 +453,11 @@ insert  into `u_role_permission`(`rid`,`pid`) values
 (1,16),
 (1,17),
 (1,18),
-(1,19),
 (1,20),
 (1,21),
 (1,22),
-(1,25),
 (1,24),
+(1,25),
 (1,26),
 (1,27),
 (1,28),
@@ -460,7 +465,12 @@ insert  into `u_role_permission`(`rid`,`pid`) values
 (1,30),
 (1,31),
 (1,32),
-(1,33);
+(1,33),
+(1,4),
+(1,6),
+(1,7),
+(1,8),
+(1,9);
 
 /*Table structure for table `u_user` */
 
@@ -480,10 +490,10 @@ CREATE TABLE `u_user` (
 /*Data for the table `u_user` */
 
 insert  into `u_user`(`id`,`nickname`,`email`,`pswd`,`create_time`,`last_login_time`,`status`) values 
-(1,'管理员','admin','57dd03ed397eabaeaa395eb740b770fd','2016-06-16 11:15:33','2017-08-25 10:43:11',1),
+(1,'管理员','admin','57dd03ed397eabaeaa395eb740b770fd','2016-06-16 11:15:33','2017-09-13 17:03:10',1),
 (11,'soso','8446666@qq.com','d57ffbe486910dd5b26d0167d034f9ad','2016-05-26 20:50:54','2016-06-16 11:24:35',1),
 (12,'8446666','8446666','4afdc875a67a55528c224ce088be2ab8','2016-05-27 22:34:19','2016-06-15 17:03:16',0),
-(15,'test','test@123.com','5ebe20cf5fc1da2a3785607ec3002fcf','2017-08-20 11:52:38','2017-08-20 11:53:00',1);
+(15,'test','test@123.com','5ebe20cf5fc1da2a3785607ec3002fcf','2017-08-20 11:52:38','2017-09-14 10:16:05',1);
 
 /*Table structure for table `u_user_role` */
 
@@ -500,7 +510,8 @@ insert  into `u_user_role`(`uid`,`rid`) values
 (12,4),
 (11,3),
 (11,4),
-(1,1);
+(1,1),
+(15,1);
 
 /*Table structure for table `wx_img_article` */
 

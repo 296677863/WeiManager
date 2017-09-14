@@ -40,9 +40,9 @@ public class ScheduleJobController extends BaseController{
 	
 	@RequestMapping(value="delete",method=RequestMethod.POST)
 	@ResponseBody
-	public Message deletescheduleJobById(String jobIds){
-		String[] ids = jobIds.split(",");
-		for (String idstr : ids) {
+	public Message deletescheduleJobById(String ids){
+		String[] jobIds = ids.split(",");
+		for (String idstr : jobIds) {
 			Long[] longid = new Long[1];
 			try {
 				longid[0] = Long.parseLong(idstr);
@@ -56,8 +56,8 @@ public class ScheduleJobController extends BaseController{
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = { "pause" }, method = { RequestMethod.GET, RequestMethod.POST })
-	public Message pause(String jobIds) {
+	@RequestMapping(value = { "pause/{jobIds}" }, method = { RequestMethod.GET, RequestMethod.POST })
+	public Message pause(@PathVariable("jobIds") String jobIds) {
 		String[] ids = jobIds.split(",");
 		for (String idstr : ids) {
 			Long[] longid = new Long[1];
@@ -102,7 +102,11 @@ public class ScheduleJobController extends BaseController{
 	@ResponseBody
 	public Message save(ScheduleJobModel bean,RedirectAttributes redirectAttributes){
 		try{
-			scheduleJobService.save(bean);
+			if(!StringUtils.isEmpty(Long.toString(bean.getJobId()))){
+				scheduleJobService.update(bean);
+			}else{
+				scheduleJobService.save(bean);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ERROR_MESSAGE;
@@ -136,8 +140,8 @@ public class ScheduleJobController extends BaseController{
 	
 	
 	@ResponseBody
-	@RequestMapping(value = { "resume.do" }, method = { RequestMethod.GET, RequestMethod.POST })
-	public Message resume(String jobIds) {
+	@RequestMapping(value = { "resume/{jobIds}" }, method = { RequestMethod.GET, RequestMethod.POST })
+	public Message resume(@PathVariable("jobIds") String jobIds) {
 		String[] ids = jobIds.split(",");
 		for (String idstr : ids) {
 			Long[] longid = new Long[1];

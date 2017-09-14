@@ -83,6 +83,7 @@ public class ScheduleJobModel implements Serializable {
 		this.remark = remark;
 	}
 	
+	
 	/** 设置：任务状态
 	 * 
 	 * @param status
