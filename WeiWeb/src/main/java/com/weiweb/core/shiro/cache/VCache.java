@@ -15,7 +15,7 @@ import redis.clients.jedis.Jedis;
 public class VCache {
 
 	final static JedisManager J = SpringContextUtil.getBean("jedisManager", JedisManager.class);
-	private VCache() {}
+	 public VCache() {}
 	
 	/**
 	 * 简单的Get

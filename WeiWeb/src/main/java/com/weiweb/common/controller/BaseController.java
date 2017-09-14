@@ -17,10 +17,14 @@ import org.apache.log4j.Logger;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.context.ServletContextAware;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.weiweb.common.model.UUser;
+import com.weiweb.common.utils.SpringContextUtil;
 import com.weiweb.common.utils.StringUtils;
 import com.weiweb.core.shiro.po.Message;
 import com.weiweb.core.shiro.token.manager.TokenManager;
@@ -149,5 +153,38 @@ public class BaseController implements ServletContextAware{
 		this.servletContext=servletContext;
 		
 	}
+	
+	/**
+	 * 获取国际化消息
+	 * 
+	 * @param code
+	 *            代码
+	 * @param args
+	 *            参数
+	 * @return 国际化消息
+	 */
+	protected String message(String code, Object... args) {
+		return SpringContextUtil.getMessage(code, args);
+	}
+	
+	
+
+	/**
+	 * 添加瞬时消息
+	 * 
+	 * @param redirectAttributes
+	 *            RedirectAttributes
+	 * @param message
+	 *            消息
+	 */
+	protected void addFlashMessage(RedirectAttributes redirectAttributes, Message message) {
+		if (redirectAttributes != null && message != null) {
+			redirectAttributes.addFlashAttribute("FLASH_MESSAGE","$.message(\"" + message.getType() + "\", \"" + message.getContent() + "\")" );
+		}
+	}
+
+	
+
+
 	
 }

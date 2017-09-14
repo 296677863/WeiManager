@@ -30,6 +30,24 @@
 	<import resource="spring-cache.xml"/>
 	<import resource="spring-shiro.xml"/>
 
+
+		<!-- 属性中文，路径配置 及动态加载  国际化文件路径 -->
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		
+		<property name="cacheSeconds" value="${message.cache_seconds}" />
+		    <!-- 找不到的话 不抛出NoSuchMessageException, 使用messageKey作为返回值 -->
+		<property name="useCodeAsDefaultMessage" value="true" />
+		<property name="basenames">
+			<list>
+				<value>${message.common_path}</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 注入 国际化采用的本地资源文件 -->
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.FixedLocaleResolver">
+		<property name="defaultLocale" value="${locale}" />
+	</bean>	
 	
 	
 </beans>

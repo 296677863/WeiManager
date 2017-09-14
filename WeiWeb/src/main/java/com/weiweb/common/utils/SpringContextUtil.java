@@ -1,9 +1,12 @@
 package com.weiweb.common.utils;
 
+import java.util.Locale;
+
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.web.servlet.LocaleResolver;
 
 
 public class SpringContextUtil implements ApplicationContextAware {
@@ -52,5 +55,20 @@ public class SpringContextUtil implements ApplicationContextAware {
 		return applicationContext.getAliases(name);
 	}
 
+	
+	/**
+	 * 获取国际化消息
+	 * 
+	 * @param code
+	 *            代码
+	 * @param args
+	 *            参数
+	 * @return 国际化消息
+	 */
+	public static String getMessage(String code, Object... args) {
+		LocaleResolver localeResolver = getBean("localeResolver", LocaleResolver.class);
+		Locale locale = localeResolver.resolveLocale(null);
+		return applicationContext.getMessage(code, args, locale);
+	}
 
 }
