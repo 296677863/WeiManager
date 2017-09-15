@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.weiweb.common.utils.SerializeUtil;
 import com.weiweb.common.utils.SpringContextUtil;
 
@@ -13,8 +16,7 @@ import redis.clients.jedis.Jedis;
 
 @SuppressWarnings("unchecked")
 public class VCache {
-
-	final static JedisManager J = SpringContextUtil.getBean("jedisManager", JedisManager.class);
+	 public  static JedisManager J ;
 	 private VCache() {}
 	
 	/**
@@ -446,4 +448,14 @@ public class VCache {
 //        版本问题
         jedis.close();
 	 }
+
+	public static JedisManager getJ() {
+		return J;
+	}
+
+	public static void setJ(JedisManager j) {
+		J = j;
+	}
+	
+	
 }

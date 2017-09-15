@@ -33,6 +33,7 @@
 	<bean id="redisCacheStorager" class="com.foxinmy.weixin4j.cache.RedisCacheStorager">
 		<constructor-arg name="jedisPool" ref="jedisPool" />
 	</bean>
+
 	
 	<bean id="weixinProxy" class="com.foxinmy.weixin4j.mp.WeixinProxy">
 	   <constructor-arg name="cacheStorager" ref="redisCacheStorager" />

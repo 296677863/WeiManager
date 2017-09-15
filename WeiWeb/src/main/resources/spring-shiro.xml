@@ -83,8 +83,11 @@
 	    <property name="jedisManager" ref="jedisManager"/>
 	</bean>
 	<!-- redis 的缓存 -->
-	<bean id="jedisManager" class="com.weiweb.core.shiro.cache.JedisManager">
+	<bean id="jedisManager" class="com.weiweb.core.shiro.cache.JedisManager" >
 	    <property name="jedisPool" ref="jedisPool"/>
+	</bean>
+	<bean id="vcache" class="com.weiweb.core.shiro.cache.VCache">
+		 <property name="J" ref="jedisManager"/>
 	</bean>
 	<!-- 静态注入，相当于调用SecurityUtils.setSecurityManager(securityManager) -->
 	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
