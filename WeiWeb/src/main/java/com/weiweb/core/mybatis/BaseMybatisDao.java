@@ -16,6 +16,7 @@ import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.ParameterMapping;
 import org.apache.ibatis.session.Configuration;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.weiweb.common.model.URole;
 import com.weiweb.common.utils.LoggerUtils;

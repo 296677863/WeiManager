@@ -9,6 +9,7 @@ import java.util.zip.ZipOutputStream;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.weiweb.core.mybatis.BaseMybatisDao;
 import com.weiweb.core.mybatis.page.Pagination;
@@ -54,6 +55,7 @@ public class SysGeneratorServiceImpl extends BaseMybatisDao<SysGeneratorMapper> 
 	}
 
 	@Override
+	@Transactional
 	public Pagination<TableEntity> list(Map<String, Object> resultMap,
 			Integer pageNo, Integer pageSize) {
 		return super.findPage(resultMap, pageNo, pageSize);

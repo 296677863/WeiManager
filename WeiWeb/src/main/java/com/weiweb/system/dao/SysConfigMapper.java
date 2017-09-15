@@ -1,5 +1,7 @@
 package com.weiweb.system.dao;
 
+import java.util.List;
+
 import com.weiweb.system.model.SysConfig;
 
 public interface SysConfigMapper {
@@ -50,4 +52,6 @@ public interface SysConfigMapper {
      * @mbggenerated Fri Aug 25 14:05:11 CST 2017
      */
     int updateByPrimaryKey(SysConfig record);
+    
+    List<SysConfig> findAll();
 }

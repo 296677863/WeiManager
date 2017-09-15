@@ -106,14 +106,13 @@ public class ScheduleJobServiceImpl extends BaseMybatisDao<ScheduleJobMapper> im
 		this.updateByPrimaryKeySelective(scheduleJob);
 	}
 	
-	@Transactional
 	@Override
+	
 	public void run(Long[] jobIds) {
 		for (Long jobId : jobIds) {
 			ScheduleUtils.run(scheduler, queryObject(jobId));
 		}
 	}
-	
 	@Transactional
 	public void pause(Long[] jobIds) {
 		for (Long jobId : jobIds) {
@@ -121,7 +120,6 @@ public class ScheduleJobServiceImpl extends BaseMybatisDao<ScheduleJobMapper> im
 		}
 		updateBatch(jobIds, ScheduleStatus.PAUSE.getValue());
 	}
-	
 	
 	@Transactional
 	public void resume(Long[] jobIds) {
