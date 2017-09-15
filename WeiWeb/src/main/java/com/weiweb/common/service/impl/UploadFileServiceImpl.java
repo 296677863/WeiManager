@@ -1,19 +1,32 @@
 package com.weiweb.common.service.impl;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Base64Utils;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.weiweb.common.dao.UploadFileMapper;
 import com.weiweb.common.model.UploadFile;
 import com.weiweb.common.service.UploadFileService;
 import com.weiweb.common.utils.DateUtil;
+import com.weiweb.common.utils.JsonUtils;
+import com.weiweb.common.utils.ToolKit;
 import com.weiweb.common.utils.VideoThumbTaker;
 import com.weiweb.core.shiro.cache.impl.SystemConfigCache;
 import com.weiweb.core.statics.Constant;
@@ -24,6 +37,9 @@ import net.coobird.thumbnailator.Thumbnails;
 @Service
 public class UploadFileServiceImpl implements UploadFileService {
 
+	@Autowired
+	UploadFileMapper uploadFileMapper;
+	
 	@Override
 	public File upload(MultipartFile file, String type) throws IllegalStateException, IOException {
 		String fileName = createEmptyFile(file.getOriginalFilename(), type);
@@ -92,7 +108,6 @@ public class UploadFileServiceImpl implements UploadFileService {
 			}
 
 		}
-		//this.save(uploadfile);
 		return uploadfile;
 	}
 	
@@ -142,47 +157,222 @@ public class UploadFileServiceImpl implements UploadFileService {
 
 	@Override
 	public UploadFile saveFileToTable(File file, String type, String realFilename) {
-		return null;
+		UploadFile uploadFile =  fileToTable(file, type, realFilename,null);
+		uploadFileMapper.insertSelective(uploadFile);
+		return uploadFile;
 	}
 
 	@Override
 	public void deleteFileFormServer(String filePath) {
-		
+		// 删除本地数据
+		String root = SystemConfigCache.findValueByName(Constant.UPLOADFILE_BASEFILEPATH);
+		File file = new File(root + filePath);
+		if (null != file && file.exists()) {
+			file.delete();
+		}
 	}
-
+	
 	@Override
 	public void deleteFileFormTable(String filePath) {
-		
+		// 删除数据库的数据
+		List<UploadFile> oldList =uploadFileMapper.selectByFilePath(filePath); 
+		for (UploadFile uploadFile : oldList) {
+			uploadFileMapper.deleteByPrimaryKey(uploadFile.getId());
+		}
 	}
 
 	@Override
 	public void deleteFileByRelationIds(String[] ids) {
-		
+		for (String relationId : ids) {
+			List<UploadFile> oldList = uploadFileMapper.selectByRelationId(relationId);
+			for (UploadFile uploadFile : oldList) {
+				deleteFileFormServer(uploadFile.getFilePath());
+				deleteFileFormTable(uploadFile.getFilePath());
+			}
+		}
 	}
 
 	@Override
 	public void updateInfo(String imsgJson, String relationId) throws Exception {
-		
+		List<UploadFile> formList = getListForJson(imsgJson);
+		// 从数据库、服务器上删除页面上已删除的信息
+		deletFile(formList, relationId);
+		// 保存或更新  
+		if(!CollectionUtils.isEmpty(formList)){
+			saveOrUpdate(formList, relationId);
+		}
 	}
+	
+	/**
+	 * 保存或更新附件信息
+	 * @param formList 所有附件信息
+	 * @param relationId 关联主键id
+	 */
+	private void saveOrUpdate(List<UploadFile> formList, String relationId) {
+		if (!CollectionUtils.isEmpty(formList)) {
+			for (UploadFile uploadFile : formList) {
+				if (ToolKit.isnull(uploadFile.getId())) {
+					uploadFile.setRelationId(relationId);
+					uploadFile.setCreateDate(new Date());
+					uploadFile.setModifyDate(new Date());
+					uploadFileMapper.insertSelective(uploadFile);
+				} else {
+					uploadFile.setModifyDate(new Date());
+					uploadFileMapper.updateByPrimaryKey(uploadFile);
+				}
+			}
+		}
+	}
+	
+	/**
+	 * 编辑信息时，先在服务器、数据库中删除通过页面删除的附件信息
+	 * 
+	 * @param formList
+	 *            页面上所有附件信息
+	 * @param relationId
+	 *            关联主键id
+	 */
+	private void deletFile(List<UploadFile> formList, String relationId) {
 
+		List<UploadFile> updateList = getUpdateList(formList);
+		List<UploadFile> oldList = uploadFileMapper.selectByRelationId(relationId);
+
+		List<UploadFile> delList = getDeleteList(oldList, updateList);
+		if(!CollectionUtils.isEmpty(delList)){
+			for (UploadFile uploadFile : delList) {
+				// 删除数据库的数据
+				deleteFileFormTable(uploadFile.getFilePath());
+				// 删除本地数据
+				deleteFileFormServer(uploadFile.getFilePath());
+			}
+		}
+	}
+	
+	/**
+	 * 根据页面上所有附件信息得到 只需要更新的信息
+	 * 
+	 * @param uploadList
+	 *            页面所有附件信息
+	 * @return
+	 */
+	private List<UploadFile> getUpdateList(List<UploadFile> uploadList) {
+		List<UploadFile> updateList = new ArrayList<UploadFile>();
+		if(!CollectionUtils.isEmpty(uploadList)){
+			for (UploadFile uploadFile : uploadList) {
+				if (!ToolKit.isnull(uploadFile.getId())) {
+					updateList.add(uploadFile);
+				}
+			}
+		}
+		return updateList;
+	}
+	/**
+	 * 通过附件json集合字符串转化为List
+	 * 
+	 * @param imsgJson
+	 *            json集合字符串
+	 * @return
+	 * @throws JsonParseException
+	 * @throws JsonMappingException
+	 * @throws IOException
+	 */
+	@SuppressWarnings("unchecked")
+	private List<UploadFile> getListForJson(String imsgJson)
+			throws JsonParseException, JsonMappingException, IOException {
+		ObjectMapper obj = new ObjectMapper();
+		List<Map<String, Object>> list = obj.readValue(imsgJson, List.class);
+		List<UploadFile> result = new ArrayList<UploadFile>();
+		if (!CollectionUtils.isEmpty(list)) {
+			for (Map<String, Object> map : list) {
+				result.add(JsonUtils.toObject(JsonUtils.toJson(map),
+						UploadFile.class));
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * 根据数据库已有数据和页面上保留有主键的附件信息比较得到已删除的信息
+	 * 
+	 * @param oldList
+	 *            数据库已有信息
+	 * @param updateList
+	 *            页面上有主键的id信息
+	 * @return
+	 */
+	private List<UploadFile> getDeleteList(List<UploadFile> oldList,
+			List<UploadFile> updateList) {
+		List<UploadFile> delList = new ArrayList<UploadFile>();
+		if(!CollectionUtils.isEmpty(oldList)){
+			for (UploadFile old : oldList) {
+				boolean isHas = false;
+				for (UploadFile update : updateList) {
+					if (old.getId().equals(update.getId())) {
+						isHas = true;
+						break;
+					}
+				}
+				//
+				if (!isHas) {
+					delList.add(old);
+				}
+			}
+		}
+		return delList;
+	}
 	@Override
 	public String upload(String base64, String type) throws IllegalStateException, IOException {
-		return null;
+		String root = SystemConfigCache.findValueByName(Constant.UPLOADFILE_BASEFILEPATH);
+
+		String fileName = createEmptyFile(".jpg", type);
+		try {
+			byte[] b = Base64Utils.decodeFromString(base64);
+				for (int i = 0; i < b.length; ++i) {
+				if (b[i] < 0) {// 调整异常数据
+				b[i] += 256;
+				}
+			}
+			OutputStream out = new FileOutputStream(fileName);
+			out.write(b);
+			out.flush();
+			out.close();
+			} catch (Exception e) {
+				
+				return null;
+			}
+		
+		return fileName.substring(root.length());
 	}
 
 	@Override
 	public File getFile(String filename) {
+		String root = SystemConfigCache.findValueByName(Constant.UPLOADFILE_BASEFILEPATH);
+		File file=new File(root+filename);
+		if(file.exists()){
+			return file;
+		}
 		return null;
 	}
 
 	@Override
 	public File getFileById(String id) {
+		UploadFile  uploadFile =  uploadFileMapper.selectByPrimaryKey(id);
+		String root = SystemConfigCache.findValueByName(Constant.UPLOADFILE_BASEFILEPATH);
+		File file=new File(root+uploadFile.getFilePath());
+		if(file.exists()){
+			return file;
+		}
 		return null;
 	}
 
 	@Override
 	public void deleteFileByIds(String[] ids) {
-		
+		for (String id : ids) {
+			UploadFile uploadFile =uploadFileMapper.selectByPrimaryKey(id);
+			deleteFileFormServer(uploadFile.getFilePath());
+			uploadFileMapper.deleteByPrimaryKey(uploadFile.getId());
+			
+		}
 	}
 
 	/**
@@ -220,12 +410,14 @@ public class UploadFileServiceImpl implements UploadFileService {
 
 	@Override
 	public void delFile(String filePath) {
-		
+		deleteFileFormServer(filePath);
+		deleteFileFormTable(filePath);
 	}
 
 	@Override
-	public List<UploadFile> findUploadFile(UploadFile up) {
-		return null;
+	public List<UploadFile> findUploadFile(Map<String,Object> map) {
+		return uploadFileMapper.findByUploadFile(map);
 	}
+
 
 }

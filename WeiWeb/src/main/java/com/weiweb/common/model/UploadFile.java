@@ -1,10 +1,16 @@
 package com.weiweb.common.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class UploadFile  implements Serializable{
 
 	private static final long serialVersionUID = -3612811768891452060L;
+	
+	private String  id;
+	private Date createDate;
+	private Date modifyDate;
+	
 	/**上传关联业务类型**/
 	public String entityType;
 	/**文件名**/
@@ -25,6 +31,26 @@ public class UploadFile  implements Serializable{
 	 * 压缩图片路径
 	 */
 	public String minPath;
+	
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public Date getCreateDate() {
+		return createDate;
+	}
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+	public Date getModifyDate() {
+		return modifyDate;
+	}
+	public void setModifyDate(Date modifyDate) {
+		this.modifyDate = modifyDate;
+	}
 	public String getFileName() {
 		return fileName;
 	}

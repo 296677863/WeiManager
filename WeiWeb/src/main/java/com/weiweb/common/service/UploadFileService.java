@@ -3,6 +3,7 @@ package com.weiweb.common.service;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -116,5 +117,6 @@ public interface UploadFileService {
 	 */
 	public void delFile(String filePath);
 
-	public List<UploadFile> findUploadFile(UploadFile up);
+	public List<UploadFile> findUploadFile(Map<String,Object> map);
+
 }

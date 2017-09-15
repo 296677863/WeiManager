@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -134,10 +136,10 @@ public class UploadFileController extends BaseController {
 	@RequestMapping("/loadFile")
 	@ResponseBody
 	public List<UploadFile> loadFile(String relationId, String entityType) {
-		UploadFile up = new UploadFile();
-		up.setRelationId(relationId);
-		up.setEntityType(entityType);
-		return service.findUploadFile(up);
+		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("relationId", relationId);
+		map.put("entityType", entityType);
+		return service.findUploadFile(map);
 	}
 
 	/**
