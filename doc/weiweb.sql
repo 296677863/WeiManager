@@ -309,6 +309,9 @@ CREATE TABLE `sys_config` (
 
 /*Data for the table `sys_config` */
 
+insert  into `sys_config`(`id`,`create_date`,`modify_date`,`param_name`,`param_type`,`param_value`,`show_name`) values 
+('1','2017-09-15 16:50:24','2017-09-15 16:50:27','上传文件目录','uploadFile.baseFilePath','D\\:\\\\picupload\\\\download\\\\',NULL);
+
 /*Table structure for table `sys_dict` */
 
 DROP TABLE IF EXISTS `sys_dict`;
@@ -493,7 +496,7 @@ insert  into `u_user`(`id`,`nickname`,`email`,`pswd`,`create_time`,`last_login_t
 (1,'管理员','admin','57dd03ed397eabaeaa395eb740b770fd','2016-06-16 11:15:33','2017-09-13 17:03:10',1),
 (11,'soso','8446666@qq.com','d57ffbe486910dd5b26d0167d034f9ad','2016-05-26 20:50:54','2016-06-16 11:24:35',1),
 (12,'8446666','8446666','4afdc875a67a55528c224ce088be2ab8','2016-05-27 22:34:19','2016-06-15 17:03:16',0),
-(15,'test','test@123.com','5ebe20cf5fc1da2a3785607ec3002fcf','2017-08-20 11:52:38','2017-09-14 10:16:05',1);
+(15,'test','test@123.com','5ebe20cf5fc1da2a3785607ec3002fcf','2017-08-20 11:52:38','2017-09-15 14:10:56',1);
 
 /*Table structure for table `u_user_role` */
 
@@ -512,6 +515,28 @@ insert  into `u_user_role`(`uid`,`rid`) values
 (11,4),
 (1,1),
 (15,1);
+
+/*Table structure for table `upload_file` */
+
+DROP TABLE IF EXISTS `upload_file`;
+
+CREATE TABLE `upload_file` (
+  `id` varchar(32) NOT NULL,
+  `create_date` datetime DEFAULT NULL,
+  `modify_date` datetime DEFAULT NULL,
+  `cn_name` varchar(255) DEFAULT NULL,
+  `cover_path` varchar(255) DEFAULT NULL,
+  `entity_type` varchar(255) DEFAULT NULL,
+  `file_name` varchar(255) DEFAULT NULL,
+  `file_path` varchar(255) DEFAULT NULL,
+  `file_size` int(11) DEFAULT NULL,
+  `file_type` varchar(255) DEFAULT NULL,
+  `min_path` varchar(255) DEFAULT NULL,
+  `relation_id` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `upload_file` */
 
 /*Table structure for table `wx_img_article` */
 
