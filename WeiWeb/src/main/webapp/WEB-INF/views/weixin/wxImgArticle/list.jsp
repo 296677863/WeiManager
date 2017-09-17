@@ -32,7 +32,7 @@
 						</div>
 					</div>
 					<div class="form-group col-sm-12 icon-left">
-						<button class="m-btn maincolor main-btn weiOpenBtn"  data-url="${base}/base/wximgarticle/add" data-title="添加"
+						<button class="m-btn maincolor main-btn weiOpenBtn"  data-url="${base}/base/wximgarticle/add.shtml" data-title="添加"
 								type="button">
 								<span>新增</span>
 							</button>
@@ -49,7 +49,7 @@
         </div>
 	</div>
 	<%@ include file="/common/footer.jsp"%>
-	<script type="text/javascript" src="${base}/weixin/wxImgArticle/list.js?v=<wei:version/>"></script>
+	<script type="text/javascript" src="${base}/js/weixin/wxImgArticle/list.js?v=<wei:version/>"></script>
 </body>
 
 </html>

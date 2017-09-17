@@ -59,7 +59,7 @@ public class PermissionController extends BaseController {
 			if(psermission.getId()!=null){
 				permissionService.updateByPrimaryKeySelective(psermission);
 			}else{
-				permissionService.insertSelective(psermission);
+				permissionService.insert(psermission);
 			}
 			return SUCCESS_MESSAGE;
 		} catch (Exception e) {

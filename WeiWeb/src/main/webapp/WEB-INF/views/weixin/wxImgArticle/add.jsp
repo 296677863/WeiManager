@@ -196,10 +196,8 @@
                     <div class="col-sm-12 pl0 col-val">
                         <div class="group-div">
                             <label class="label-left">摘要(选填)：</label>
-                            <div class="input-left">
-                                <textarea rows="5" class="default-input textarea-content" id="newsSummary" name="summary">${news.summary }</textarea>
+                                <textarea rows="12" class="default-input textarea-content" id="newsSummary" name="summary">${news.summary }</textarea>
                                 <div class="count-div"><span class="number">0</span>/<span>120</span></div>
-                            </div>
 
                         </div>
                     </div>

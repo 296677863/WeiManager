@@ -14,6 +14,8 @@ import org.springframework.ui.ModelMap;
 import com.weiweb.core.mybatis.BaseMybatisDao;
 import com.weiweb.core.mybatis.page.Pagination;
 import com.weiweb.core.shiro.cache.VCache;
+import com.weiweb.core.shiro.cache.impl.SystemConfigCache;
+import com.weiweb.core.statics.Constant;
 import com.weiweb.system.dao.SysConfigMapper;
 import com.weiweb.system.model.SysConfig;
 import com.weiweb.system.service.SysConfigService;
@@ -39,7 +41,9 @@ public class SysConfigServiceImpl  extends BaseMybatisDao<SysConfigMapper> imple
 			    for (SysConfig systemConfig : systemConfigs) {  
 			    	VCache.setVByMap("sysMap", systemConfig.getParamName(), systemConfig);
 			    } 
-	            System.out.println("\n\n\n\n\n______________\n\n\n加载了\n\n_________\n\n");
+			    
+			    String baseupload=SystemConfigCache.findValueByName(Constant.UPLOADFILE_BASEFILEPATH);
+	            System.out.println("\n\n\n\n\n______________\n\n\n加载了"+baseupload+"\n\n_________\n\n");
 	        }  
 	        
 	}
