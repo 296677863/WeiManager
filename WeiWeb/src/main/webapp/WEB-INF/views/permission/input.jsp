@@ -80,7 +80,7 @@
                             <label class="label-left">上级菜单：</label>
                             <c:choose>
                                 <c:when test="${fn:length(parents) >0}">
-                                    <select name="parent" class="choose-select default-input"  style="width: 95%">
+                                    <select name="parent" class="choose-select default-input"   id="parentSelect" style="width: 95%">
                                        	<option value="">请选择上级菜单</option>
                                         <c:forEach items="${parents}" var="parent1">
                                             <option value="${parent1.id}"

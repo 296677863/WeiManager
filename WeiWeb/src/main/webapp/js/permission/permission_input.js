@@ -13,11 +13,21 @@ $(function () {
     $("#permissionSelect").on('change', function (evt, params) {
         intiServiceIsShow(params.selected);
     });
+    
+    $("#parentSelect").on('change', function (evt, params) {
+       if(evt!=null){
+    	   $("#levelId").val("2");
+       }else{
+    	   $("#levelId").val("1");
+       }
+    });
 
     function intiServiceIsShow(evt) {
     	debugger;
         if (evt!="1") {
             $(".menuPermission").hide();
+            $("#levelId").val("");
+            $("#parentSelect").val("");
         } else {
         	$(".menuPermission").show();
         }
