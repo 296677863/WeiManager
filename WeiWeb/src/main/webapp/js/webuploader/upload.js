@@ -17,7 +17,7 @@
 	
 	$.fn.uploadDefaults={
 			auto:true,// [可选] [默认值：false] 设置为 true 后，不需要手动调用上传，有文件选择即开始上传
-			swf: baseRoot+'/resources/admin/base/js/plugins/webuploader/Uploader.swf',//定义uploadify.swf的路径。
+			swf: baseRoot+'/js/webuploader/Uploader.swf',//定义uploadify.swf的路径。
 			accept: {
 	            title: 'Images',
 	            extensions: 'gif,jpg,jpeg,bmp,png',
@@ -26,7 +26,7 @@
 	        },
 	        disableGlobalDnd: true,//是否禁掉整个页面的拖拽功能
 	        chunked: false,
-	        server:baseRoot+'/base/uploadFile/imageUpload',//定义服务器端上传数据处理请求,
+	        server:baseRoot+'/base/uploadFile/imageUpload.shtml',//定义服务器端上传数据处理请求,
 	        formData:{ },
 	        fileSingleSizeLimit :10*1024*1024,//10M  单个文件
 	        duplicate:true,//允许重复上传

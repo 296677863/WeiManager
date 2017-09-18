@@ -9,11 +9,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Base64Utils;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,6 +29,7 @@ import com.weiweb.common.service.UploadFileService;
 import com.weiweb.common.utils.DateUtil;
 import com.weiweb.common.utils.JsonUtils;
 import com.weiweb.common.utils.ToolKit;
+import com.weiweb.common.utils.UUIDHelper;
 import com.weiweb.common.utils.VideoThumbTaker;
 import com.weiweb.core.shiro.cache.impl.SystemConfigCache;
 import com.weiweb.core.statics.Constant;
@@ -59,8 +62,10 @@ public class UploadFileServiceImpl implements UploadFileService {
 	}
 
 	@Override
+	@Transactional
 	public UploadFile fileToTable(File file, String type, String realFilename, HttpServletRequest request) {
 		String root = SystemConfigCache.findValueByName(Constant.UPLOADFILE_BASEFILEPATH);
+		
 		UploadFile uploadfile = new UploadFile();
 		uploadfile.setEntityType(type);
 		uploadfile.setFileType(realFilename.substring(realFilename
@@ -108,6 +113,8 @@ public class UploadFileServiceImpl implements UploadFileService {
 			}
 
 		}
+		uploadfile.setId(UUIDHelper.gen());
+		uploadFileMapper.insert(uploadfile);
 		return uploadfile;
 	}
 	
@@ -158,7 +165,6 @@ public class UploadFileServiceImpl implements UploadFileService {
 	@Override
 	public UploadFile saveFileToTable(File file, String type, String realFilename) {
 		UploadFile uploadFile =  fileToTable(file, type, realFilename,null);
-		uploadFileMapper.insertSelective(uploadFile);
 		return uploadFile;
 	}
 

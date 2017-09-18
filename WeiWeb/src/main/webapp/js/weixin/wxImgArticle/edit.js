@@ -137,9 +137,9 @@ $(function () {
         var $this = $(this);
         if ($this.parent("div").hasClass("img-append-mask")) {
             var filepath = $(this).closest(".img-div").find("input").first().val();
-            wei.ajax.ajaxTagSu(baseRoot + "/base/news/deleteCover",{id: $("#newsId").val()},function (message) {
+            wei.ajax.ajaxTagSu(baseRoot + "/base/news/deleteCover.shtml",{id: $("#newsId").val()},function (message) {
                 if (message.type == "success") {
-                    wei.ajax.ajaxTagSu(baseRoot + "/base/uploadFile/delUpload",{filePath: filepath},function (message) {
+                    wei.ajax.ajaxTagSu(baseRoot + "/base/uploadFile/delUpload.shtml",{filePath: filepath},function (message) {
                         if (message.type == "success") {
                             wei.dialog.layerMsg("删除成功！",null,null,function(){
                                 $(".dispalyCover").empty();
@@ -210,7 +210,7 @@ $(function () {
             ableSubBtn($this);
             return ;
         }
-        wei.ajax.ajaxTagSu(baseRoot+"/base/news/save",data,function (message) {
+        wei.ajax.ajaxTagSu(baseRoot+"/base/news/save.shtml",data,function (message) {
             if (message.type == "success") {
                 wei.dialog.msgIframe(message.content);
             }else{
@@ -232,9 +232,9 @@ $(function () {
             ableSubBtn($this);
             return ;
         }
-        wei.ajax.ajaxTagSu(baseRoot+"/base/news/exhibitionsave",data,function (message) {
+        wei.ajax.ajaxTagSu(baseRoot+"/base/news/exhibitionsave.shtml",data,function (message) {
             if (message.type == "success") {
-                window.open(baseRoot+"/base/news/viewPage")
+                window.open(baseRoot+"/base/news/viewPage.shtml")
                 ableSubBtn($this);
             }else{
                 wei.dialog.layerMsg(message.content,5,null,function(){
