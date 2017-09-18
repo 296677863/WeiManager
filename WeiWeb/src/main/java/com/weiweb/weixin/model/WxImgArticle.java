@@ -1,6 +1,7 @@
 package com.weiweb.weixin.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 
 /**
@@ -17,9 +18,9 @@ public class WxImgArticle implements Serializable {
 	//
 	private String id;
 	//
-	private String createDate;
+	private Date createDate;
 	//
-	private String modifyDate;
+	private Date modifyDate;
 	//
 	private String author;
 	//
@@ -29,7 +30,7 @@ public class WxImgArticle implements Serializable {
 	//
 	private String href;
 	//
-	private Integer showCover;
+	private Boolean showCover;
 	//
 	private String summary;
 	//
@@ -50,25 +51,25 @@ public class WxImgArticle implements Serializable {
 	/**
 	 * 设置：
 	 */
-	public void setCreateDate(String createDate) {
+	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
 	/**
 	 * 获取：
 	 */
-	public String getCreateDate() {
+	public Date getCreateDate() {
 		return createDate;
 	}
 	/**
 	 * 设置：
 	 */
-	public void setModifyDate(String modifyDate) {
+	public void setModifyDate(Date modifyDate) {
 		this.modifyDate = modifyDate;
 	}
 	/**
 	 * 获取：
 	 */
-	public String getModifyDate() {
+	public Date getModifyDate() {
 		return modifyDate;
 	}
 	/**
@@ -122,13 +123,13 @@ public class WxImgArticle implements Serializable {
 	/**
 	 * 设置：
 	 */
-	public void setShowCover(Integer showCover) {
+	public void setShowCover(Boolean showCover) {
 		this.showCover = showCover;
 	}
 	/**
 	 * 获取：
 	 */
-	public Integer getShowCover() {
+	public Boolean getShowCover() {
 		return showCover;
 	}
 	/**

@@ -1,5 +1,6 @@
 package com.weiweb.common.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -14,16 +15,18 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.log4j.Logger;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.context.ServletContextAware;
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.weiweb.common.model.UUser;
+import com.weiweb.common.utils.DateEditor;
 import com.weiweb.common.utils.SpringContextUtil;
 import com.weiweb.common.utils.StringUtils;
 import com.weiweb.core.shiro.po.Message;
@@ -183,7 +186,17 @@ public class BaseController implements ServletContextAware{
 		}
 	}
 
-	
+	/**
+	 * 数据绑定
+	 * 
+	 * @param binder
+	 *            WebDataBinder
+	 */
+	@InitBinder
+	protected void initBinder(WebDataBinder binder) {
+		binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
+		binder.registerCustomEditor(Date.class, new DateEditor(true));
+	}
 
 
 	

@@ -27,11 +27,13 @@ public class WxImgArticleServiceImpl extends BaseMybatisDao<WxImgArticleMapper> 
 	}
 	
 	@Override
+	@Transactional
 	public int insert(WxImgArticle record) {
 		return wxImgArticleMapper.insert(record);
 	}
 	
 	@Override
+	@Transactional
 	public int insertSelective(WxImgArticle record) {
 		return wxImgArticleMapper.insertSelective(record);
 	}
@@ -42,11 +44,13 @@ public class WxImgArticleServiceImpl extends BaseMybatisDao<WxImgArticleMapper> 
 	}
 
 	@Override
+	@Transactional
 	public int updateByPrimaryKey(WxImgArticle record) {
 		return wxImgArticleMapper.updateByPrimaryKey(record);
 	}
 
 	@Override
+	@Transactional
 	public int updateByPrimaryKeySelective(WxImgArticle record) {
 		return wxImgArticleMapper.updateByPrimaryKeySelective(record);
 	}

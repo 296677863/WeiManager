@@ -137,7 +137,7 @@ $(function () {
         var $this = $(this);
         if ($this.parent("div").hasClass("img-append-mask")) {
             var filepath = $(this).closest(".img-div").find("input").first().val();
-            wei.ajax.ajaxTagSu(baseRoot + "/base/news/deleteCover.shtml",{id: $("#newsId").val()},function (message) {
+            wei.ajax.ajaxTagSu(baseRoot + "/base/wximgarticle/deleteCover.shtml",{id: $("#newsId").val()},function (message) {
                 if (message.type == "success") {
                     wei.ajax.ajaxTagSu(baseRoot + "/base/uploadFile/delUpload.shtml",{filePath: filepath},function (message) {
                         if (message.type == "success") {
@@ -210,7 +210,7 @@ $(function () {
             ableSubBtn($this);
             return ;
         }
-        wei.ajax.ajaxTagSu(baseRoot+"/base/news/save.shtml",data,function (message) {
+        wei.ajax.ajaxTagSu(baseRoot+"/base/wximgarticle/save.shtml",data,function (message) {
             if (message.type == "success") {
                 wei.dialog.msgIframe(message.content);
             }else{
@@ -232,9 +232,9 @@ $(function () {
             ableSubBtn($this);
             return ;
         }
-        wei.ajax.ajaxTagSu(baseRoot+"/base/news/exhibitionsave.shtml",data,function (message) {
+        wei.ajax.ajaxTagSu(baseRoot+"/base/wximgarticle/exhibitionsave.shtml",data,function (message) {
             if (message.type == "success") {
-                window.open(baseRoot+"/base/news/viewPage.shtml")
+                window.open(baseRoot+"/base/wximgarticle/viewPage.shtml")
                 ableSubBtn($this);
             }else{
                 wei.dialog.layerMsg(message.content,5,null,function(){

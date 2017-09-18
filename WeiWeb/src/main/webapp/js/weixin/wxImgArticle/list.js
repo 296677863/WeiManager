@@ -28,8 +28,8 @@ $(function(){
 					                	 width: 150,
 					                	 fixed:true,
 					                     formatter:function(cellvalue, options, rowObject){
-					                    	 var btn = '<a href="javascript:void(0)" class="weiOpenBtn" data-url="{0}/base/wximgarticle/edit/{1}" data-title="新闻编辑">[编辑]</a>'.format(baseRoot,rowObject.id);
-					                    	 	btn+= '<a href="{0}/base/wximgarticle/view/{1}" target="_blank">[预览]</a>'.format(baseRoot,rowObject.id);
+					                    	 var btn = '<a href="javascript:void(0)" class="weiOpenBtn" data-url="{0}/base/wximgarticle/edit/{1}.shtml" data-title="新闻编辑">[编辑]</a>'.format(baseRoot,rowObject.id);
+					                    	 	btn+= '<a href="{0}/base/wximgarticle/view/{1}.shtml" target="_blank">[预览]</a>'.format(baseRoot,rowObject.id);
 					                    	 return btn;
 					                     }
 					                 }
