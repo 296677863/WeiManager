@@ -3,7 +3,7 @@
 
 var jQuery = require('example:widget/ui/jquery/jquery.js')
 
-return (function( root, factory ) {
+(function( root, factory ) {
     var modules = {},
 
         // 内部require, 简单不完全实现。

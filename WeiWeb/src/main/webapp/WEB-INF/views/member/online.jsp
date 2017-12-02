@@ -24,7 +24,7 @@
 		<!-- 					<button class="m-btn disable-btn" id="reseBtn" type="button"><span>密码重置</span></button> -->
 						</div>
 						<div class="col-sm-6">
-							<div class="search-div"/>
+							<div class="search-div">
 		<!-- 							<input type="text" class="default-input" id="searchInput"/> -->
 		<!-- 							<div class="search"><i class="iconfont"></i></div> -->
 							</div>

@@ -42,7 +42,7 @@
 						<div class="user-div clearfix">
 							<div class="l-user">
 								<i class='icon3'></i>
-								<input  placeholder="验证码"  type="txt" name="captcha" autocomplete="off" class="input-text" id="yzm" />
+								<input  placeholder="验证码"  type="text" name="captcha" autocomplete="off" class="input-text" id="yzm" />
 							</div>
 							<div class="r-user">
 								<div class='txts'><img class="kaptcha" src="${base}/kaptcha/kaptcha.jpg" id="kaptchaImage" /></div>
