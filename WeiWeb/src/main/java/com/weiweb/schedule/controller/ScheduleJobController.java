@@ -102,7 +102,7 @@ public class ScheduleJobController extends BaseController{
 	@ResponseBody
 	public Message save(ScheduleJobModel bean,RedirectAttributes redirectAttributes){
 		try{
-			if(!StringUtils.isEmpty(Long.toString(bean.getJobId()))){
+			if(bean.getJobId()!=null){
 				scheduleJobService.update(bean);
 			}else{
 				scheduleJobService.save(bean);
