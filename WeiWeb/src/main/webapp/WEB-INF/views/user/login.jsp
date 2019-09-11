@@ -45,7 +45,7 @@
 								<input  placeholder="验证码"  type="text" name="captcha" autocomplete="off" class="input-text" id="yzm" />
 							</div>
 							<div class="r-user">
-								<div class='txts'><img class="kaptcha" src="${base}/kaptcha/kaptcha.jpg" id="kaptchaImage" /></div>
+								<div class='txts'><img class="kaptcha" src="${base}/open/getGifCode.shtml" id="kaptchaImage" /></div>
 							</div>
 						 <%--<i class='icon3'></i>--%>
                         	<%--<input  placeholder="验证码" value='验证码' type="txt" autocomplete="off" class="input-text" id="yzm" />--%>

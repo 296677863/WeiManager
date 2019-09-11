@@ -18,9 +18,9 @@
       	<property name="applicationContextSchedulerContextKey" value="applicationContextKey" />
 		<property name="configLocation" value="classpath:quartz.properties" /> 
 		<property name="schedulerName" value="RenrenScheduler"></property>
-		<property name="autoStartup" value="true"></property>
+		<!-- <property name="autoStartup" value="true"></property>
 		<property name="startupDelay" value="30"></property>
-		<property name="overwriteExistingJobs" value="true"></property>
+		<property name="overwriteExistingJobs" value="true"></property> -->
 	</bean> 
 	
 

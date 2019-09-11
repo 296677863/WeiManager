@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/WeiManager.iml" filepath="$PROJECT_DIR$/WeiManager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WeiWeb/WeiWeb.iml" filepath="$PROJECT_DIR$/WeiWeb/WeiWeb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/weixin4j-base/weixin4j-base.iml" filepath="$PROJECT_DIR$/weixin4j-base/weixin4j-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/weixin4j-mp/weixin4j-mp.iml" filepath="$PROJECT_DIR$/weixin4j-mp/weixin4j-mp.iml" />
+    </modules>
+  </component>
+</project>

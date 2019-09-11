@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="WeiWeb:war">
+    <output-path>$PROJECT_DIR$/WeiWeb/target</output-path>
+    <root id="archive" name="WeiWeb-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="WeiWeb:war exploded" />
+    </root>
+  </artifact>
+</component>

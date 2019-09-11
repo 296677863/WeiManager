@@ -96,9 +96,16 @@ public class ScheduleJobServiceImpl extends BaseMybatisDao<ScheduleJobMapper> im
 	public void save(ScheduleJobModel scheduleJob) throws Exception {
 		scheduleJob.setCreateTime(DateUtil.getDate());
 		scheduleJob.setStatus(ScheduleStatus.NORMAL.getValue());
-		int jobId=this.insertSelective(scheduleJob);
-		scheduleJob.setJobId((long)jobId);
-		ScheduleUtils.createScheduleJob(scheduler, scheduleJob);
+		int flag=this.insertSelective(scheduleJob);
+		if(flag>0) {
+			Long jobId=scheduleJob.getJobId();
+			scheduleJob.setJobId(jobId);
+			ScheduleUtils.createScheduleJob(scheduler, scheduleJob);
+		}else {
+			throw new Exception();
+		}
+		
+		
 	}
 	
 	@Transactional

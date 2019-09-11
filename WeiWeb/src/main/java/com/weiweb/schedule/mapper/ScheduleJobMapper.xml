@@ -62,9 +62,8 @@
     where job_id = #{jobId}
   </select>
   
-    <insert id="insertSelective" parameterType="com.weiweb.schedule.model.ScheduleJobModel">
-    
-    <selectKey keyProperty="job_id" order="AFTER" resultType="java.lang.String">
+   <insert id="insertSelective"  parameterType="com.weiweb.schedule.model.ScheduleJobModel">
+    <selectKey keyProperty="jobId" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into schedule_job
@@ -112,6 +111,7 @@
 		 <if test="gmtModified != null">
 	 #{gmtModified} 	</if>
 	    </trim>
+   
   </insert>
   
    <update id="updateByPrimaryKeySelective" parameterType="com.weiweb.schedule.model.ScheduleJobModel">

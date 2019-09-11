@@ -9,7 +9,7 @@ if (window != top) {
 $(function () {
     var v_time =1500;
     $('#kaptchaImage').click(function (event) {//生成验证码
-        $(this).hide().attr('src', baseRoot+'/kaptcha/kaptcha.jpg?' + Math.floor(Math.random()*100) ).fadeIn();
+        $(this).hide().attr('src', baseRoot+'/open/getGifCode.shtml?' + Math.floor(Math.random()*100) ).fadeIn();
         event.cancelBubble=true;
     });
 
@@ -77,7 +77,7 @@ $(function () {
     	debugger;
         var enPassword = MD5($password.val());
         var pswd = MD5($username.val() +"#" + $password.val()),
-    	data = {pswd:pswd,email:$username.val(),rememberMe:$isRememberUsername.is(':checked')};
+    	data = {pswd:pswd,email:$username.val(),vcode:$yzm.val(),rememberMe:$isRememberUsername.is(':checked')};
         var load = layer.load();
         $.ajax({
             type:"post",

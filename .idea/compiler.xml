@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="WeiWeb" />
+        <module name="weixin4j-base" />
+        <module name="weixin4j-mp" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="WeiManager" target="1.7" />
+      <module name="WeiWeb" target="1.7" />
+      <module name="weixin4j-base" target="1.7" />
+      <module name="weixin4j-mp" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

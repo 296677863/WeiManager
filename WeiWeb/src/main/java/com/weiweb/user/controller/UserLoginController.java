@@ -104,6 +104,13 @@ public class UserLoginController extends BaseController {
 	public Map<String,Object> submitLogin(UUser entity,Boolean rememberMe,HttpServletRequest request){
 		
 		try {
+			String vcode=request.getParameter("vcode");
+			if(!VerifyCodeUtils.verifyCode(vcode)){
+				resultMap.put("status", 500);
+				resultMap.put("message", "验证码不正确！");
+				return resultMap;
+			}
+			
 			entity = TokenManager.login(entity,rememberMe);
 			resultMap.put("status", 200);
 			resultMap.put("message", "登录成功");
