@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.weiweb.admin.system.dao.SysDictMapper" >
+  <resultMap id="BaseResultMap" type="com.weiweb.admin.system.model.SysDict" >
+    <id column="dict_id" property="dictId" jdbcType="VARCHAR" />
+    <result column="dict_name" property="dictName" jdbcType="VARCHAR" />
+    <result column="dict_type" property="dictType" jdbcType="VARCHAR" />
+    <result column="dict_remark" property="dictRemark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    dict_id, dict_name, dict_type
+  </sql>
+  
+  <sql id="limit_sql">
+  	   <if test="page_sql != null and page_sql != ''">
+      	${page_sql}
+      </if>
+  </sql>
+  
+     
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_dict
+    where dict_id = #{dictId,jdbcType=BIGINT}
+  </select>
+  
+  <sql id="where_all">
+  	<where>
+  	<if test="findContent != null and findContent !='' " >
+        and (
+        LOWER(name) like CONCAT("%",#{findContent,jdbcType=VARCHAR},"%") or
+        LOWER(type) like CONCAT("%",#{findContent,jdbcType=VARCHAR},"%")
+        )
+      </if>
+      </where>
+  </sql>
+  
+  <select id="findAll" resultMap="BaseResultMap" >
+  	 select 
+    <include refid="Base_Column_List" />
+    from sys_dict 
+    <include refid="where_all"/>
+    <include refid="limit_sql" />
+  </select>
+  <select id="findCount" resultMap="BaseResultMap" >
+ 	 select count(dict_id) from  sys_dict
+  	<include refid="where_all" />
+  </select>
+
+  <resultMap id="findSysDict_resultMap" extends="BaseResultMap" type="com.weiweb.admin.system.model.SysDict" >
+  	<collection property="sysDictDetails"  javaType="com.weiweb.admin.system.model.SysDictDetail">
+  	 	<id column="detail_id" property="detailId" jdbcType="BIGINT" />
+  	 	<result column="dictType" property="dictType" jdbcType="VARCHAR"/>
+  	 	<result column="detail_name" property="detailName" jdbcType="VARCHAR"/>
+  	 	<result column="detail_code" property="detailCode" jdbcType="VARCHAR"/>
+  	 	<result column="detail_sort" property="detailSort" jdbcType="VARCHAR"/>
+  	 	<result column="detail_type" property="detailType" jdbcType="VARCHAR"/>
+  	 	<result column="detail_state" property="detailState" jdbcType="INTEGER"/>
+    	<result column="detail_content" property="detailContent" jdbcType="VARCHAR" />
+    	<result column="detail_remark" property="detailRemark" jdbcType="VARCHAR"/>
+    	<result column="create_time" property="createTime" jdbcType="VARCHAR"/>
+    	<result column="create_id" property="createId" jdbcType="BIGINT"/>
+  	</collection>
+  </resultMap>
+  
+  <select id="findSysDictByType" resultMap="findSysDict_resultMap">
+  <!--  	select * from sys_dict sd
+		left join(select * from sys_dict_detail where dict_type=#{dictType,jdbcType=VARCHAR}) sdd on sdd.dict_type = sd.dict_type
+ -->
+  SELECT sd.dict_id, sd.dict_name, sd.dict_type, sdd.detail_id, sdd.dict_type as dictType, sdd.detail_name, sdd.detail_code, sdd.detail_sort, sdd.detail_type, sdd.detail_state, 
+    sdd.detail_content, sdd.detail_remark, sdd.create_time, sdd.create_id
+       FROM sys_dict sd  LEFT JOIN sys_dict_detail sdd  ON
+		 sdd.dict_type = sd.dict_type WHERE sd.dict_type=#{dictType,jdbcType=VARCHAR}
+  </select>
+  
+   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sys_dict
+    where dict_id = #{dictId,jdbcType=VARCHAR}
+  </delete>
+  
+  
+    <insert id="insert"  parameterType="com.weiweb.admin.system.model.SysDict" >
+    insert into sys_dict (dict_id, dict_name, dict_type
+      )
+    values (#{dictId,jdbcType=VARCHAR}, #{dictName,jdbcType=VARCHAR}, #{dictType,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective"  parameterType="com.weiweb.admin.system.model.SysDict" >
+    insert into sys_dict
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dictId != null" >
+        dict_id,
+      </if>
+      <if test="dictName != null" >
+        dict_name,
+      </if>
+      <if test="dictType != null" >
+        dict_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dictId != null" >
+        #{dictId,jdbcType=BIGINT},
+      </if>
+      <if test="dictName != null" >
+        #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="dictType != null" >
+        #{dictType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.weiweb.admin.system.model.SysDict" >
+    update sys_dict
+    <set >
+      <if test="dictName != null" >
+        dict_name = #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="dictType != null" >
+        dict_type = #{dictType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dict_id = #{dictId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.weiweb.admin.system.model.SysDict" >
+    update sys_dict
+    set dict_name = #{dictName,jdbcType=VARCHAR},
+       dict_type = #{dictType,jdbcType=VARCHAR}
+    where dict_id = #{dictId,jdbcType=BIGINT}
+  </update>
+</mapper>

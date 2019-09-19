@@ -41,6 +41,7 @@ public class ShiroFilterUtils {
 		PrintWriter out = null;
 		try {
 			response.setCharacterEncoding("UTF-8");
+			response.setContentType("application/json;charset=UTF-8"); 
 			out = response.getWriter();
 			out.println(JSONObject.fromObject(resultMap).toString());
 		} catch (Exception e) {

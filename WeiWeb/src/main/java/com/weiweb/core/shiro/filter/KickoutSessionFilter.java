@@ -132,6 +132,7 @@ public class KickoutSessionFilter extends AccessControlFilter {
 			throws IOException {
 		try {
 			hresponse.setCharacterEncoding("UTF-8");
+			hresponse.setContentType("application/json;charset=UTF-8"); 
 			PrintWriter out = hresponse.getWriter();
 			out.println(JSONObject.fromObject(resultMap).toString());
 			out.flush();

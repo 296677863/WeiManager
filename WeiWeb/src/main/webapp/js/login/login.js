@@ -74,14 +74,13 @@ $(function () {
     }
 
     function getEncrytionMode() {
-    	debugger;
         var enPassword = MD5($password.val());
         var pswd = MD5($username.val() +"#" + $password.val()),
     	data = {pswd:pswd,email:$username.val(),vcode:$yzm.val(),rememberMe:$isRememberUsername.is(':checked')};
         var load = layer.load();
         $.ajax({
             type:"post",
-            url:baseRoot+"/u/submitLogin.shtml",
+            url:baseRoot+"/admin/user/submitLogin.shtml",
             //提交的数据
             data:data,
             //返回数据的格式

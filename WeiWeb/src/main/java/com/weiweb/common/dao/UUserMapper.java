@@ -3,8 +3,8 @@ package com.weiweb.common.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.weiweb.admin.permission.bo.URoleBo;
 import com.weiweb.common.model.UUser;
-import com.weiweb.permission.bo.URoleBo;
 
 
 public interface UUserMapper {

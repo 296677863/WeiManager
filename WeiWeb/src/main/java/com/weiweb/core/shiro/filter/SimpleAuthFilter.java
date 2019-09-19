@@ -77,6 +77,7 @@ public class SimpleAuthFilter extends AccessControlFilter {
 	private void out(ServletResponse hresponse, Map<String, String> resultMap)
 			throws IOException {
 		hresponse.setCharacterEncoding("UTF-8");
+		hresponse.setContentType("application/json;charset=UTF-8");
 		PrintWriter out = hresponse.getWriter();
 		out.println(JSONObject.fromObject(resultMap).toString());
 		out.flush();

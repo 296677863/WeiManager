@@ -3,9 +3,9 @@ package com.weiweb.common.dao;
 import java.util.List;
 import java.util.Set;
 
+import com.weiweb.admin.permission.bo.UPermissionBo;
+import com.weiweb.admin.system.bo.Menu;
 import com.weiweb.common.model.UPermission;
-import com.weiweb.permission.bo.UPermissionBo;
-import com.weiweb.system.bo.Menu;
 
 
 

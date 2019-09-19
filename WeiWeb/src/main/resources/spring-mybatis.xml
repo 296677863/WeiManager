@@ -13,7 +13,7 @@
 			>
 	<!-- 自动扫描(自动注入) -->
 	<context:component-scan base-package="com.weiweb.*.service;com.weiweb.*.*.service"/>
-	<context:component-scan base-package="com.weiweb.schedule"/>
+	<context:component-scan base-package="com.weiweb.admin.schedule"/>
 	
 	<bean id="log-filter" class="com.alibaba.druid.filter.logging.Log4jFilter">
     	<property name="resultSetLogEnabled" value="true" />
@@ -58,10 +58,10 @@
 		<property name="mapperLocations"  >
 			<list>
 				<value>classpath:com/weiweb/common/mapper/*.xml</value>
-				<value>classpath:com/weiweb/system/mapper/*.xml</value>
-				<value>classpath:com/weiweb/gen/mapper/*.xml</value>
-				<value>classpath:com/weiweb/schedule/mapper/*.xml</value>
-				<value>classpath:com/weiweb/weixin/mapper/*.xml</value>
+				<value>classpath:com/weiweb/admin/system/mapper/*.xml</value>
+				<value>classpath:com/weiweb/admin/gen/mapper/*.xml</value>
+				<value>classpath:com/weiweb/admin/schedule/mapper/*.xml</value>
+				<value>classpath:com/weiweb/admin/weixin/mapper/*.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -73,7 +73,7 @@
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>	
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.weiweb.*.dao" />
+		<property name="basePackage" value="com.weiweb.admin.*.dao,com.weiweb.*.dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 	 <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

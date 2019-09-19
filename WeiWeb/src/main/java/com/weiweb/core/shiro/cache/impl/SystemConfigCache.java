@@ -1,10 +1,7 @@
 package com.weiweb.core.shiro.cache.impl;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import com.weiweb.admin.system.model.SysConfig;
 import com.weiweb.core.shiro.cache.VCache;
-import com.weiweb.system.model.SysConfig;
 
 public class SystemConfigCache{
 

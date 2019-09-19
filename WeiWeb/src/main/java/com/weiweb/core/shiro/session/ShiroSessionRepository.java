@@ -1,9 +1,9 @@
 package com.weiweb.core.shiro.session;
 
-import org.apache.shiro.session.Session;
-
 import java.io.Serializable;
 import java.util.Collection;
+
+import org.apache.shiro.session.Session;
 
 
 public interface ShiroSessionRepository {

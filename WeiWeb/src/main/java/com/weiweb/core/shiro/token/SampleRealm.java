@@ -17,11 +17,11 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.weiweb.admin.permission.service.PermissionService;
+import com.weiweb.admin.permission.service.RoleService;
+import com.weiweb.admin.user.service.UUserService;
 import com.weiweb.common.model.UUser;
 import com.weiweb.core.shiro.token.manager.TokenManager;
-import com.weiweb.permission.service.PermissionService;
-import com.weiweb.permission.service.RoleService;
-import com.weiweb.user.service.UUserService;
 
 
 public class SampleRealm extends AuthorizingRealm {

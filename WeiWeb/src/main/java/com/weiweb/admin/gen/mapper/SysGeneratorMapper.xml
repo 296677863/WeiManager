@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.weiweb.admin.gen.dao.SysGeneratorMapper" >
+ <resultMap id="BaseResultMap" type="HashMap" >
+    <result column="tableName"  property="tableName" />
+    <result column="engine"  property="engine" />
+    <result column="tableComment"  property="tableComment" />
+    <result column="createTime"  property="createTime" />
+    
+  </resultMap>
+  
+  <resultMap id="ColumnResultMap" type="HashMap">
+   	<result column="columnName"  property="columnName" />
+    <result column="dataType"  property="dataType" />
+    <result column="columnComment"  property="columnComment" />
+    <result column="columnKey"  property="columnKey" />
+    <result column="extra"  property="extra" />
+  </resultMap>
+  
+  <select id="queryTable" resultMap="BaseResultMap">
+   select table_name tableName, engine, table_comment tableComment, create_time createTime from information_schema.tables 
+   where table_schema = (select database()) and table_name = #{tableName,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="queryColumns" resultMap="ColumnResultMap">
+     select column_name columnName, data_type dataType, column_comment columnComment, column_key columnKey, extra from information_schema.columns
+     where table_name = #{tableName,jdbcType=VARCHAR} and table_schema = (select database()) order by ordinal_position
+  </select>
+  <sql id="limit_sql">
+  	   <if test="page_sql != null and page_sql != ''">
+      	${page_sql}
+      </if>
+  </sql>
+  
+  <sql id="where_all">
+  	<where>
+  		 and (table_schema = (select database()))
+  		<if test="findContent != null and findContent !='' " >
+        and (
+        LOWER(name) like CONCAT("%",#{findContent,jdbcType=VARCHAR},"%") 
+        )
+      </if>
+      </where>
+  </sql>
+  
+  <select id="findAll" resultMap="BaseResultMap" >
+  	 select table_name tableName, engine, table_comment tableComment, create_time createTime from information_schema.tables
+  	 
+    <include refid="where_all"/>
+    <include refid="limit_sql" />
+  </select>
+  <select id="findCount" resultMap="BaseResultMap" >
+ 	 select count(*) from information_schema.tables
+  	<include refid="where_all" />
+  </select>
+  
+
+</mapper>

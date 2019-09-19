@@ -12,11 +12,11 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.apache.shiro.subject.support.DefaultSubjectContext;
 
+import com.weiweb.admin.user.bo.UserOnlineBo;
 import com.weiweb.common.model.UUser;
 import com.weiweb.common.utils.LoggerUtils;
 import com.weiweb.common.utils.StringUtils;
 import com.weiweb.core.shiro.CustomShiroSessionDAO;
-import com.weiweb.user.bo.UserOnlineBo;
 
 
 
