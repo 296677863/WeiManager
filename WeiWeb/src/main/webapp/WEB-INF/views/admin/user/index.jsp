@@ -64,12 +64,12 @@
 	                          </a>--%>
 						</li>
 							<li class="J_tabShowActive">
-							<a class="J_menuItem" href="${base}/user/userInfo.shtml" data-index="-1">
+							<a class="J_menuItem" href="${base}/admin/user/userInfo.shtml" data-index="-1">
 	                                       		账号信息
 	                          </a>
 						</li>
 						<li class="J_tabShowActive">
-							<a class="weiOpenBtn" data-title="密码修改" data-url="${base}/user/editpwd.shtml" data-height="50%" data-width="40%">
+							<a class="weiOpenBtn" data-title="密码修改" data-url="${base}/admin/user/editpwd.shtml" data-height="50%" data-width="40%">
 	                                       		密码修改
 	                          </a>
 						</li>
@@ -267,7 +267,7 @@
 	/**退出*/
 	function logout(){
 		var load = layer.load();
-		$.getJSON('${base}/u/logout.shtml',{},function(result){
+		$.getJSON('${base}/admin/user/logout.shtml',{},function(result){
 			layer.close(load);
 			if(result && result.status == 200){
 				layer.msg('退出成功');

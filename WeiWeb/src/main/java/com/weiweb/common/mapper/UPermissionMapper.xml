@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.weiweb.common.dao.UPermissionMapper" >
   <resultMap id="BaseResultMap" type="com.weiweb.common.model.UPermission" >
-     <id column="id" jdbcType="VARCHAR" property="id" />
+     <result column="id" jdbcType="INTEGER" property="id" />
     <result column="create_date" jdbcType="DATE" property="createDate" />
     <result column="code" jdbcType="VARCHAR" property="code" />
     <result column="modify_date" jdbcType="DATE" property="modifyDate" />
@@ -105,10 +105,7 @@
     delete from u_permission
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.weiweb.common.model.UPermission">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
+  <insert id="insert"  parameterType="com.weiweb.common.model.UPermission">
     insert into  u_permission 
 	(
 		`id`, 		`create_date`, 		`code`, 		`modify_date`, 		`data_level`, 		`icon_id`, 		`level`, 		`name`, 		`sort`, 		`status`, 		`target`, 		`url`, 		`parent`	      )
@@ -156,7 +153,10 @@
       )
   </insert>
   
-  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.weiweb.common.model.UPermission" >
+  <insert id="insertSelective" parameterType="com.weiweb.common.model.UPermission" >
+     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into u_permission
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

@@ -221,6 +221,6 @@ public class CommonController extends BaseController {
 	 */
 	@RequestMapping("/homepage")
 	public String homepage(HttpServletRequest request,ModelMap model) {
-		return "/user/homepage";
+		return "/admin/user/homepage";
 	}
 }

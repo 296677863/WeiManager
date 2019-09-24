@@ -29,14 +29,14 @@ import com.weiweb.core.shiro.po.Message;
  * @date 2019-08-13
  */
 @Controller
-@RequestMapping("movie")
+@RequestMapping("admin/movie")
 public class MovieController extends BaseController{
 	@Autowired
 	private MovieService movieService;
 	
 	@RequestMapping(value="list")
 	public ModelAndView list(ModelMap map,Integer pageNo,String findContent){
-		return new ModelAndView("movie/list");
+		return new ModelAndView("/admin/movie/list");
 	}
 	
 	@RequestMapping("/listData")
@@ -59,14 +59,14 @@ public class MovieController extends BaseController{
 	
 	@RequestMapping("/add")
 	public String add( ModelMap model){
-		return "/movie/add";
+		return "/admin/movie/add";
 	}
 	
 	@RequestMapping("/edit/{id}")
 	public String edit( @PathVariable("id")String id,ModelMap model){
 		if(!StringUtils.isEmpty(id))
 			model.addAttribute("bean",movieService.selectByPrimaryKey(id));
-		return "/movie/edit";
+		return "/admin/movie/edit";
 	}
 		
 	@RequestMapping("/save")
@@ -85,7 +85,7 @@ public class MovieController extends BaseController{
 	public String info( @PathVariable("id")String id,ModelMap model){
 		if(!StringUtils.isEmpty(id))
 			model.addAttribute("bean",movieService.selectByPrimaryKey(id));
-		return "/movie/info";
+		return "/admin/movie/info";
 	}
 	
 	

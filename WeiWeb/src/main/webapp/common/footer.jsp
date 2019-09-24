@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="UTF-8"%>
-
 <!-- base js -->
 <script type="text/javascript" src="${base}/js/common/jquery/jquery1.8.3.min.js?v=<wei:version/>"></script>
 <script type="text/javascript" src="${base}/js/common/jquery/jquery-ui.min.js"></script>

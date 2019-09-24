@@ -118,7 +118,7 @@ public class ScheduleJobController extends BaseController{
 	public String info( @PathVariable("id")String id,ModelMap model){
 		if(!StringUtils.isEmpty(id))
 			model.addAttribute("bean",scheduleJobService.selectByPrimaryKey(Long.parseLong(id)));
-		return "/schedulejob/info";
+		return "/schedule/info";
 	}
 	
 	
